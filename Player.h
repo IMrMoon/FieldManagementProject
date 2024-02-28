@@ -25,6 +25,8 @@ using namespace SQLite;
     void set_text_color(int color);
     void view_previous_games(string playerId);
     bool isValidRating(double rating);
+    bool isDateBefore(const std::tm& date1, const std::tm& date2);
+    void parseDateString(const std::string& dateString, int& day, int& month, int& year);
 
 
 

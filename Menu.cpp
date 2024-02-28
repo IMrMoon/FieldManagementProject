@@ -139,7 +139,6 @@ void player_menu(string player_id){
         switch (option) {
             case (schedule_game_player): {
                 schedule_game(player_id);
-
                 break;
             }
             case (cancel_game): {
@@ -162,17 +161,16 @@ void player_menu(string player_id){
                 break;
             }
             case (view_future_games): {
-                //view_player_games();
-
+                view_upcoming_orders(player_id);
                 break;
             }
             case (view_games_history): {
-                //view_previous_games();
+                view_previous_games(player_id);
 
                 break;
             }
             case (rate_a_field): {
-                //addRate(); //need to change
+                field_rate(player_id);
 
                 break;
             }

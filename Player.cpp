@@ -277,14 +277,16 @@ bool schedule_game(string player_id) {
             // Prepare a statement to insert a new order into the Orders table
             Statement query(db,
                             "INSERT INTO Orders (OrderId, Orderdate, OrderStartTime, OrderFinishTime, ManagerId, PlayerId, FieldId) VALUES (?, ?, ?, ?, ?, ?, ?)");
-
+            parseDateString(order_date, day, month, year);
+            Date order_new_date(day, month, year);
+            string order_date_str = date_to_sqlite_string(order_new_date);
             int integer_id = stoi(order_id);
             int integer_field_id = stoi(chosen_field_id);
             int integer_player_id = stoi(player_id);
             int integer_manager_id = stoi(manager_id);
             // Bind parameters to the statement
             query.bind(1, integer_id);
-            query.bind(2, order_date);
+            query.bind(2, order_date_str);
             query.bind(3, start_time_str);
             query.bind(4, end_time_str);
             query.bind(5, integer_manager_id);
@@ -308,12 +310,13 @@ bool schedule_game(string player_id) {
 
 void view_previous_games(string playerId)
 {
+    string orderId, orderDate, fieldId;
     try
     {
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
 
-        // Assuming your orders table has columns 'PlayerId', 'Orderdate', 'FieldId', and 'OrderID' as strings
-        SQLite::Statement query(db, "SELECT * FROM Orders WHERE PlayerId = ? AND date(Orderdate) < date('now')");
+        // Assuming your orders table has columns 'OrderID', 'Orderdate', 'FieldId', and 'PlayerId' as strings
+        SQLite::Statement query(db, "SELECT OrderId, Orderdate, FieldId FROM Orders WHERE PlayerId = ? AND date(Orderdate) < date('now')");
 
         query.bind(1, playerId);
 
@@ -321,16 +324,21 @@ void view_previous_games(string playerId)
 
         while (query.executeStep())
         {
-            // Assuming your orders table has other columns, adjust accordingly
-            std::cout << "Order ID: " << query.getColumn(3) << ", Field ID: " << query.getColumn(2) << ", Date: " << query.getColumn(1).getString() << "\n";
+            // Retrieve OrderID, Orderdate, and FieldId as strings
+            orderId = query.getColumn(0).getString();
+            orderDate = query.getColumn(1).getString();
+            fieldId = query.getColumn(2).getString();
+
+            // Print the retrieved data
+            std::cout << "Order ID: " << orderId << ", Field ID: " << fieldId << ", Date: " << orderDate << "\n";
         }
     }
     catch (std::exception& e)
     {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
-
 }
+
 
 bool isValidRating(double rating)
 {
@@ -342,61 +350,77 @@ bool field_rate(string playerId) {
     view_previous_games(playerId);
     string selectedFieldId;
     double newRating;
-
-    // Take input for the selected field and rating
-    std::cout << "Enter the Field ID you want to rate: ";
-    getline(cin, selectedFieldId);
+    double combinedAverageRating;
 
     // Check if the selected field ID is valid (exists in Field table)
-    // Add your logic here to validate if the selectedFieldId is a valid field ID
-
     try {
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
+        // Retrieve the list of fields
+        SQLite::Statement getFieldQuery(db, "SELECT * FROM Fields");
 
-        // Check if the field has existing ratings in FieldRate table
-        SQLite::Statement checkQuery(db, "SELECT SUM(FieldRate), COUNT(*) FROM FieldRate WHERE FieldId = ?");
-        checkQuery.bind(1, selectedFieldId);
+        std::cout << "Available Fields:\n";
+        // Iterate over the results and print each field
+        while (getFieldQuery.executeStep()) {
+            std::cout << getFieldQuery.getColumn(0).getString() << std::endl;
+        }
+        // Take input for the selected field and rating
+        std::cout << "Enter the Field ID you want to rate: ";
+        getline(cin, selectedFieldId);
 
-        // Directly use currentRatingCount in the calculation
-        if (checkQuery.executeStep() && checkQuery.getColumn(1).getInt() > 0) {
-            // Field has existing ratings, directly use current count in the calculation
-            double currentRatingSum = static_cast<double>(checkQuery.getColumn(0).getInt());
+        // Check if the selectedFieldId exists in the Fields table
+        SQLite::Statement checkFieldQuery(db, "SELECT COUNT(*) FROM Fields WHERE FieldId = ?");
+        checkFieldQuery.bind(1, selectedFieldId);
 
-            // Take input for the new rating
+        if(checkFieldQuery.executeStep() && checkFieldQuery.getColumn(0).getInt() > 0) {
+            // Field ID exists in the Fields table
 
-            std::cout << "Enter the new rating for the field (1 to 5): ";
-            std::cin >> newRating;
+            // Check if the field has existing ratings in FieldRate table
+            SQLite::Statement checkQuery(db, "SELECT SUM(FieldRate), COUNT(*) FROM Fields WHERE FieldId = ?");
+            checkQuery.bind(1, selectedFieldId);
 
-            if (!isValidRating(newRating)) {
-                std::cerr << "Invalid rating. Please provide a rating between 1 and 5.\n";
-                return false;
+            // Directly use currentRatingCount in the calculation
+            if (checkQuery.executeStep() && checkQuery.getColumn(0).getInt() > 0) {
+                // Field has existing ratings, directly use current count in the calculation
+                double currentRatingSum = static_cast<double>(checkQuery.getColumn(0).getInt());
+
+                // Take input for the new rating
+
+                std::cout << "Enter the new rating for the field (1 to 5): ";
+                std::cin >> newRating;
+
+                if (!isValidRating(newRating)) {
+                    std::cerr << "Invalid rating. Please provide a rating between 1 and 5.\n";
+                    return false;
+                }
+
+                // Calculate the new average rating (add new rating and divide by 2 times the existing count)
+                combinedAverageRating = (currentRatingSum + newRating) / 2;
+
+                // Update the Fields table with the new combined average rating
+                SQLite::Statement updateFieldRate(db, "UPDATE Fields SET FieldRate = ? WHERE FieldId = ?");
+                updateFieldRate.bind(1, combinedAverageRating);
+                updateFieldRate.bind(2, selectedFieldId);
+                updateFieldRate.exec();
+
+                std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+                return true;
             }
+            else {
+                // No existing ratings, set the average to the new rating
+                SQLite::Statement insertQuery(db, "INSERT INTO Fields (PlayerId, FieldId, FieldRate) VALUES (?, ?, ?)");
+                insertQuery.bind(1, playerId);
+                insertQuery.bind(2, selectedFieldId);
+                insertQuery.bind(3, combinedAverageRating);
+                insertQuery.exec();
 
-            // Calculate the new average rating (add new rating and divide by 2 times the existing count)
-            double combinedAverageRating = (currentRatingSum + newRating) / 2;
-
-            // Update the FieldRate table with the new combined average rating
-            SQLite::Statement updateFieldRate(db, "UPDATE FieldRate SET FieldRate = ? WHERE FieldId = ?");
-            updateFieldRate.bind(1, combinedAverageRating);
-            updateFieldRate.bind(2, selectedFieldId);
-            updateFieldRate.exec();
-
-            std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
-            return true;
+                std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+                return true;
+            }
+        } else {
+            // Field ID does not exist in the Fields table
+            std::cerr << "Invalid Field ID. Please select a valid Field ID.\n";
+            return false;
         }
-        else
-        {
-            // No existing ratings, set the average to the new rating
-            SQLite::Statement insertQuery(db, "INSERT INTO FieldRate (PlayerId, FieldId, FieldRate) VALUES (?, ?, ?)");
-            insertQuery.bind(1, playerId);
-            insertQuery.bind(2, selectedFieldId);
-            insertQuery.bind(3, newRating);
-            insertQuery.exec();
-
-            std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
-            return true;
-        }
-
     } catch (const std::exception &e) {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
         return false;
@@ -411,15 +435,30 @@ void view_upcoming_orders(string playerId) {
         SQLite::Statement query(db, "SELECT * FROM Orders WHERE PlayerId = ? AND date(Orderdate) > date('now')");
 
         query.bind(1, playerId);
-
+        cout << "Your future orders: " << endl;
         // Execute the query and print the results
         while (query.executeStep()) {
-            std::cout << "Order ID: " << query.getColumn("Order").getText()
+
+            std::cout << "Order ID: " << query.getColumn("OrderId").getText()
                       << ", Field ID: " << query.getColumn("FieldId").getText()
                       << ", Order Date: " << query.getColumn("Orderdate").getText() << std::endl;
         }
     } catch (const std::exception &e) {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
+}
+
+
+void parseDateString(const std::string& dateString, int& day, int& month, int& year) {
+    std::istringstream iss(dateString);
+    char delimiter;
+    iss >> day >> delimiter >> month >> delimiter >> year;
+}
+
+std::string dateToString(const Date& date) {
+    std::stringstream ss;
+    ss << std::setfill('0') << std::setw(2) << date.getDay() << "/"
+       << std::setw(2) << date.getMonth() << "/" << date.getYear();
+    return ss.str();
 }
 
