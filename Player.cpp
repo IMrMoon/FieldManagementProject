@@ -14,7 +14,7 @@ string player_register() {
         bool email_exists = false;
         bool phone_number_exists = false;
         do {
-            cout << "Enter Player ID (up to 9 digits): ";
+            cout << "Enter Player ID (up to 9 digits): " << endl;
             cin >> player_id;
             if (!check_id(player_id)) {
                 cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;

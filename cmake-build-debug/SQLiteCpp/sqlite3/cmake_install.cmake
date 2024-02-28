@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp/sqlite3
+# Install script for directory: C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,14 +34,14 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2023.3.3/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "libraries" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/libsqlite3.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/libsqlite3.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "headers" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.h")
 endif()
 

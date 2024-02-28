@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp
+# Install script for directory: C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,22 +34,22 @@ endif()
 
 # Set default install directory permissions.
 if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "C:/Program Files/JetBrains/CLion 2023.3.3/bin/mingw/bin/objdump.exe")
+  set(CMAKE_OBJDUMP "C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/objdump.exe")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "libraries" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/libSQLiteCpp.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/libSQLiteCpp.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "headers" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp/include/" FILES_MATCHING REGEX ".*\\.(hpp|h)$")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/" FILES_MATCHING REGEX ".*\\.(hpp|h)$")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp/SQLiteCppTargets.cmake")
     file(DIFFERENT _cmake_export_file_changed FILES
          "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp/SQLiteCppTargets.cmake"
-         "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/CMakeFiles/Export/31d559fcedc0800e90eb93f071f3b915/SQLiteCppTargets.cmake")
+         "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/CMakeFiles/Export/31d559fcedc0800e90eb93f071f3b915/SQLiteCppTargets.cmake")
     if(_cmake_export_file_changed)
       file(GLOB _cmake_old_config_files "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp/SQLiteCppTargets-*.cmake")
       if(_cmake_old_config_files)
@@ -62,26 +62,26 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     endif()
     unset(_cmake_export_file_changed)
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp" TYPE FILE FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/CMakeFiles/Export/31d559fcedc0800e90eb93f071f3b915/SQLiteCppTargets.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp" TYPE FILE FILES "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/CMakeFiles/Export/31d559fcedc0800e90eb93f071f3b915/SQLiteCppTargets.cmake")
   if(CMAKE_INSTALL_CONFIG_NAME MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp" TYPE FILE FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/CMakeFiles/Export/31d559fcedc0800e90eb93f071f3b915/SQLiteCppTargets-debug.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp" TYPE FILE FILES "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/CMakeFiles/Export/31d559fcedc0800e90eb93f071f3b915/SQLiteCppTargets-debug.cmake")
   endif()
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SQLiteCpp" TYPE FILE FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/SQLiteCpp" TYPE FILE FILES "C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/package.xml")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/SQLiteCpp" TYPE FILE FILES
-    "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/cmake/SQLiteCppConfig.cmake"
-    "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/cmake/SQLiteCppConfigVersion.cmake"
+    "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/cmake/SQLiteCppConfig.cmake"
+    "C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/cmake/SQLiteCppConfigVersion.cmake"
     )
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/cmake_install.cmake")
+  include("C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/cmake_install.cmake")
 
 endif()
 

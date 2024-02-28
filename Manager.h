@@ -15,10 +15,10 @@ using namespace std;
     bool deleteField(long field_id_to_delete);
     bool edit_manager_details();
     float view_rate();
-    bool mark_dates_as_unavailable();
-    void view_field_orders(long field_id);
-    void view_orders_by_date(const Date& other_date);
 
+    void view_field_orders(std::string manager_id) ;
+    void view_orders_by_date(std::string manager_id);
+void mark_dates_as_unavailable(std::string manager_id, int field_id, std::string order_date, std::string start_time, std::string end_time);
 
 
 

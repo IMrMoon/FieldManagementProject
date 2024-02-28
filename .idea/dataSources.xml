@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="FieldManagement" uuid="a76a362c-541f-4f5c-a7a3-b9c72c1fe8eb">
+    <data-source source="LOCAL" name="FieldManagement" uuid="0002227c-3c28-4dd8-a3cb-3e934f88e4de">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\cmake-build-debug\FieldManagement.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\Users\smada\CLionProjects\FieldManagementProject\cmake-build-debug\FieldManagement.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

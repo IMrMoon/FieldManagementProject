@@ -58,7 +58,7 @@ void player_reg_or_login_menu(){
         cout << "| " << "2) Login                                      " << " |" << endl;
         cout << "+--------------------------------------+" << endl;
         set_text_color(RESET);
-
+        cin.ignore();
         cin >> option;
         system("CLS");
         switch (option) {
@@ -99,12 +99,12 @@ void manager_reg_or_login_menu(){
         system("CLS");
         switch (option) {
             case (reg): {
-                manager_id = player_register();
+                manager_id = manager_register();
                 manager_menu(manager_id);
                 break;
             }
             case (login): {
-                manager_id = player_login(); //add forget pass option
+                manager_id = manager_login(); //add forget pass option
                 manager_menu(manager_id);
                 break;
             }
@@ -234,16 +234,19 @@ void manager_menu(string& manager_id){
                 break;
             }
             case (view_future_games_by_date): {
-                //view_orders_by_date();
+                view_orders_by_date(manager_id);
 
                 break;
             }
             case (view_future_games_by_field): {
+                view_field_orders(manager_id);
+
                 //view_field_orders();
                 break;
             }
             case (make_unavailable_dates): {
-                //mark_dates_as_unavailable();
+//                string field_id = get_field_id(manager_id);
+//                mark_dates_as_unavailable(manager_id,field_id,);
                 break;
             }
             case (view_rate_manager): {

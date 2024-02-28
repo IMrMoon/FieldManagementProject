@@ -9,14 +9,10 @@
 #define FIELDPROJECT_DATAACCESSLAYER_H
 
 
-class DataAccessLayer {
-private:
 
-public:
+    string get_field_id (string maneger_id);
 
 
-
-};
 
 
 #endif //FIELDPROJECT_DATAACCESSLAYER_H
