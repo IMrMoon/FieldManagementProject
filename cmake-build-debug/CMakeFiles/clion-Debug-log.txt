@@ -26,6 +26,6 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- SQLITECPP_RUN_DOXYGEN OFF
 -- SQLITECPP_BUILD_EXAMPLES OFF
 -- SQLITECPP_BUILD_TESTS OFF
--- Configuring done (0.2s)
--- Generating done (0.4s)
+-- Configuring done (0.6s)
+-- Generating done (0.3s)
 -- Build files have been written to: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/cmake-build-debug

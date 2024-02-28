@@ -57,7 +57,6 @@ void player_reg_or_login_menu(){
         //set_text_color(RESET);
         cin >> option;
         cleanBuffer();
-        system("CLS");
         switch (option) {
             case (reg): {
                 player_id = player_register();
@@ -95,7 +94,6 @@ void manager_reg_or_login_menu(){
         cout << "+--------------------------------------+"  << endl;
         cin >> option;
         cleanBuffer();
-        system("CLS");
         switch (option) {
             case (reg): {
                 //manager_id = player_register();
@@ -138,7 +136,6 @@ void player_menu(string player_id){
         //set_text_color(RESET);
         cin >> option;
         cleanBuffer();
-        system("CLS");
         switch (option) {
             case (schedule_game_player): {
                 schedule_game(player_id);
@@ -146,8 +143,7 @@ void player_menu(string player_id){
                 break;
             }
             case (cancel_game): {
-                //delete_game_order(); //need to write and fix
-
+                get_and_choose_player_orders(player_id);
                 break;
             }
             case (search_field_by_type): {
@@ -215,7 +211,6 @@ void manager_menu(string& manager_id){
         //set_text_color(RESET);
         cin >> option;
         cleanBuffer();
-        system("CLS");
         switch (option) {
             case (add_field): {
                 //addField();

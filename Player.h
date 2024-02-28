@@ -20,10 +20,11 @@ using namespace SQLite;
     void view_fields_by_fieldType();
     void view_fields_by_city();
     bool edit_player_details();
-    void view_player_games();
-    void view_previous_games();
-    bool field_rate();
+    void view_upcoming_orders(string playerId);
+    bool field_rate(string playerId);
     void set_text_color(int color);
+    void view_previous_games(string playerId);
+    bool isValidRating(double rating);
 
 
 

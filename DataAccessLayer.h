@@ -19,5 +19,6 @@ string getNextOrderIdFromDatabase(Database& db);
 string getManagerIdByFieldId(const string& fieldId);
 void print_available_cities(Database& db);
 void print_available_field_types(Database& db);
+bool get_and_choose_player_orders(string player_id);
 
 #endif //FIELDPROJECT_DATAACCESSLAYER_H

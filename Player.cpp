@@ -7,7 +7,6 @@
 #define GREEN 2
 #include "Player.h"
 #include <limits>
-
 #include "Validation.h"
 
 
@@ -307,5 +306,120 @@ bool schedule_game(string player_id) {
 
     }
 
+void view_previous_games(string playerId)
+{
+    try
+    {
+        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
 
+        // Assuming your orders table has columns 'PlayerId', 'Orderdate', 'FieldId', and 'OrderID' as strings
+        SQLite::Statement query(db, "SELECT * FROM Orders WHERE PlayerId = ? AND date(Orderdate) < date('now')");
+
+        query.bind(1, playerId);
+
+        std::cout << "Orders before current date for player " << playerId << ":\n";
+
+        while (query.executeStep())
+        {
+            // Assuming your orders table has other columns, adjust accordingly
+            std::cout << "Order ID: " << query.getColumn(3) << ", Field ID: " << query.getColumn(2) << ", Date: " << query.getColumn(1).getString() << "\n";
+        }
+    }
+    catch (std::exception& e)
+    {
+        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    }
+
+}
+
+bool isValidRating(double rating)
+{
+    return (rating >= 1.0 && rating <= 5.0);
+}
+
+bool field_rate(string playerId) {
+    // Call view_previous_games to display orders before rating
+    view_previous_games(playerId);
+    string selectedFieldId;
+    double newRating;
+
+    // Take input for the selected field and rating
+    std::cout << "Enter the Field ID you want to rate: ";
+    getline(cin, selectedFieldId);
+
+    // Check if the selected field ID is valid (exists in Field table)
+    // Add your logic here to validate if the selectedFieldId is a valid field ID
+
+    try {
+        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
+
+        // Check if the field has existing ratings in FieldRate table
+        SQLite::Statement checkQuery(db, "SELECT SUM(FieldRate), COUNT(*) FROM FieldRate WHERE FieldId = ?");
+        checkQuery.bind(1, selectedFieldId);
+
+        // Directly use currentRatingCount in the calculation
+        if (checkQuery.executeStep() && checkQuery.getColumn(1).getInt() > 0) {
+            // Field has existing ratings, directly use current count in the calculation
+            double currentRatingSum = static_cast<double>(checkQuery.getColumn(0).getInt());
+
+            // Take input for the new rating
+
+            std::cout << "Enter the new rating for the field (1 to 5): ";
+            std::cin >> newRating;
+
+            if (!isValidRating(newRating)) {
+                std::cerr << "Invalid rating. Please provide a rating between 1 and 5.\n";
+                return false;
+            }
+
+            // Calculate the new average rating (add new rating and divide by 2 times the existing count)
+            double combinedAverageRating = (currentRatingSum + newRating) / 2;
+
+            // Update the FieldRate table with the new combined average rating
+            SQLite::Statement updateFieldRate(db, "UPDATE FieldRate SET FieldRate = ? WHERE FieldId = ?");
+            updateFieldRate.bind(1, combinedAverageRating);
+            updateFieldRate.bind(2, selectedFieldId);
+            updateFieldRate.exec();
+
+            std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+            return true;
+        }
+        else
+        {
+            // No existing ratings, set the average to the new rating
+            SQLite::Statement insertQuery(db, "INSERT INTO FieldRate (PlayerId, FieldId, FieldRate) VALUES (?, ?, ?)");
+            insertQuery.bind(1, playerId);
+            insertQuery.bind(2, selectedFieldId);
+            insertQuery.bind(3, newRating);
+            insertQuery.exec();
+
+            std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+            return true;
+        }
+
+    } catch (const std::exception &e) {
+        std::cerr << "SQLite exception: " << e.what() << std::endl;
+        return false;
+    }
+}
+
+void view_upcoming_orders(string playerId) {
+    try {
+        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
+
+        // Assuming your orders table has columns 'PlayerId', 'Orderdate', 'FieldId', and 'OrderID' as strings
+        SQLite::Statement query(db, "SELECT * FROM Orders WHERE PlayerId = ? AND date(Orderdate) > date('now')");
+
+        query.bind(1, playerId);
+
+        // Execute the query and print the results
+        while (query.executeStep()) {
+            std::cout << "Order ID: " << query.getColumn("Order").getText()
+                      << ", Field ID: " << query.getColumn("FieldId").getText()
+                      << ", Order Date: " << query.getColumn("Orderdate").getText() << std::endl;
+        }
+    } catch (const std::exception &e) {
+        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    }
+}
 
