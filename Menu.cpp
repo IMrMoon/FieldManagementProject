@@ -3,29 +3,26 @@
 //
 #define RESET 7
 #define CYAN 9
-#include <windows.h>
+#define RED 4
+#define GREEN 2
 #include "Menu.h"
+#include "Validation.h"
 
-enum manager_Or_player {manager = 1 , player};
-enum reg_or_login {reg = 1, login};
-enum player_options {schedule_game_player = 1, cancel_game, search_field_by_type, search_field_by_city, edit_details_player, view_future_games, view_games_history, rate_a_field, quit1};
-enum manager_options {add_field = 1, delete_field, edit_details_manager, view_future_games_by_date, view_future_games_by_field, make_unavailable_dates, view_rate_manager, quit2};
 
 
 void first_menu(){ //menu for choose if he is a manager or player.
     int option = 0;
     do {
-        set_text_color(CYAN);
+        //set_text_color(CYAN);
         cout << "+--------------------------------------+" << endl;
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
         cout << "| " << "Please choose if you are a Manager/Player:    " << " |" << endl;
         cout << "| " << "1) Manager                                     " << " |" << endl;
         cout << "| " << "2) Player                                      " << " |" << endl;
         cout << "+--------------------------------------+" << endl;
-        set_text_color(RESET);
-
+        //set_text_color(RESET);
         cin >> option;
-        system("CLS");
+        cleanBuffer();
         switch (option) {
             case (manager): {
                 manager_reg_or_login_menu();
@@ -36,9 +33,9 @@ void first_menu(){ //menu for choose if he is a manager or player.
                 break;
             }
             default: {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 option = 0;
                 break;
             }
@@ -50,21 +47,23 @@ void player_reg_or_login_menu(){
     int option = 0;
     string player_id;
     do {
-        set_text_color(CYAN);
+        //set_text_color(CYAN);
         cout << "+--------------------------------------+" << endl;
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
         cout << "| " << "Please choose Register/Login:    " << " |" << endl;
         cout << "| " << "1) Register                                     " << " |" << endl;
         cout << "| " << "2) Login                                      " << " |" << endl;
         cout << "+--------------------------------------+" << endl;
-        set_text_color(RESET);
-
+        //set_text_color(RESET);
         cin >> option;
+        cleanBuffer();
         system("CLS");
         switch (option) {
             case (reg): {
                 player_id = player_register();
+                //set_text_color(GREEN);
                 cout << "Registered successfully" << endl;
+                //set_text_color(RESET);
                 player_menu(player_id);
                 break;
             }
@@ -74,9 +73,9 @@ void player_reg_or_login_menu(){
                 break;
             }
             default: {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 option = 0;
                 break;
             }
@@ -94,24 +93,24 @@ void manager_reg_or_login_menu(){
         cout << "| " << "1) Register                                     " << " |" << endl;
         cout << "| " << "2) Login                                      " << " |" << endl;
         cout << "+--------------------------------------+"  << endl;
-
         cin >> option;
+        cleanBuffer();
         system("CLS");
         switch (option) {
             case (reg): {
-                manager_id = player_register();
-                manager_menu(manager_id);
+                //manager_id = player_register();
+                //manager_menu(manager_id);
                 break;
             }
             case (login): {
-                manager_id = player_login(); //add forget pass option
-                manager_menu(manager_id);
+                //manager_id = player_login(); //add forget pass option
+                //manager_menu(manager_id);
                 break;
             }
             default: {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 option = 0;
                 break;
             }
@@ -119,13 +118,13 @@ void manager_reg_or_login_menu(){
     } while (option == 0);
 }
 
-void player_menu(string& player_id){
+void player_menu(string player_id){
     int option = 0;
     do {
-        set_text_color(CYAN);
+        //set_text_color(CYAN);
         cout << "+--------------------------------------+" << endl;
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
-        cout << "| " << "Please choose Register/Login:    " << " |" << endl;
+        cout << "| " << "Please choose option:    " << " |" << endl;
         cout << "| " << "1) Schedule game                                     " << " |" << endl;
         cout << "| " << "2) Cancel Game                                      " << " |" << endl;
         cout << "| " << "3) Search Field by type                                      " << " |" << endl;
@@ -136,13 +135,13 @@ void player_menu(string& player_id){
         cout << "| " << "8) Rate a field                                     " << " |" << endl;
         cout << "| " << "9) Quit                                    " << " |" << endl;
         cout << "+--------------------------------------+" << endl;
-        set_text_color(RESET);
-
+        //set_text_color(RESET);
         cin >> option;
+        cleanBuffer();
         system("CLS");
         switch (option) {
             case (schedule_game_player): {
-                //schedule_game();
+                schedule_game(player_id);
 
                 break;
             }
@@ -182,15 +181,15 @@ void player_menu(string& player_id){
                 break;
             }
             case (quit1): {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Exiting the menu!" << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 break;
             }
             default: {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 option = 0;
                 break;
             }
@@ -200,7 +199,7 @@ void player_menu(string& player_id){
 void manager_menu(string& manager_id){
     int option = 0;
     do {
-        set_text_color(CYAN);
+        //set_text_color(CYAN);
         cout << "+--------------------------------------+" << endl;
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
         cout << "| " << "Please choose Register/Login:    " << " |" << endl;
@@ -213,9 +212,9 @@ void manager_menu(string& manager_id){
         cout << "| " << "7) View Rate                                      " << " |" << endl;
         cout << "| " << "8) Quit                                     " << " |" << endl;
         cout << "+--------------------------------------+" << endl;
-        set_text_color(RESET);
-
+        //set_text_color(RESET);
         cin >> option;
+        cleanBuffer();
         system("CLS");
         switch (option) {
             case (add_field): {
@@ -252,15 +251,15 @@ void manager_menu(string& manager_id){
                 break;
             }
             case (quit2): {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Exiting the menu!" << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 break;
             }
             default: {
-                set_text_color(31);
+                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                set_text_color(RESET);
+                //set_text_color(RESET);
                 option = 0;
                 break;
             }
@@ -268,8 +267,9 @@ void manager_menu(string& manager_id){
     } while (option != 8);
 }
 
-void set_text_color(int color) {
 
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(hConsole, color);
-}
+
+
+
+
+

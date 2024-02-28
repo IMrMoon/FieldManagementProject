@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp/sqlite3
+# Install script for directory: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/sqlite3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,10 +38,10 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "libraries" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/libsqlite3.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/libsqlite3.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "headers" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.h")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES "C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.h")
 endif()
 

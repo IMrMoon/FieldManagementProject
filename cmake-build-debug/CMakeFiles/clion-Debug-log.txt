@@ -1,4 +1,13 @@
-"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=C:/Program Files/JetBrains/CLion 2023.3.3/bin/ninja/win/x64/ninja.exe" -G Ninja -S C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject -B C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject -B C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
+CMake Deprecation Warning:
+  Support for "Extra Generators" like
+
+    CodeBlocks
+
+  is deprecated and will be removed from a future version of CMake.  IDEs may
+  use the cmake-file-api(7) to view CMake-generated project build trees.
+
+
 -- Using c++ standard c++17
 -- CMake version: 3.27.8
 -- Project version: 3.3.1
@@ -17,6 +26,6 @@ This warning is for project developers.  Use -Wno-dev to suppress it.
 -- SQLITECPP_RUN_DOXYGEN OFF
 -- SQLITECPP_BUILD_EXAMPLES OFF
 -- SQLITECPP_BUILD_TESTS OFF
--- Configuring done (0.1s)
--- Generating done (0.0s)
--- Build files have been written to: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/cmake-build-debug
+-- Configuring done (0.2s)
+-- Generating done (0.4s)
+-- Build files have been written to: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/cmake-build-debug
