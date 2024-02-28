@@ -1,0 +1,2 @@
+C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc libsqlite3.a CMakeFiles/sqlite3.dir/sqlite3.c.obj
+C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\ranlib.exe libsqlite3.a

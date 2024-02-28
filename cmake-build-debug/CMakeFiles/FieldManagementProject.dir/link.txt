@@ -1,0 +1,3 @@
+C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f CMakeFiles\FieldManagementProject.dir/objects.a
+C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\ar.exe qc CMakeFiles\FieldManagementProject.dir/objects.a @CMakeFiles\FieldManagementProject.dir\objects1.rsp
+C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\FieldManagementProject.dir/objects.a -Wl,--no-whole-archive -o FieldManagementProject.exe -Wl,--out-implib,libFieldManagementProject.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\FieldManagementProject.dir\linkLibs.rsp

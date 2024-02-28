@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="FieldManagementProject"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\SQLiteCpp\;CMake Files\SQLiteCpp\cmake\;CMake Files\SQLiteCpp\sqlite3\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FieldManagementProject">
+				<Option output="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/FieldManagementProject.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSQLITE_ENABLE_COLUMN_METADATA"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 FieldManagementProject"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="FieldManagementProject/fast">
+				<Option output="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/FieldManagementProject.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSQLITE_ENABLE_COLUMN_METADATA"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 FieldManagementProject/fast"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/strip">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SQLiteCpp">
+				<Option output="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/libSQLiteCpp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSQLITE_ENABLE_COLUMN_METADATA"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 SQLiteCpp"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SQLiteCpp/fast">
+				<Option output="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/libSQLiteCpp.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSQLITE_ENABLE_COLUMN_METADATA"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 SQLiteCpp/fast"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="SQLiteCpp_cpplint">
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 SQLiteCpp_cpplint"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sqlite3">
+				<Option output="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/libsqlite3.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSQLITE_ENABLE_COLUMN_METADATA"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 sqlite3"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="sqlite3/fast">
+				<Option output="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/libsqlite3.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSQLITE_ENABLE_COLUMN_METADATA"/>
+					<Add directory="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 sqlite3/fast"/>
+					<CompileFile command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/Users/smada/AppData/Local/Programs/CLion/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/smada/CLionProjects/FieldManagementProject/cmake-build-debug/SQLiteCpp/sqlite3/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/DataAccessLayer.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/DataAccessLayer.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Date.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Date.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Field.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Field.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Manager.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Manager.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Menu.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Menu.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Order.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Order.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Player.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Player.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.editorconfig">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.gitbugtraq">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.github/workflows/cmake.yml">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.github/workflows/cmake_subdir_example.yml">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.github/workflows/meson.yml">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.gitignore">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.gitmodules">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/.travis.yml">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/CHANGELOG.md">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/Doxyfile">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/LICENSE.txt">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/README.md">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/TODO.txt">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/appveyor.yml">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/build.bat">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/build.sh">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/cmake/FindSQLite3.cmake">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/cmake/SQLiteCppConfig.cmake.in">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/cpplint.py">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Assertion.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Backup.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Column.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Database.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Exception.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/ExecuteMany.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCpp.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Savepoint.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Statement.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Transaction.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/VariadicBind.h">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.c">
+			<Option target="sqlite3"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.h">
+			<Option target="sqlite3"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Backup.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Column.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Database.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Exception.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Savepoint.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Statement.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/src/Transaction.cpp">
+			<Option target="SQLiteCpp"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Validation.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/Validation.h">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/main.cpp">
+			<Option target="FieldManagementProject"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\SQLiteCpp\"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/cmake/SQLiteCppConfig.cmake.in">
+			<Option virtualFolder="CMake Files\SQLiteCpp\cmake\"/>
+		</Unit>
+		<Unit filename="C:/Users/smada/CLionProjects/FieldManagementProject/SQLiteCpp/sqlite3/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\SQLiteCpp\sqlite3\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
