@@ -25,15 +25,15 @@ bool check_existing_phone_number(const string& phone_number);
 bool check_gender(char gender);
 
 ///validation checks for order new game
-bool check_date(const std::string& date_str);
-bool check_time_format(const std::string& time_str);
-bool check_time_exist(const string& start_time_str, const string& finish_time_str, const std::string& date_str);
+bool check_date(const string& date_str);
+bool check_time_format(const string& time_str);
+bool check_time_exist(const string& start_time_str, const string& finish_time_str, const string& date_str);
 void get_current_date(int& year, int& month, int& day);
 bool order_existing_validation();
-string choose_field_id(const std::string& city, const std::string& game_type);
+string choose_field_id(const string& city, const string& game_type);
 string date_to_sqlite_string(const Date& date);
-std::string choose_city_from_list(SQLite::Database& db);
-std::string choose_field_type_from_list(SQLite::Database& db);
+string choose_city_from_list(Database& db);
+string choose_field_type_from_list(Database& db);
 void cleanBuffer();
 
 

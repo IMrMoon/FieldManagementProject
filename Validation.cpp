@@ -10,30 +10,31 @@ bool check_id(const string& id) {
         return false;
     }
     for (char c : id) {
-        if (!std::isdigit(c)) {
+        if (!isdigit(c)) {
             return false;
         }
     }
     return true;
 }
+
 bool check_name(const string& name){
     bool newWord = true; // Flag to track if the next character should be uppercase
 
-    if (name.empty() || !std::isupper(name[0])) {
+    if (name.empty() || !isupper(name[0])) {
         return false;
     }
 
     for (char c : name) {
-        if (std::isspace(c)) {
+        if (isspace(c)) {
             newWord = true;
         } else {
             if (newWord) {
-                if (!std::isupper(c)) {
+                if (!isupper(c)) {
                     return false; // First letter of each word should be uppercase
                 }
                 newWord = false;
             } else {
-                if (!std::islower(c)) {
+                if (!islower(c)) {
                     return false; // All other letters should be lowercase
                 }
             }
@@ -42,24 +43,29 @@ bool check_name(const string& name){
 
     return true;
 }
+
 bool check_email(const string& email){
     // Regular expression for basic email validation
-    const std::regex emailPattern(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
-    return std::regex_match(email, emailPattern);
+    const regex emailPattern(R"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})");
+    return regex_match(email, emailPattern);
 }
+
 bool check_password(const string& password){
     // Regular expression for password validation
-    const std::regex passwordPattern(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$)");
-    return std::regex_match(password, passwordPattern);
+    const regex passwordPattern(R"(^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{7,}$)");
+    return regex_match(password, passwordPattern);
 }
+
 bool check_gender(char gender){
     return (gender == 'M' || gender == 'F' || gender == 'f' || gender == 'm');
 }
+
 bool check_phone_number(const string& phoneNumber){
     // Regular expression for phone number validation
     const regex phoneNumberPattern(R"(\d{1,10}$)");
     return regex_match(phoneNumber, phoneNumberPattern);
 }
+
 bool check_existing_id(const string& id) {
     try {
         // Open the database
@@ -75,19 +81,20 @@ bool check_existing_id(const string& id) {
             // If the query returns a result, the ID already exists
             return false;
         }
-    } catch (std::exception& e) {
+    } catch (exception& e) {
         // Handle exceptions (e.g., print error message)
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+        cerr << "SQLite exception: " << e.what() << endl;
     }
     return true;
 }
+
 bool check_existing_email(const string& email){
     try {
         // Open the database
-        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
+        Database db("FieldManagement.db", OPEN_READONLY);
 
         // Prepare a statement to select a player with the given email
-        SQLite::Statement query(db, "SELECT Email FROM Player WHERE Email = ?");
+        Statement query(db, "SELECT Email FROM Player WHERE Email = ?");
         query.bind(1, email);
 
         // Execute the query
@@ -95,19 +102,20 @@ bool check_existing_email(const string& email){
             // If the query returns a result, the email already exists
             return false;
         }
-    } catch (std::exception& e) {
+    } catch (exception& e) {
         // Handle exceptions (e.g., print error message)
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+        cerr << "SQLite exception: " << e.what() << endl;
     }
     return true;
 }
+
 bool check_existing_phone_number(const string& phone_number){
     try {
         // Open the database
-        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
+        Database db("FieldManagement.db", OPEN_READONLY);
 
         // Prepare a statement to select a player with the given phone number
-        SQLite::Statement query(db, R"(SELECT "Phone number" FROM Player WHERE "Phone number" = ?)");
+        Statement query(db, R"(SELECT "Phone number" FROM Player WHERE "Phone number" = ?)");
         int integer_phoneNum = stoi(phone_number);;
         query.bind(1, integer_phoneNum);
 
@@ -116,22 +124,22 @@ bool check_existing_phone_number(const string& phone_number){
             // If the query returns a result, the phone number already exists
             return false;
         }
-    } catch (std::exception& e) {
+    } catch (exception& e) {
         // Handle exceptions (e.g., print error message)
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+        cerr << "SQLite exception: " << e.what() << std::endl;
     }
     return true;
 }
 
 ///validation checks for order new game
-bool check_date(const std::string& date_str) {
+bool check_date(const string& date_str) {
     // Check if the date string contains '/'
-    if (date_str.find('/') == std::string::npos) {
+    if (date_str.find('/') == string::npos) {
         return false; // '/' not found, invalid format
     }
 
     // Assuming the date string is in the format "DD/MM/YYYY"
-    std::istringstream iss(date_str);
+    istringstream iss(date_str);
     int day, month, year;
     char slash1, slash2;
     // Try to extract day, month, and year
@@ -158,10 +166,9 @@ bool check_date(const std::string& date_str) {
     return true; // Date format and values are valid
 }
 
-
-bool check_time_format(const std::string& time_str) {
+bool check_time_format(const string& time_str) {
     // Check if the time string has the correct format "hh:mm"
-    std::istringstream iss(time_str);
+    istringstream iss(time_str);
     int hours, minutes;
     char colon;
 
@@ -182,24 +189,21 @@ bool check_time_format(const std::string& time_str) {
 
     // Check if the time string contains only numeric characters and a colon
     for (char c : time_str) {
-        if (!std::isdigit(c) && c != ':') {
+        if (!isdigit(c) && c != ':') {
             return false; // Non-numeric character found
         }
     }
 
     return true; // Time format is valid
 }
-#include <iostream>
-#include <string>
-#include <SQLiteCpp/SQLiteCpp.h> // Assuming you are using SQLiteCpp for SQLite database access
 
-bool check_time_exist(const std::string& start_time_str, const std::string& finish_time_str, const std::string& date_str) {
+bool check_time_exist(const string& start_time_str, const string& finish_time_str, const string& date_str) {
     try {
         // Open the database
-        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
+        Database db("FieldManagement.db", OPEN_READONLY);
 
         // Prepare SQL query to check if there's an order overlapping with the proposed time on the given date
-        SQLite::Statement query(db, "SELECT COUNT(*) FROM Orders WHERE ((OrderStartTime < ? AND OrderFinishTime > ?) OR (OrderStartTime > ? AND OrderFinishTime < ?) OR (OrderStartTime < ? AND OrderFinishTime > ?)) AND Orderdate = ?");
+        Statement query(db, "SELECT COUNT(*) FROM Orders WHERE ((OrderStartTime < ? AND OrderFinishTime > ?) OR (OrderStartTime > ? AND OrderFinishTime < ?) OR (OrderStartTime < ? AND OrderFinishTime > ?)) AND Orderdate = ?");
         query.bind(1, start_time_str);
         query.bind(2, start_time_str);
         query.bind(3, start_time_str);
@@ -213,8 +217,8 @@ bool check_time_exist(const std::string& start_time_str, const std::string& fini
             int count = query.getColumn(0).getInt();
             return count > 0; // If count > 0, a conflicting order exists
         }
-    } catch (std::exception& e) {
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
     }
     return false; // Return false by default (no conflicts or error occurred)
 }
@@ -231,38 +235,38 @@ string choose_field_id(const string& city, const string& game_type) {
         query.bind(2, game_type);
 
         // Display available fields and prompt the user to choose a field ID
-        std::cout << "Available fields in " << city << " for " << game_type << ":" << std::endl;
+        cout << "Available fields in " << city << " for " << game_type << ":" << endl;
         while (query.executeStep()) {
             string field_id = query.getColumn(0).getString();
             string game_type_string = query.getColumn(1).getString();
-            cout << "Field ID: " << field_id << ", Game Type: " << game_type_string << std::endl;
+            cout << "Field ID: " << field_id << ", Game Type: " << game_type_string << endl;
         }
 
         // Prompt the user to choose a field ID
-        std::string field_id;
+        string field_id;
         bool valid_choice = false;
         do {
-            std::cout << "Enter the Field ID you want to choose: ";
-            std::cin >> field_id;
+            cout << "Enter the Field ID you want to choose: ";
+            cin >> field_id;
             cleanBuffer();
 
             // Validate the user input against available field IDs
             query.reset(); // Reset the query to execute it again
             while (query.executeStep()) {
-                std::string id = query.getColumn(0).getString();
+                string id = query.getColumn(0).getString();
                 if (field_id == id) {
                     valid_choice = true;
                     break;
                 }
             }
             if (!valid_choice) {
-                std::cout << "Invalid Field ID. Please choose from the available options." << std::endl;
+                cout << "Invalid Field ID. Please choose from the available options." << endl;
             }
         } while (!valid_choice);
 
         return field_id;
-    } catch (std::exception& e) {
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
         // Return an empty string or handle the error as needed
         return "";
     }
@@ -285,9 +289,7 @@ void get_current_date(int& year, int& month, int& day) {
 }
 // Function to convert time_t to SQLite compatible string format
 
-
-
-std::string choose_city_from_list(SQLite::Database& db) {
+string choose_city_from_list(Database& db) {
     // Print available cities
 
     string chosen_city;
@@ -300,14 +302,14 @@ std::string choose_city_from_list(SQLite::Database& db) {
 
         // Check if the chosen city exists in the Fields table
         try {
-            SQLite::Statement query(db, "SELECT COUNT(*) FROM Fields WHERE City = ?");
+            Statement query(db, "SELECT COUNT(*) FROM Fields WHERE City = ?");
             query.bind(1, chosen_city);
             if (query.executeStep()) {
                 int count = query.getColumn(0).getInt();
                 if (count > 0) {
                     valid_choice = true;
                 } else {
-                    std::cout << "Invalid city. Please choose from the available options." << std::endl;
+                    cout << "Invalid city. Please choose from the available options." << endl;
                 }
             }
         } catch (exception& e) {
@@ -323,7 +325,6 @@ std::string choose_city_from_list(SQLite::Database& db) {
 string choose_field_type_from_list(Database& db) {
     // Print available field types
 
-
     string chosen_field_type;
     bool valid_choice = false;
     do {
@@ -334,18 +335,18 @@ string choose_field_type_from_list(Database& db) {
 
         // Check if the chosen field type exists in the Fields table
         try {
-            SQLite::Statement query(db, "SELECT COUNT(*) FROM Fields WHERE Fieldtype = ?");
+            Statement query(db, "SELECT COUNT(*) FROM Fields WHERE Fieldtype = ?");
             query.bind(1, chosen_field_type);
             if (query.executeStep()) {
                 int count = query.getColumn(0).getInt();
                 if (count > 0) {
                     valid_choice = true;
                 } else {
-                    std::cout << "Invalid field type. Please choose from the available options." << std::endl;
+                    cout << "Invalid field type. Please choose from the available options." << endl;
                 }
             }
         } catch (exception& e) {
-            cerr << "SQLite exception: " << e.what() << std::endl;
+            cerr << "SQLite exception: " << e.what() << endl;
             return ""; // Return empty string on error
         }
     } while (!valid_choice);
@@ -359,8 +360,8 @@ void cleanBuffer() {
 
 // Function to format time to string with seconds set to "00"
 string formatTime(int hours, int minutes) {
-    std::ostringstream oss;
-    oss << std::setfill('0') << std::setw(2) << hours << ":" << std::setw(2) << minutes << ":00";
+    ostringstream oss;
+    oss << setfill('0') << setw(2) << hours << ":" << setw(2) << minutes << ":00";
     return oss.str();
 }
 

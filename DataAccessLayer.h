@@ -17,7 +17,7 @@ set<string> get_available_cities(Database& db);
 set<string> get_available_game_types(Database& db);
 string getNextOrderIdFromDatabase(Database& db);
 string getManagerIdByFieldId(const string& fieldId);
-void print_available_cities(SQLite::Database& db);
-void print_available_field_types(SQLite::Database& db);
+void print_available_cities(Database& db);
+void print_available_field_types(Database& db);
 
 #endif //FIELDPROJECT_DATAACCESSLAYER_H

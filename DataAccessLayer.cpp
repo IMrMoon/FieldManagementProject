@@ -13,36 +13,34 @@ set<string> get_available_cities(Database& db) {
     set<string> cities;
 
     try {
-        SQLite::Statement query(db, "SELECT DISTINCT city FROM fields");
+        Statement query(db, "SELECT DISTINCT city FROM fields");
 
         while (query.executeStep()) {
             cities.insert(query.getColumn(0).getText());
         }
-    } catch (std::exception& e) {
+    } catch (exception& e) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
 
     return cities;
 }
-
 // Function to retrieve a set of unique game types from the fields table
-std::set<std::string> get_available_game_types(SQLite::Database& db) {
-    std::set<std::string> game_types;
+set<string> get_available_game_types(Database& db) {
+    set<string> game_types;
 
     try {
-        SQLite::Statement query(db, "SELECT DISTINCT game_type FROM fields");
+        Statement query(db, "SELECT DISTINCT game_type FROM fields");
 
         while (query.executeStep()) {
-            std::string game_type = query.getColumn(0).getText();
+            string game_type = query.getColumn(0).getText();
             game_types.insert(game_type);
         }
-    } catch (std::exception& e) {
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
     }
 
     return game_types;
 }
-
 
 string getNextOrderIdFromDatabase(Database& db) {
     // Prepare SQL query to get the maximum order_id
@@ -61,7 +59,6 @@ string getNextOrderIdFromDatabase(Database& db) {
     return "1";
 }
 
-
 string getManagerIdByFieldId(const string& fieldId) {
     string managerId;
 
@@ -79,38 +76,36 @@ string getManagerIdByFieldId(const string& fieldId) {
             managerId = query.getColumn(0).getString();
         }
     } catch (exception& e) {
-        cerr << "SQLite exception: " << e.what() << std::endl;
+        cerr << "SQLite exception: " << e.what() << endl;
     }
 
     return managerId;
 }
 
-
-void print_available_cities(SQLite::Database& db) {
+void print_available_cities(Database& db) {
     try {
-        SQLite::Statement query(db, "SELECT DISTINCT City FROM Fields");
+        Statement query(db, "SELECT DISTINCT City FROM Fields");
 
-        std::cout << "Available cities:" << std::endl;
+        cout << "Available cities:" << endl;
         while (query.executeStep()) {
-            std::string city = query.getColumn(0).getText();
-            std::cout << "- " << city << std::endl;
+            string city = query.getColumn(0).getText();
+            cout << "- " << city << endl;
         }
-    } catch (std::exception& e) {
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
     }
 }
-
 // Function to print available field types from the Fields table
-void print_available_field_types(SQLite::Database& db) {
+void print_available_field_types(Database& db) {
     try {
-        SQLite::Statement query(db, "SELECT DISTINCT Fieldtype FROM Fields");
+        Statement query(db, "SELECT DISTINCT Fieldtype FROM Fields");
 
-        std::cout << "Available field types:" << std::endl;
+        cout << "Available field types:" << endl;
         while (query.executeStep()) {
-            std::string field_type = query.getColumn(0).getText();
-            std::cout << "- " << field_type << std::endl;
+            string field_type = query.getColumn(0).getText();
+            cout << "- " << field_type << endl;
         }
-    } catch (std::exception& e) {
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
     }
 }
