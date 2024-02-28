@@ -1,2 +1,2 @@
-C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\ar.exe qc libSQLiteCpp.a CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Column.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Database.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.obj
-C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\ranlib.exe libSQLiteCpp.a
+C:\PROGRA~1\JETBRA~1\CLION2~2.4\bin\mingw\bin\ar.exe qc libSQLiteCpp.a CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Column.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Database.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.obj CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.obj
+C:\PROGRA~1\JETBRA~1\CLION2~2.4\bin\mingw\bin\ranlib.exe libSQLiteCpp.a

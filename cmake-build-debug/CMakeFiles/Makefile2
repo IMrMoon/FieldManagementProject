@@ -44,19 +44,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject
+CMAKE_SOURCE_DIR = C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -117,14 +117,14 @@ CMakeFiles/FieldManagementProject.dir/all: SQLiteCpp/CMakeFiles/SQLiteCpp.dir/al
 CMakeFiles/FieldManagementProject.dir/all: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FieldManagementProject.dir\build.make CMakeFiles/FieldManagementProject.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FieldManagementProject.dir\build.make CMakeFiles/FieldManagementProject.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target FieldManagementProject"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target FieldManagementProject"
 .PHONY : CMakeFiles/FieldManagementProject.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/FieldManagementProject.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 20
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/FieldManagementProject.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/FieldManagementProject.dir/rule
 
 # Convenience name for target.
@@ -143,14 +143,14 @@ CMakeFiles/FieldManagementProject.dir/clean:
 SQLiteCpp/CMakeFiles/SQLiteCpp.dir/all: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/all
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/depend
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=11,12,13,14,15,16,17,18 "Built target SQLiteCpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=11,12,13,14,15,16,17,18 "Built target SQLiteCpp"
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp.dir/all
 
 # Build rule for subdir invocation for target.
 SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 10
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/CMakeFiles/SQLiteCpp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule
 
 # Convenience name for target.
@@ -169,14 +169,14 @@ SQLiteCpp/CMakeFiles/SQLiteCpp.dir/clean:
 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/all:
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp_cpplint.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/depend
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp_cpplint.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num= "Built target SQLiteCpp_cpplint"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num= "Built target SQLiteCpp_cpplint"
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/all
 
 # Build rule for subdir invocation for target.
 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule
 
 # Convenience name for target.
@@ -195,14 +195,14 @@ SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/clean:
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/all:
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\sqlite3\CMakeFiles\sqlite3.dir\build.make SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/depend
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\sqlite3\CMakeFiles\sqlite3.dir\build.make SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=19,20 "Built target sqlite3"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=19,20 "Built target sqlite3"
 .PHONY : SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/all
 
 # Build rule for subdir invocation for target.
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
 .PHONY : SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/rule
 
 # Convenience name for target.

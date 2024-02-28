@@ -1,4 +1,4 @@
-"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject -B C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
+"C:\Program Files\JetBrains\CLion 2023.3.4\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject -B C:\Users\Yinon\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
 CMake Deprecation Warning:
   Support for "Extra Generators" like
 
@@ -8,10 +8,23 @@ CMake Deprecation Warning:
   use the cmake-file-api(7) to view CMake-generated project build trees.
 
 
+-- The C compiler identification is GNU 13.1.0
+-- The CXX compiler identification is GNU 13.1.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - failed
+-- Check for working CXX compiler: C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/bin/g++.exe
+-- Check for working CXX compiler: C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/bin/g++.exe - works
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
 -- Using c++ standard c++17
 -- CMake version: 3.27.8
 -- Project version: 3.3.1
--- CMAKE_CXX_COMPILER 'C:/Program Files/JetBrains/CLion 2023.3.3/bin/mingw/bin/g++.exe' 'GNU' '13.1.0'
+-- CMAKE_CXX_COMPILER 'C:/Program Files/JetBrains/CLion 2023.3.4/bin/mingw/bin/g++.exe' 'GNU' '13.1.0'
 -- CMAKE_CXX_FLAGS                ' -Wall -Wextra -Wpedantic -Wswitch-enum -Wshadow -Wno-long-long'
 -- CMAKE_CXX_FLAGS_DEBUG          '-g'
 -- Compile sqlite3 from source in subdirectory
@@ -22,10 +35,11 @@ CMake Warning (dev) at SQLiteCpp/CMakeLists.txt:390 (find_package):
 
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
+-- Found PythonInterp: C:/Users/Yinon/AppData/Local/Programs/Python/Python312/python.exe (found version "3.12") 
 -- Could NOT find cppcheck
 -- SQLITECPP_RUN_DOXYGEN OFF
 -- SQLITECPP_BUILD_EXAMPLES OFF
 -- SQLITECPP_BUILD_TESTS OFF
--- Configuring done (0.6s)
--- Generating done (0.3s)
--- Build files have been written to: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/cmake-build-debug
+-- Configuring done (3.4s)
+-- Generating done (0.2s)
+-- Build files have been written to: C:/Users/Yinon/Desktop/FieldManagementProject/FieldManagementProject/cmake-build-debug
