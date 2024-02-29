@@ -138,39 +138,39 @@ void player_menu(string player_id){
         cleanBuffer();
         switch (option) {
             case (schedule_game_player): {
-                schedule_game(player_id);
+                schedule_game(player_id); ///in player
                 break;
             }
             case (cancel_game): {
-                get_and_choose_player_orders(player_id);
+                get_and_choose_player_orders(player_id); ///in DAL
                 break;
             }
             case (search_field_by_type): {
-                get_available_game_types();
+                get_available_game_types(); ///in DAL
 
                 break;
             }
             case (search_field_by_city): {
-                get_available_cities();
+                get_available_cities(); ///in DAL
 
                 break;
             }
             case (edit_details_player): {
-                //edit_player_details();
+                edit_player_details(player_id); ///in player
 
                 break;
             }
             case (view_future_games): {
-                view_upcoming_orders(player_id);
+                view_upcoming_orders(player_id); ///in player
                 break;
             }
             case (view_games_history): {
-                view_previous_games(player_id);
+                view_previous_games(player_id); ///in player
 
                 break;
             }
             case (rate_a_field): {
-                field_rate(player_id);
+                field_rate(player_id); ///in player
 
                 break;
             }
