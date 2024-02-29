@@ -3,6 +3,9 @@
 //
 #include <string>
 #include "Date.h"
+#include "SQLiteCpp/SQLiteCpp.h"
+#include <iostream>
+using namespace SQLite;
 using namespace std;
 
 
@@ -13,7 +16,7 @@ using namespace std;
     string manager_login();
     bool addField(); //fix
     bool deleteField(long field_id_to_delete);
-    bool edit_manager_details();
+    bool edit_manager_details(string manager_id);
     float view_rate();
     bool mark_dates_as_unavailable();
     void view_field_orders(long field_id);

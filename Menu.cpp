@@ -190,6 +190,7 @@ void player_menu(string player_id){
         }
     } while (option != 9);
 }
+
 void manager_menu(string& manager_id){
     int option = 0;
     do {
@@ -221,7 +222,7 @@ void manager_menu(string& manager_id){
                 break;
             }
             case (edit_details_manager): {
-                //edit_manager_details();
+                edit_manager_details(manager_id);
 
                 break;
             }
