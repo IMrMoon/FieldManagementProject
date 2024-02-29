@@ -287,7 +287,6 @@ void get_current_date(int& year, int& month, int& day) {
     month = now->tm_mon + 1;     // Months are 0-based
     day = now->tm_mday;          // Day of the month
 }
-// Function to convert time_t to SQLite compatible string format
 
 string choose_city_from_list(Database& db) {
     // Print available cities

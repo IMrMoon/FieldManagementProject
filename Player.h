@@ -16,7 +16,7 @@ using namespace SQLite;
     string player_register();
     string player_login();
     bool schedule_game(string player_id);
-    bool delete_game_order(Date date, time_t order_time, string field_type);
+    bool delete_game_order(string player_id);
     void view_fields_by_fieldType();
     void view_fields_by_city();
     bool edit_player_details();

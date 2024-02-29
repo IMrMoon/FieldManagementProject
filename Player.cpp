@@ -339,7 +339,6 @@ void view_previous_games(string playerId)
     }
 }
 
-
 bool isValidRating(double rating)
 {
     return (rating >= 1.0 && rating <= 5.0);
@@ -448,17 +447,10 @@ void view_upcoming_orders(string playerId) {
     }
 }
 
-
 void parseDateString(const std::string& dateString, int& day, int& month, int& year) {
     std::istringstream iss(dateString);
     char delimiter;
     iss >> day >> delimiter >> month >> delimiter >> year;
 }
 
-std::string dateToString(const Date& date) {
-    std::stringstream ss;
-    ss << std::setfill('0') << std::setw(2) << date.getDay() << "/"
-       << std::setw(2) << date.getMonth() << "/" << date.getYear();
-    return ss.str();
-}
 

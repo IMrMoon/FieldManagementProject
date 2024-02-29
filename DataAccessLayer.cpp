@@ -5,40 +5,91 @@
 #include "Date.h"
 
 
-
-//#include "DataAccessLayer.h"
-
-
-set<string> get_available_cities(Database& db) {
+set<string> get_available_cities() {
     set<string> cities;
 
-    try {
-        Statement query(db, "SELECT DISTINCT city FROM fields");
+    Database db("FieldManagement.db", OPEN_READONLY); // Open your SQLite database
+    // Function to get available game types from the database
 
+    try {
+        SQLite::Statement query(db, "SELECT DISTINCT City FROM Fields");
+
+        cout << "Available Cities:" << endl;
         while (query.executeStep()) {
-            cities.insert(query.getColumn(0).getText());
+            string fields_cities = query.getColumn(0).getText();
+            cout << "- " << fields_cities << endl;
+            cities.insert(fields_cities);
         }
-    } catch (exception& e) {
+
+        string chosen_city;
+        do {
+            cout << "Enter the game type you want to choose: ";
+            cin >> chosen_city;
+
+            if (cities.find(chosen_city) == cities.end()) {
+                cout << "Invalid game type. Please choose from the available game types." << endl;
+            }
+        } while (cities.find(chosen_city) == cities.end());
+
+        // Print fields details for the chosen game type
+        SQLite::Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE City = ?");
+        fields_query.bind(1, chosen_city);
+
+        cout << "Fields for game type " << chosen_city << ":" << endl;
+        while (fields_query.executeStep()) {
+            int field_id = fields_query.getColumn(0).getInt();
+            string city = fields_query.getColumn(1).getText();
+            string field_type = fields_query.getColumn(2).getText();
+            cout << "Field ID: " << field_id << ", City: " << city << ", Field Type: " << field_type << endl;
+        }
+
+    } catch (exception &e) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
-
     return cities;
 }
 // Function to retrieve a set of unique game types from the fields table
-set<string> get_available_game_types(Database& db) {
+set<string> get_available_game_types() {
+
+    Database db("FieldManagement.db", OPEN_READONLY); // Open your SQLite database
+    // Function to get available game types from the database
     set<string> game_types;
 
     try {
-        Statement query(db, "SELECT DISTINCT game_type FROM fields");
+        SQLite::Statement query(db, "SELECT DISTINCT Fieldtype FROM Fields");
 
+        cout << "Available game types:" << endl;
         while (query.executeStep()) {
             string game_type = query.getColumn(0).getText();
+            cout << "- " << game_type << endl;
             game_types.insert(game_type);
         }
-    } catch (exception& e) {
+
+        string chosen_game_type;
+        do {
+            cout << "Enter the game type you want to choose: ";
+            cin >> chosen_game_type;
+
+            if (game_types.find(chosen_game_type) == game_types.end()) {
+                cout << "Invalid game type. Please choose from the available game types." << endl;
+            }
+        } while (game_types.find(chosen_game_type) == game_types.end());
+
+        // Print fields details for the chosen game type
+        SQLite::Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE Fieldtype = ?");
+        fields_query.bind(1, chosen_game_type);
+
+        cout << "Fields for game type " << chosen_game_type << ":" << endl;
+        while (fields_query.executeStep()) {
+            int field_id = fields_query.getColumn(0).getInt();
+            string city = fields_query.getColumn(1).getText();
+            string field_type = fields_query.getColumn(2).getText();
+            cout << "Field ID: " << field_id << ", City: " << city << ", Field Type: " << field_type << endl;
+        }
+
+    } catch (exception &e) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
-
     return game_types;
 }
 
@@ -174,3 +225,4 @@ bool get_and_choose_player_orders(string player_id) {
         return false; // Return empty string indicating an error occurred
     }return true;
 }
+

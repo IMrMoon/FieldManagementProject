@@ -146,12 +146,12 @@ void player_menu(string player_id){
                 break;
             }
             case (search_field_by_type): {
-                //view_fields_by_fieldType();
+                get_available_game_types();
 
                 break;
             }
             case (search_field_by_city): {
-                //view_fields_by_city();
+                get_available_cities();
 
                 break;
             }
