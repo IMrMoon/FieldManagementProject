@@ -6,11 +6,12 @@
 #include "Validation.h"
 
 string manager_register() {
-    string manager_id, manager_name, manager_email, manager_phone_number, manager_password;
+    string manager_id, manager_name, manager_email, manager_phone_number, manager_password, manager_city;
     char manager_gender;
     bool id_exists = false;
     bool email_exists = false;
     bool phone_number_exists = false;
+    bool city_exist = false;
 
     do {
         cout << "Enter Manager ID (up to 9 digits): ";
@@ -68,6 +69,20 @@ string manager_register() {
     } while (!check_phone_number(manager_phone_number) || phone_number_exists);
 
     do {
+        // Getting email
+        cout << "Enter Manager City: " << endl;
+        getline(cin, manager_city);
+        if (!check_name(manager_city)) {
+            cout << "Invalid City. Please enter a valid City with upper case in first name and last name of the city" << endl;
+        } else if (!check_existing_city(manager_city)) {
+            cout << "Invalid City. This City already exists, try again." << endl;
+            city_exist = true;
+        } else {
+            city_exist = false;
+        }
+    } while (!check_name(manager_city) || city_exist);
+
+    do {
         // Getting password
         cout << "Enter Manager Password: ";
         getline(std::cin, manager_password);
@@ -92,7 +107,7 @@ string manager_register() {
 
         // Prepare a statement to insert a new manager into the Managers table
         Statement query(db,
-                                "INSERT INTO Managers (Id, Name, Email, \"Phone number\", Password, Gender) VALUES (?, ?, ?, ?, ?, ?)");
+                                "INSERT INTO Managers (Id, Name, Email, \"Phone number\", City ,Password, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         // Bind parameters to the statement
         int integer_id = stoi(manager_id);
@@ -101,8 +116,9 @@ string manager_register() {
         query.bind(2, manager_name);
         query.bind(3, manager_email);
         query.bind(4, integer_phoneNum);
-        query.bind(5, manager_password);
-        query.bind(6, manager_gender);
+        query.bind(5, integer_phoneNum);
+        query.bind(6, manager_password);
+        query.bind(7, manager_gender);
 
         // Execute the statement
         query.exec();

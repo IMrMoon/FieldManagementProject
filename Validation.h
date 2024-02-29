@@ -27,6 +27,7 @@ bool check_gender(char gender);
 ///validation checks for order new game
 bool check_date(const string& date_str);
 bool check_time_format(const string& time_str);
+bool check_existing_city(string manager_city);
 bool check_time_exist(const string& start_time_str, const string& finish_time_str, const string& date_str);
 void get_current_date(int& year, int& month, int& day);
 bool order_existing_validation();
