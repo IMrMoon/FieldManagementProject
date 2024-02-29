@@ -212,6 +212,30 @@ sqlite3/fast:
 	$(MAKE) $(MAKESILENT) -f SQLiteCpp\sqlite3\CMakeFiles\sqlite3.dir\build.make SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/build
 .PHONY : sqlite3/fast
 
+Color.obj: Color.cpp.obj
+.PHONY : Color.obj
+
+# target to build an object file
+Color.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FieldManagementProject.dir\build.make CMakeFiles/FieldManagementProject.dir/Color.cpp.obj
+.PHONY : Color.cpp.obj
+
+Color.i: Color.cpp.i
+.PHONY : Color.i
+
+# target to preprocess a source file
+Color.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FieldManagementProject.dir\build.make CMakeFiles/FieldManagementProject.dir/Color.cpp.i
+.PHONY : Color.cpp.i
+
+Color.s: Color.cpp.s
+.PHONY : Color.s
+
+# target to generate assembly for a file
+Color.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FieldManagementProject.dir\build.make CMakeFiles/FieldManagementProject.dir/Color.cpp.s
+.PHONY : Color.cpp.s
+
 DataAccessLayer.obj: DataAccessLayer.cpp.obj
 .PHONY : DataAccessLayer.obj
 
@@ -444,6 +468,9 @@ help:
 	@echo ... FieldManagementProject
 	@echo ... SQLiteCpp
 	@echo ... sqlite3
+	@echo ... Color.obj
+	@echo ... Color.i
+	@echo ... Color.s
 	@echo ... DataAccessLayer.obj
 	@echo ... DataAccessLayer.i
 	@echo ... DataAccessLayer.s

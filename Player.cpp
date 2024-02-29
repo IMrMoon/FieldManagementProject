@@ -196,10 +196,8 @@ bool schedule_game(string player_id) {
     bool is_start_time_valid = false, is_end_time_valid = false, is_time_exist = false;
     bool is_valid_date = false;
     string order_id, chosen_field_id, manager_id, start_time_str, end_time_str, order_date;
-    //Date order_date;
     string order_start_time, order_end_time;
     int day, month, year;
-    char slash1, slash2;
     int current_year, current_month, current_day;
     try {
         Database db("FieldManagement.db", OPEN_READONLY); // Open your SQLite database
@@ -237,11 +235,11 @@ bool schedule_game(string player_id) {
 
             do {
                 cout << "Enter order *start* time enter hours and then minutes\n"
-                             "(format: HH MM, hours between 8 am \n"
+                             "(format: HH:MM, hours between 8 am \n"
                              "to 8 pm, minutes as 0, 15, 30, or 45): " << endl;
                 cin >> start_time_str;
                 cout << "Enter order *end* time enter hours and then minutes\n"
-                             "(format: HH MM, hours between 8 am \n"
+                             "(format: HH:MM, hours between 8 am \n"
                              "to 8 pm, minutes as 0, 15, 30, or 45): " << std::endl;
                 cin >> end_time_str;
                 // Check if the provided times are valid
@@ -447,7 +445,7 @@ void view_upcoming_orders(string playerId) {
     }
 }
 
-void parseDateString(const std::string& dateString, int& day, int& month, int& year) {
+void parseDateString(const string& dateString, int& day, int& month, int& year) {
     std::istringstream iss(dateString);
     char delimiter;
     iss >> day >> delimiter >> month >> delimiter >> year;

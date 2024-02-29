@@ -3,6 +3,7 @@
 //
 
 #include "Validation.h"
+#include <sstream>
 
 ///validation check for register/login
 bool check_id(const string& id) {
@@ -200,17 +201,25 @@ bool check_time_format(const string& time_str) {
 bool check_time_exist(const string& start_time_str, const string& finish_time_str, const string& date_str) {
     try {
         // Open the database
-        Database db("FieldManagement.db", OPEN_READONLY);
+        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
+
+        // Convert time strings to hours and minutes
+        int start_hours = strtol(start_time_str.substr(0, 2).c_str(), nullptr, 10);
+        int start_minutes = strtol(start_time_str.substr(3, 2).c_str(), nullptr, 10);
+        int finish_hours = strtol(finish_time_str.substr(0, 2).c_str(), nullptr, 10);
+        int finish_minutes = strtol(finish_time_str.substr(3, 2).c_str(), nullptr, 10);
 
         // Prepare SQL query to check if there's an order overlapping with the proposed time on the given date
-        Statement query(db, "SELECT COUNT(*) FROM Orders WHERE ((OrderStartTime < ? AND OrderFinishTime > ?) OR (OrderStartTime > ? AND OrderFinishTime < ?) OR (OrderStartTime < ? AND OrderFinishTime > ?)) AND Orderdate = ?");
-        query.bind(1, start_time_str);
-        query.bind(2, start_time_str);
-        query.bind(3, start_time_str);
-        query.bind(4, finish_time_str);
-        query.bind(5, finish_time_str);
-        query.bind(6, finish_time_str);
-        query.bind(7, date_str);
+        SQLite::Statement query(db, "SELECT COUNT(*) FROM Orders WHERE (((CAST(strftime('%H', OrderStartTime) AS INTEGER) < ? AND CAST(strftime('%M', OrderFinishTime) AS INTEGER) > ?) OR (CAST(strftime('%H', OrderStartTime) AS INTEGER) = ? AND CAST(strftime('%M', OrderStartTime) AS INTEGER) <= ?)) AND ((CAST(strftime('%H', OrderFinishTime) AS INTEGER) > ? AND CAST(strftime('%M', OrderStartTime) AS INTEGER) < ?) OR (CAST(strftime('%H', OrderFinishTime) AS INTEGER) = ? AND CAST(strftime('%M', OrderFinishTime) AS INTEGER) >= ?))) AND Orderdate = ?");
+        query.bind(1, start_hours);
+        query.bind(2, start_minutes);
+        query.bind(3, start_hours);
+        query.bind(4, start_minutes);
+        query.bind(5, finish_hours);
+        query.bind(6, finish_minutes);
+        query.bind(7, finish_hours);
+        query.bind(8, finish_minutes);
+        query.bind(9, date_str);
 
         // Execute the query
         if (query.executeStep()) {
@@ -222,6 +231,7 @@ bool check_time_exist(const string& start_time_str, const string& finish_time_st
     }
     return false; // Return false by default (no conflicts or error occurred)
 }
+
 
 string choose_field_id(const string& city, const string& game_type) {
     try {
@@ -364,3 +374,11 @@ string formatTime(int hours, int minutes) {
     return oss.str();
 }
 
+// Function to convert time string "hh:mm" to minutes since midnight
+int time_to_minutes(const string& time_str) {
+    stringstream ss(time_str);
+    int hours, minutes;
+    char delimiter;
+    ss >> hours >> delimiter >> minutes;
+    return hours * 60 + minutes;
+}

@@ -14,13 +14,13 @@ using namespace std;
 
     string manager_register();
     string manager_login();
-    bool addField(); //fix
-    bool deleteField(long field_id_to_delete);
+    bool addField(string manager_id);
+    bool deleteField(string manager_id);
     bool edit_manager_details(string manager_id);
     float view_rate();
-    bool mark_dates_as_unavailable();
-    void view_field_orders(long field_id);
-    void view_orders_by_date(const Date& other_date);
+    void mark_dates_as_unavailable(string manager_id);
+    void view_field_orders(string manager_id);
+    void view_orders_by_date(string manager_id);
 
 
 

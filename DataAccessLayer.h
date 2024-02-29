@@ -20,6 +20,8 @@ string getManagerIdByFieldId(const string& fieldId);
 void print_available_cities(Database& db);
 void print_available_field_types(Database& db);
 bool get_and_choose_player_orders(string player_id);
+string get_field_id(string manager_id);
+void clean_DAL_buffer();
 
 
 #endif //FIELDPROJECT_DATAACCESSLAYER_H

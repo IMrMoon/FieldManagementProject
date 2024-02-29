@@ -35,6 +35,7 @@ string date_to_sqlite_string(const Date& date);
 string choose_city_from_list(Database& db);
 string choose_field_type_from_list(Database& db);
 void cleanBuffer();
+int time_to_minutes(const string& time_str);
 
 
 #endif //FIELDMANAGEMENTPROJECT_VALIDATION_H

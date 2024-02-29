@@ -23,6 +23,8 @@ add_executable(FieldManagementProject
         Player.h
         Validation.cpp
         Validation.h
+        Color.cpp
+        Color.h
 )
 
 target_link_libraries(FieldManagementProject SQLiteCpp)

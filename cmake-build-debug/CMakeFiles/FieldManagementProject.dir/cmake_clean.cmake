@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FieldManagementProject.dir/Color.cpp.obj"
+  "CMakeFiles/FieldManagementProject.dir/Color.cpp.obj.d"
   "CMakeFiles/FieldManagementProject.dir/DataAccessLayer.cpp.obj"
   "CMakeFiles/FieldManagementProject.dir/DataAccessLayer.cpp.obj.d"
   "CMakeFiles/FieldManagementProject.dir/Date.cpp.obj"

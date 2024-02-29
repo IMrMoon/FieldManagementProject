@@ -5,16 +5,22 @@
 #define CYAN 9
 #define RED 4
 #define GREEN 2
+#include "Color.h"
 #include "Menu.h"
 #include "Validation.h"
+
 
 
 
 void first_menu(){ //menu for choose if he is a manager or player.
     int option = 0;
     do {
-        //set_text_color(CYAN);
-        cout << "+--------------------------------------+" << endl;
+        ChangeColor(0, 15);
+        cout << " ---------------------------------------------------- \n"
+                "|                      Field Management                    |\n"
+                " ---------------------------------------------------- \n"
+                "|        |";
+        ChangeColor(1, 15);
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
         cout << "| " << "Please choose if you are a Manager/Player:    " << " |" << endl;
         cout << "| " << "1) Manager                                     " << " |" << endl;
@@ -96,13 +102,13 @@ void manager_reg_or_login_menu(){
         cleanBuffer();
         switch (option) {
             case (reg): {
-                //manager_id = player_register();
-                //manager_menu(manager_id);
+                manager_id = manager_register();
+                manager_menu(manager_id);
                 break;
             }
             case (login): {
-                //manager_id = player_login(); //add forget pass option
-                //manager_menu(manager_id);
+                manager_id = manager_login(); //add forget pass option
+                manager_menu(manager_id);
                 break;
             }
             default: {
@@ -191,7 +197,7 @@ void player_menu(string player_id){
     } while (option != 9);
 }
 
-void manager_menu(string& manager_id){
+void manager_menu(string manager_id){
     int option = 0;
     do {
         //set_text_color(CYAN);
@@ -227,16 +233,16 @@ void manager_menu(string& manager_id){
                 break;
             }
             case (view_future_games_by_date): {
-                //view_orders_by_date();
+                view_orders_by_date(manager_id);
 
                 break;
             }
             case (view_future_games_by_field): {
-                //view_field_orders();
+                view_field_orders(manager_id);
                 break;
             }
             case (make_unavailable_dates): {
-                //mark_dates_as_unavailable();
+                mark_dates_as_unavailable(manager_id);
                 break;
             }
             case (view_rate_manager): {
@@ -260,6 +266,8 @@ void manager_menu(string& manager_id){
         }
     } while (option != 8);
 }
+
+
 
 
 

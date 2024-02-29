@@ -12,7 +12,7 @@ set<string> get_available_cities() {
     // Function to get available game types from the database
 
     try {
-        SQLite::Statement query(db, "SELECT DISTINCT City FROM Fields");
+        Statement query(db, "SELECT DISTINCT City FROM Fields");
 
         cout << "Available Cities:" << endl;
         while (query.executeStep()) {
@@ -32,7 +32,7 @@ set<string> get_available_cities() {
         } while (cities.find(chosen_city) == cities.end());
 
         // Print fields details for the chosen game type
-        SQLite::Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE City = ?");
+        Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE City = ?");
         fields_query.bind(1, chosen_city);
 
         cout << "Fields for game type " << chosen_city << ":" << endl;
@@ -226,3 +226,54 @@ bool get_and_choose_player_orders(string player_id) {
     }return true;
 }
 
+string get_field_id(string manager_id) {
+
+    try {
+        // Open your SQLite database
+        Database db("FieldManagement.db", OPEN_READONLY);
+
+        // Prepare the SQL query to select fields based on city and game type
+        string query_str = "SELECT FieldId FROM Fields WHERE ManagerId = ?";
+        Statement query(db, query_str);
+        query.bind(1, manager_id);
+
+        // Display available fields and prompt the user to choose a field ID
+        cout << "Available fields for manager: " << manager_id << ":" << endl;
+        while (query.executeStep()) {
+            string field_id = query.getColumn(0).getString();
+            cout << "Field ID: " << field_id  <<  endl;
+        }
+
+        // Prompt the manager to choose a field ID
+        string field_id;
+        bool valid_choice = false;
+        do {
+            cout << "Enter the Field ID you want to choose: ";
+            cin >> field_id;
+            clean_DAL_buffer();
+
+            // Validate the user input against available field IDs
+            query.reset(); // Reset the query to execute it again
+            while (query.executeStep()) {
+                string id = query.getColumn(0).getString();
+                if (field_id == id) {
+                    valid_choice = true;
+                    break;
+                }
+            }
+            if (!valid_choice) {
+                cout << "Invalid Field ID. Please choose from the available options." << endl;
+            }
+        } while (!valid_choice);
+
+        return field_id;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
+        // Return an empty string or handle the error as needed
+        return "";
+    }
+}
+
+void clean_DAL_buffer(){
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}

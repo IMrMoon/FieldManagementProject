@@ -145,7 +145,6 @@ CMakeFiles/FieldManagementProject.dir/DataAccessLayer.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
- C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Player.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCpp.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCppExport.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Assertion.h \
@@ -207,6 +206,7 @@ CMakeFiles/FieldManagementProject.dir/DataAccessLayer.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/x86_64-w64-mingw32/include/string.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Transaction.h \
+ C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Player.h \
  C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Field.h \
  C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Order.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/set \
