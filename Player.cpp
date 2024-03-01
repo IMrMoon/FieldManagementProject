@@ -23,7 +23,7 @@ string player_register() {
         bool email_exists = false;
         bool phone_number_exists = false;
         do {
-            cout << "Enter Player ID (up to 9 digits): ";
+            cout << "Enter Player ID (up to 9 digits): " << endl;
             cin >> player_id;
             if (!check_id(player_id)) {
                 cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;
@@ -41,7 +41,7 @@ string player_register() {
 
         do {
             // Getting name
-            std::cout << "Enter Player Name with upper case in first name and last name: ";
+            std::cout << "Enter Player Name with upper case in first name and last name: " << endl;
             getline(cin, player_name);
             if (!check_name(player_name)) {
                 cout
@@ -52,7 +52,7 @@ string player_register() {
 
         do {
             // Getting email
-            cout << "Enter player Email in format: user@example.com ";
+            cout << "Enter player Email in format: user@example.com " << endl;
             getline(cin, player_email);
             if (!check_email(player_email)) {
                 cout << "Invalid Email. Please enter a valid Email in the format: user@example.com." << std::endl;
@@ -69,7 +69,7 @@ string player_register() {
             // Getting phone number
             cout
                     << "Enter player password at least one uppercase letter and "
-                       "at least one lowercase letter and numbers and minimum size 7";
+                       "at least one lowercase letter and numbers and minimum size 7" << endl;
             getline(cin, player_password);
             if (!check_password(player_password)) {
                 cout
@@ -81,7 +81,7 @@ string player_register() {
 
         do {
             // Getting password
-            cout << "Enter Player PhoneNumber no more than 10 digits: ";
+            cout << "Enter Player PhoneNumber no more than 10 digits: " << endl;
             getline(cin, player_phone_number);
             if (!check_phone_number(player_phone_number)) {
                 cout << "Invalid Phone Number. Please enter a "
@@ -94,7 +94,7 @@ string player_register() {
 
         do {
             // Getting password
-            cout << "Enter Player Gender: M/F ";
+            cout << "Enter Player Gender: M/F " << endl;
             cin >> player_gender;
             //player_gender = toupper(player_gender); //////check
                 if (!check_gender(player_gender)) {
@@ -367,7 +367,7 @@ bool field_rate(string playerId) {
             std::cout << getFieldQuery.getColumn(0).getString() << std::endl;
         }
         // Take input for the selected field and rating
-        std::cout << "Enter the Field ID you want to rate: ";
+        std::cout << "Enter the Field ID you want to rate: " << endl;
         getline(cin, selectedFieldId);
 
         // Check if the selectedFieldId exists in the Fields table
@@ -388,7 +388,7 @@ bool field_rate(string playerId) {
 
                 // Take input for the new rating
 
-                std::cout << "Enter the new rating for the field (1 to 5): ";
+                std::cout << "Enter the new rating for the field (1 to 5): " << endl;
                 std::cin >> newRating;
 
                 if (!isValidRating(newRating)) {
@@ -497,7 +497,7 @@ bool edit_player_details(string player_id){
         string new_value;
         switch (choice) {
             case 1: {
-                cout << "Enter new name: ";
+                cout << "Enter new name: " << endl;
                 getline(cin,new_value);
                 // Add validation
                 if (check_name(new_value)) {
@@ -511,7 +511,7 @@ bool edit_player_details(string player_id){
             }
 
             case 2: {
-                cout << "Enter new email: ";
+                cout << "Enter new email: " << endl;
                 getline(cin,new_value);
                 // Add validation
                 if (check_email(new_value)) {
@@ -525,7 +525,7 @@ bool edit_player_details(string player_id){
             }
 
             case 3: {
-                cout << "Enter new phone number: ";
+                cout << "Enter new phone number: " << endl;
                 getline(cin,new_value);
                 // Add validation
                 if (check_phone_number(new_value)) {
@@ -539,7 +539,7 @@ bool edit_player_details(string player_id){
             }
 
             case 4: {
-                cout << "Enter new password: ";
+                cout << "Enter new password: " << endl;
                 getline(cin,new_value);
                 // Add validation
                 if (check_password(new_value)) {

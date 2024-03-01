@@ -277,3 +277,37 @@ string get_field_id(string manager_id) {
 void clean_DAL_buffer(){
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+
+string getNextFieldIdFromDatabase(Database& db)
+{
+    Statement query(db, "SELECT MAX(FieldId) FROM Fields");
+
+    // Execute the query
+    if (query.executeStep()) {
+        // Retrieve the maximum field_id (last inserted ID)
+        int max_field_id = query.getColumn(0).getInt();
+
+        // Increment the last inserted ID to get the next available order ID
+        return to_string(max_field_id + 1);
+    }
+
+    // If there are no Fields in the database, start with field ID 1
+    return "1";
+}
+
+string getCityNameFromManagerTable(Database& db, string manager_id)
+{
+    // Prepare SQL query to get the city_name based on manager_id from the Manager table
+    string sql = "SELECT City FROM Manager WHERE Id = ?";
+    Statement query(db, sql);
+    query.bind(1, manager_id);
+
+    // Execute the query
+    if (query.executeStep()) {
+        // Retrieve the city_name
+        return query.getColumn("City").getText();
+    }
+
+    // If no result is found, return an empty string or handle it based on your requirements
+    return "";
+}

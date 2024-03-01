@@ -1,10 +1,7 @@
 //
 // Created by sgvch on 26/02/2024.
 //
-#define RESET 7
-#define CYAN 9
-#define RED 4
-#define GREEN 2
+
 #include "Color.h"
 #include "Menu.h"
 #include "Validation.h"
@@ -208,24 +205,19 @@ void player_menu(string player_id){
             }
             case (view_games_history): {
                 view_previous_games(player_id); ///in player
-
                 break;
             }
             case (rate_a_field): {
                 field_rate(player_id); ///in player
-
                 break;
             }
             case (quit1): {
-                //set_text_color(RED);
-                cout << "Exiting the menu!" << endl;
-                //set_text_color(RESET);
+                cout << "Disconnecting.....!" << endl;
+                first_menu();
                 break;
             }
             default: {
-                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                //set_text_color(RESET);
                 option = 0;
                 break;
             }
@@ -236,7 +228,6 @@ void player_menu(string player_id){
 void manager_menu(string manager_id){
     int option = 0;
     do {
-        //set_text_color(CYAN);
         cout << "+--------------------------------------+" << endl;
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
         cout << "| " << "Please choose Register/Login:    " << " |" << endl;
@@ -249,17 +240,16 @@ void manager_menu(string manager_id){
         cout << "| " << "7) View Rate                                      " << " |" << endl;
         cout << "| " << "8) Quit                                     " << " |" << endl;
         cout << "+--------------------------------------+" << endl;
-        //set_text_color(RESET);
         cin >> option;
         cleanBuffer();
         switch (option) {
             case (add_field): {
-                //addField();
+                addField(manager_id);
 
                 break;
             }
             case (delete_field): {
-                //deleteField();
+                deleteField(manager_id);
 
                 break;
             }
@@ -282,20 +272,18 @@ void manager_menu(string manager_id){
                 break;
             }
             case (view_rate_manager): {
-                //view_rate();
+                float manager_rate = view_rate(manager_id);
+                cout << "Your rate is: " << manager_rate << endl;
 
                 break;
             }
             case (quit2): {
-                //set_text_color(RED);
-                cout << "Exiting the menu!" << endl;
-                //set_text_color(RESET);
+                cout << "Disconnecting.....!" << endl;
+                first_menu();
                 break;
             }
             default: {
-                //set_text_color(RED);
                 cout << "Illegal option, Please retry." << endl;
-                //set_text_color(RESET);
                 option = 0;
                 break;
             }

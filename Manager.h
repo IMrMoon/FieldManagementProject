@@ -17,7 +17,7 @@ using namespace std;
     bool addField(string manager_id);
     bool deleteField(string manager_id);
     bool edit_manager_details(string manager_id);
-    float view_rate();
+    float view_rate(string manager_id);
     void mark_dates_as_unavailable(string manager_id);
     void view_field_orders(string manager_id);
     void view_orders_by_date(string manager_id);

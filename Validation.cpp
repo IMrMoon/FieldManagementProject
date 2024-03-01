@@ -44,6 +44,22 @@ bool check_name(const string& name){
 
     return true;
 }
+
+bool check_city(const string& city){
+    bool newWord = true; // Flag to track if the next character should be uppercase
+
+    if (city.empty() || !isupper(city[0])) {
+        return false;
+    }
+
+    for(char c : city) {
+        if (!isalpha(c)) { // Check if the character is not a letter
+            return false;
+        }
+    }
+    return true;
+}
+
 bool check_existing_city(string manager_city){
     try {
         // Open the SQLite database
@@ -408,4 +424,14 @@ int time_to_minutes(const string& time_str) {
 // Function to check if two time intervals overlap
 bool check_overlap(const pair<int, int>& interval1, const pair<int, int>& interval2) {
     return (interval1.first < interval2.second) && (interval2.first < interval1.second);
+}
+
+
+bool isDigitsOnly(const std::string& str) {
+    for (char c : str) {
+        if (!std::isdigit(c)) {
+            return false;
+        }
+    }
+    return true;
 }

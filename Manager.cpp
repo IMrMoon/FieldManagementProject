@@ -14,7 +14,7 @@ string manager_register() {
     bool city_exist = false;
 
     do {
-        cout << "Enter Manager ID (up to 9 digits): ";
+        cout << "Enter Manager ID (up to 9 digits): " << endl;
         cin >> manager_id;
         if (!check_id(manager_id)) {
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
@@ -31,7 +31,7 @@ string manager_register() {
 
     do {
         // Getting name
-        cout << "Enter Manager Name with upper case in first name and last name: ";
+        cout << "Enter Manager Name with upper case in first name and last name: " << endl;
         getline(cin, manager_name);
         if (!check_name(manager_name)) {
             cout
@@ -42,7 +42,7 @@ string manager_register() {
 
     do {
         // Getting email
-        cout << "Enter Manager Email in format: user@example.com: ";
+        cout << "Enter Manager Email in format: user@example.com: " << endl;
         getline(cin, manager_email);
         if (!check_email(manager_email)) {
             cout << "Invalid Email. Please enter a valid Email in the format: user@example.com." << endl;
@@ -56,7 +56,7 @@ string manager_register() {
 
     do {
         // Getting phone number
-        cout << "Enter Manager Phone Number no more than 10 digits: ";
+        cout << "Enter Manager Phone Number no more than 10 digits: " << endl;
         getline(cin, manager_phone_number);
         if (!check_phone_number(manager_phone_number)) {
             cout << "Invalid Phone Number. Please enter a valid phone number no more than 10 digits." << endl;
@@ -69,22 +69,22 @@ string manager_register() {
     } while (!check_phone_number(manager_phone_number) || phone_number_exists);
 
     do {
-        // Getting email
+        // Getting city
         cout << "Enter Manager City: " << endl;
         getline(cin, manager_city);
-        if (!check_name(manager_city)) {
+        if (!check_city(manager_city)) {
             cout << "Invalid City. Please enter a valid City with upper case in first name and last name of the city" << endl;
-        } else if (!check_existing_city(manager_city)) {
+        } else if (check_existing_city(manager_city)) {
             cout << "Invalid City. This City already exists, try again." << endl;
             city_exist = true;
         } else {
             city_exist = false;
         }
-    } while (!check_name(manager_city) || city_exist);
+    } while (!check_city(manager_city) || city_exist);
 
     do {
         // Getting password
-        cout << "Enter Manager Password: ";
+        cout << "Enter Manager Password: " << endl;
         getline(std::cin, manager_password);
         if (!check_password(manager_password)) {
             cout << "Invalid Password. Please enter a valid Password." << endl;
@@ -93,7 +93,7 @@ string manager_register() {
 
     do {
         // Getting gender
-        cout << "Enter Manager Gender: M/F: ";
+        cout << "Enter Manager Gender: M/F: " << endl;
         cin >> manager_gender;
         if (!check_gender(manager_gender)) {
             cout << "Invalid Gender. Please enter a valid Gender M/F." << endl;
@@ -107,7 +107,7 @@ string manager_register() {
 
         // Prepare a statement to insert a new manager into the Managers table
         Statement query(db,
-                                "INSERT INTO Managers (Id, Name, Email, \"Phone number\", City ,Password, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                                "INSERT INTO Manager (Id, Name, Email, \"Phone number\", City ,Password, Gender) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         // Bind parameters to the statement
         int integer_id = stoi(manager_id);
@@ -137,14 +137,14 @@ string manager_login() {
     string manager_id, manager_password, name;
     bool id_exists = false;
     do {
-        cout << "Enter your ID (up to 9 digits): ";
+        cout << "Enter your ID (up to 9 digits): " << endl;
         cin >> manager_id;
         if (!check_id(manager_id)) {
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
         }
         if (!check_existing_id(manager_id)) {
             try {
-                cout << "Enter your Password: ";
+                cout << "Enter your Password: " << endl;
                 cin >> manager_password;
 //                    std::cin.ignore(); // Clear the input buffer
 //                    std::getline(std::cin, manager_password); // Read password with getline
@@ -190,7 +190,7 @@ bool edit_manager_details(string manager_id){
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE);
 
         // Retrieve existing player details (optional)
-        SQLite::Statement selectQuery(db, "SELECT Id, Name, Email, \"Phone number\", Password FROM Manager WHERE Id=?");
+        SQLite::Statement selectQuery(db, "SELECT Id, Name, Email, \"Phone number\", City ,Password FROM Manager WHERE Id=?");
         selectQuery.bind(1, manager_id);
 
         if (selectQuery.executeStep()) {
@@ -199,8 +199,9 @@ bool edit_manager_details(string manager_id){
                  << "\nID: " << selectQuery.getColumn(0).getText()
                  << "\nName: " << selectQuery.getColumn(1).getText()
                  << "\nEmail: " << selectQuery.getColumn(2).getText()
+                 << "\nCity: " << selectQuery.getColumn(4).getText()
                  << "\nPhone: " << selectQuery.getColumn(3).getText()
-                 << "\nPassword: " << selectQuery.getColumn(4).getText() << endl;
+                 << "\nPassword: " << selectQuery.getColumn(5).getText() << endl;
         } else {
             cout << "Manager not found." << endl;
             return false;
@@ -213,9 +214,15 @@ bool edit_manager_details(string manager_id){
              << "3. Phone number\n"
              << "4. Password\n"
              << "5. Exit\n"
-             << "Enter your choice (1-5): ";
+             << "Enter your choice (1-5): " << endl;
 
         cin >> choice;
+        while (std::cin.fail() || choice < 1 || choice > 5) {
+            std::cin.clear(); // Clear the error flag
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Invalid input. Please enter a valid choice (1-5): " <<  endl;
+            std::cin >> choice;
+        }
         cleanBuffer();
 
         // Get new details from the user based on their choice
@@ -304,12 +311,10 @@ void mark_dates_as_unavailable(string manager_id) {
     string order_date;
     string field_id = get_field_id(manager_id);
     try {
-
-        do{
+        do {
             cout << "Enter order Date, first enter day, then month, then year.\n"
                     "(format: DD/MM/YYYY): " << endl;
             getline(cin, order_date);
-
 
             is_valid_date = check_date(order_date);
 
@@ -321,17 +326,36 @@ void mark_dates_as_unavailable(string manager_id) {
 
             // Check if the entered date is before the current date
         } while (!check_date(order_date));
+
         // Open the SQLite database
         Database db("FieldManagement.db", OPEN_READWRITE);
+
+        // Prepare the SQL query to count orders for the given date
+        string count_orders_query_str = "SELECT COUNT(*) FROM Orders WHERE Orderdate = ? AND FieldId = ?";
+        Statement count_orders_query(db, count_orders_query_str);
+        count_orders_query.bind(1, order_date);
+        count_orders_query.bind(2, field_id);
+
+        if (count_orders_query.executeStep()) {
+            int orders_count = count_orders_query.getColumn(0).getInt();
+            if (orders_count > 0) {
+                cout << "There are already orders for this date. Please choose another date." << endl;
+                return; // Exit the function
+            }
+        }
+
+        // Proceed with creating the order if there are no existing orders for the date
+
         string order_id = getNextOrderIdFromDatabase(db);
         string player_id = "";
+
         // Prepare the SQL query to insert the order
         string insert_query_str = "INSERT INTO Orders (OrderId, Orderdate, OrderStartTime, OrderFinishTime, ManagerId, PlayerId, FieldId) VALUES (?, ?, ?, ?, ?, ?, ?)";
         SQLite::Statement insert_query(db, insert_query_str);
-        insert_query.bind(1, order_id); // אולי כדאי להשתמש במספרים מזהים ייחודיים, לא בשם "auto"
+        insert_query.bind(1, order_id);
         insert_query.bind(2, order_date);
-        insert_query.bind(3, start_time); // תוסיף שניות לסוף השעה
-        insert_query.bind(4, end_time); // תוסיף שניות לסוף השעה
+        insert_query.bind(3, start_time);
+        insert_query.bind(4, end_time);
         insert_query.bind(5, manager_id);
         insert_query.bind(6, player_id);
         insert_query.bind(7, field_id);
@@ -344,6 +368,7 @@ void mark_dates_as_unavailable(string manager_id) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
 }
+
 
 void view_orders_by_date(string manager_id) {
     try {
@@ -391,6 +416,8 @@ void view_orders_by_date(string manager_id) {
 
         // Execute the query and print the results
         std::cout << "Orders for Manager ID: " << manager_id << " on " << chosen_date << std::endl;
+
+        bool has_orders = false; // Flag to track if any orders were found
         while (orders_query.executeStep()) {
             int order_id = orders_query.getColumn(0);
             int field_id = orders_query.getColumn(6).getInt();
@@ -398,6 +425,11 @@ void view_orders_by_date(string manager_id) {
             std::string order_finish_time = orders_query.getColumn(3);
 
             std::cout << "Order ID: " << order_id << ", Field ID: " << field_id << ", Order Start Time: " << order_start_time << ", Order Finish Time: " << order_finish_time << std::endl;
+            has_orders = true; // Set flag to true indicating that orders were found
+        }
+
+        if (!has_orders) {
+            std::cout << "No orders found for Manager ID: " << manager_id << " on " << chosen_date << std::endl;
         }
 
         std::cout << "Done." << std::endl;
@@ -430,9 +462,17 @@ void view_field_orders(string manager_id) {
         // Ask the manager to choose a field from the list
         int choice;
         bool valid_choice = false;
+        int field_id_size = field_ids.size();
         do {
             std::cout << "Enter the choice of the Field you want to select: ";
             std::cin >> choice;
+            while (std::cin.fail() || choice < 1 || choice > field_ids.size()) {
+                std::cin.clear(); // Clear the error flag
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+                std::cout << "Invalid input. Please enter a valid choice (1-" << field_id_size << ")" << std::endl;
+                std::cin >> choice;
+            }
+            cleanBuffer();
 
             if (choice >= 1 && choice <= field_ids.size()) {
                 valid_choice = true;
@@ -450,7 +490,9 @@ void view_field_orders(string manager_id) {
 
         // Execute the query and print the results
         std::cout << "Orders for Field ID: " << chosen_field_id << std::endl;
+        bool orders_found = false;
         while (orders_query.executeStep()) {
+            orders_found = true;
             int order_id = orders_query.getColumn(0);
             std::string order_date = orders_query.getColumn(1);
             std::string other_details = orders_query.getColumn(3);
@@ -458,8 +500,229 @@ void view_field_orders(string manager_id) {
             std::cout << "Order ID: " << order_id << ", Order Date: " << order_date << ", Other Details: " << other_details << std::endl;
         }
 
+        if (!orders_found) {
+            std::cout << "No orders found for the selected field." << std::endl;
+        }
+
         std::cout << "Done." << std::endl;
     } catch (std::exception& e) {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
+    }
+}
+
+bool deleteField(string manager_id) {
+    try {
+        // Open the SQLite database
+        Database db("FieldManagement.db", OPEN_READWRITE);
+
+        // Print the manager's fields
+        string manager_fields_query_str = "SELECT * FROM Fields WHERE ManagerId = ?";
+        Statement manager_fields_query(db, manager_fields_query_str);
+        manager_fields_query.bind(1, manager_id);
+
+        cout << "Your fields:" << endl;
+        while (manager_fields_query.executeStep()) {
+            int field_id = manager_fields_query.getColumn(0);
+            string field_name = manager_fields_query.getColumn(1);
+            // Print any other relevant information about the field
+            cout << "Field ID: " << field_id << ", Field Name: " << field_name << std::endl;
+        }
+
+        // Ask the manager which field they want to delete
+        string field_id_str;
+        cout << "Please enter the Field ID you want to delete: " << endl;
+        cout << "[If you want to return to main menu insert any char and press enter] " << endl;
+        cin >> field_id_str;
+
+        // Check if the field ID consists of digits only
+        if (!isDigitsOnly(field_id_str)) {
+            std::cout << "Invalid Field ID. Please enter digits only." << std::endl;
+            return false;
+        }
+
+        // Convert the field ID string to an integer
+        int field_id = std::stoi(field_id_str);
+
+        // Check if the field ID provided by the manager exists and belongs to the manager
+        string check_field_query_str = "SELECT COUNT(*) FROM Fields WHERE ManagerId = ? AND FieldId = ?";
+        Statement check_field_query(db, check_field_query_str);
+        check_field_query.bind(1, manager_id);
+        check_field_query.bind(2, field_id);
+
+        if (!check_field_query.executeStep() || check_field_query.getColumn(0).getInt() == 0) {
+            std::cout << "Invalid Field ID or not your field. Please try again." << std::endl;
+            return false;
+        }
+
+        // Check if there are any orders for the field
+        string check_orders_query_str = "SELECT COUNT(*) FROM Orders WHERE FieldId = ?";
+        Statement check_orders_query(db, check_orders_query_str);
+        check_orders_query.bind(1, field_id);
+        if (check_orders_query.executeStep()) {
+            int orders_count = check_orders_query.getColumn(0);
+            if (orders_count > 0) {
+                std::cout << "Cannot delete field. There are existing orders for this field." << std::endl;
+                return false;
+            }
+        }
+
+        // Begin a transaction
+        Transaction transaction(db);
+
+        // Delete the field from Fields table
+        string delete_field_query_str = "DELETE FROM Fields WHERE FieldId = ?";
+        Statement delete_field_query(db, delete_field_query_str);
+        delete_field_query.bind(1, field_id);
+        delete_field_query.exec();
+
+        // Commit the transaction
+        transaction.commit();
+
+        cout << "Field with ID: " << field_id << " deleted successfully." << endl;
+        return true;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
+        return false;
+    }
+}
+
+bool addField(string manager_id)
+{
+    try {
+        // Open a database file or create it if it doesn't exist
+        Database db("FieldManagement.db", OPEN_CREATE | OPEN_READWRITE);
+
+        int choice;
+        string fieldType, field_id, city_name, field_rate;
+
+        cout << "Select the field type you want to add:\n"
+             << "1. Tennis\n"
+             << "2. Football\n"
+             << "3. Basketball\n"
+             << "4. Exit\n"
+             << "Enter your choice (1-4): " << endl;
+        cin >> choice;
+        while (std::cin.fail() || choice < 1 || choice > 4) {
+            std::cin.clear(); // Clear the error flag
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Invalid input. Please enter a valid choice (1-4): ";
+            std::cin >> choice;
+        }
+        cleanBuffer();
+
+        // Get new details from the user based on their choice
+        switch (choice) {
+            case 1:
+                fieldType = "Tennis";
+                field_id = getNextFieldIdFromDatabase(db);
+                city_name = getCityNameFromManagerTable(db, manager_id);
+                break;
+            case 2:
+                fieldType = "Football";
+                field_id = getNextFieldIdFromDatabase(db);
+                city_name = getCityNameFromManagerTable(db, manager_id);
+                break;
+            case 3:
+                fieldType = "Basketball";
+                field_id = getNextFieldIdFromDatabase(db);
+                city_name = getCityNameFromManagerTable(db, manager_id);
+                break;
+            case 4:
+                cout << "Exiting without adding a new field." << endl;
+                return false;
+            default:
+                cout << "Invalid choice. Not adding a new field." << endl;
+                return false;
+        }
+
+        field_rate = "0";
+        int integer_rate = stoi(field_rate);
+        int integer_manager_id = stoi(manager_id);
+        int integer_field_id = stoi(field_id);
+
+        // Prepare an SQL statement to insert a new field into the Fields table
+        Statement insertFieldsQuery(db, "INSERT INTO Fields (FieldId, Fieldtype, City, FieldRate, ManagerId) VALUES (?, ?, ?, ?, ?)");
+
+        // Bind parameters to the statement
+        insertFieldsQuery.bind(1, integer_field_id);
+        insertFieldsQuery.bind(2, fieldType);
+        insertFieldsQuery.bind(3, city_name);
+        insertFieldsQuery.bind(4, integer_rate);
+        insertFieldsQuery.bind(5, integer_manager_id);
+
+        // Execute the insert statement
+        insertFieldsQuery.exec();
+
+        // If the execution is successful, return true
+        std::cout << "New field added successfully." << endl;
+        return true;
+    } catch (exception& e) {
+        // Handle exceptions more explicitly
+        cerr << "Error in addField: " << e.what() << endl;
+        cout << "Failed to add a new field." << endl;
+        return false;
+    }
+}
+
+float view_rate(string manager_id) {
+    try {
+        // Open the SQLite database
+        SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE);
+
+        // Query to get all field ratings for this manager
+        std::string field_ratings_query_str = "SELECT FieldRate FROM Fields WHERE ManagerId = ?";
+        SQLite::Statement field_ratings_query(db, field_ratings_query_str);
+        field_ratings_query.bind(1, manager_id);
+
+        // Calculate average rating for this manager
+        double total_rating = 0;
+        int num_fields = 0;
+        while (field_ratings_query.executeStep()) {
+            double rating = field_ratings_query.getColumn(0);
+            total_rating += rating;
+            num_fields++;
+        }
+
+        // Calculate average rating
+        double avg_rating = num_fields > 0 ? total_rating / num_fields : 0;
+
+        // Check if this manager has the highest rating
+        bool highest_rating = true;
+        std::string highest_rating_manager_id;
+        SQLite::Statement managers_query(db, "SELECT DISTINCT ManagerId FROM Fields");
+        while (managers_query.executeStep()) {
+            std::string other_manager_id = managers_query.getColumn(0);
+            if (other_manager_id != manager_id) {
+                std::string other_manager_ratings_query_str = "SELECT FieldRate FROM Fields WHERE ManagerId = ?";
+                SQLite::Statement other_manager_ratings_query(db, other_manager_ratings_query_str);
+                other_manager_ratings_query.bind(1, other_manager_id);
+
+                double other_manager_total_rating = 0;
+                int other_manager_num_fields = 0;
+                while (other_manager_ratings_query.executeStep()) {
+                    double other_manager_rating = other_manager_ratings_query.getColumn(0);
+                    other_manager_total_rating += other_manager_rating;
+                    other_manager_num_fields++;
+                }
+
+                double other_manager_avg_rating = other_manager_num_fields > 0 ? other_manager_total_rating / other_manager_num_fields : 0;
+
+                if (avg_rating < other_manager_avg_rating) {
+                    highest_rating = false;
+                    highest_rating_manager_id = other_manager_id;
+                    break;
+                }
+            }
+        }
+
+        if (highest_rating) {
+            std::cout << "Congratulations on your outstanding work! You have been selected as Manager of the Month!" << std::endl;
+            return avg_rating;
+        }
+
+        return avg_rating;
+    } catch (std::exception& e) {
+        std::cerr << "SQLite exception: " << e.what() << std::endl;
+        return 0.0;
     }
 }

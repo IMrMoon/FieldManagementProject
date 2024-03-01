@@ -9,6 +9,7 @@
 #include "Date.h"
 #include "DataAccessLayer.h"
 #include <ctime>
+#include <cctype>
 using namespace std;
 using namespace SQLite;
 #ifndef FIELDMANAGEMENTPROJECT_VALIDATION_H
@@ -18,6 +19,7 @@ using namespace SQLite;
 bool check_id(const string& id);
 bool check_existing_id(const string& id);
 bool check_name(const string& name);
+bool check_city(const string& city);
 bool check_email(const string& email);
 bool check_existing_email(const string& email);
 bool check_password(const string& password);
@@ -38,6 +40,7 @@ string choose_field_type_from_list(Database& db);
 void cleanBuffer();
 int time_to_minutes(const string& time_str);
 bool check_overlap(const pair<int, int>& interval1, const pair<int, int>& interval2);
+bool isDigitsOnly(const std::string& str);
 
 
 
