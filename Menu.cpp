@@ -15,18 +15,49 @@
 void first_menu(){ //menu for choose if he is a manager or player.
     int option = 0;
     do {
-        ChangeColor(0, 15);
-        cout << " ---------------------------------------------------- \n"
-                "|                      Field Management                    |\n"
-                " ---------------------------------------------------- \n"
-                "|        |";
-        ChangeColor(1, 15);
-        cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
-        cout << "| " << "Please choose if you are a Manager/Player:    " << " |" << endl;
-        cout << "| " << "1) Manager                                     " << " |" << endl;
-        cout << "| " << "2) Player                                      " << " |" << endl;
-        cout << "+--------------------------------------+" << endl;
-        //set_text_color(RESET);
+        ChangeColor(0, 2);
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(0, 2);
+        std::cout << "|                  Field Management                  |\n";
+        ChangeColor(0, 2);
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(0, 2);
+        std::cout << "|  Hello and welcome to the Field management system! |\n";
+        ChangeColor(0, 2);
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(0, 2);
+        std::cout << "|     Please choose if you are a Manager/Player:     |\n";
+        ChangeColor(0, 2);
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|     1.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        ChangeColor(0, 2);
+        std::cout << "                Manager               ";
+        ChangeColor(0, 2);
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << "|     2.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        ChangeColor(0, 2);
+        std::cout << "                Player                ";
+        ChangeColor(0, 2);
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << "|     3.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        ChangeColor(0, 2);
+        std::cout << "                 Exit                 ";
+        ChangeColor(0, 2);
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(1, 0);
+        std::cout << "Please enter your choice: " << std::endl;
+        ChangeColor(7,0);
+
         cin >> option;
         cleanBuffer();
         switch (option) {
@@ -36,6 +67,11 @@ void first_menu(){ //menu for choose if he is a manager or player.
             }
             case (player): {
                 player_reg_or_login_menu();
+                break;
+            }
+            case (exit1):
+            {
+                cout << "GoodBye, see you soon!" << endl;
                 break;
             }
             default: {

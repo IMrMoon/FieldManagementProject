@@ -273,8 +273,6 @@ CMakeFiles/FieldManagementProject.dir/Menu.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/x86_64-w64-mingw32/include/winsvc.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/x86_64-w64-mingw32/include/mcx.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/x86_64-w64-mingw32/include/imm.h \
- C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Menu.h \
- C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Manager.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/string \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h \
@@ -346,7 +344,6 @@ CMakeFiles/FieldManagementProject.dir/Menu.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator_args.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tuple \
- C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Date.h \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
@@ -391,6 +388,9 @@ CMakeFiles/FieldManagementProject.dir/Menu.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
  C:/Program\ Files/JetBrains/CLion\ 2023.3.3/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
+ C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Menu.h \
+ C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Manager.h \
+ C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\Date.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCpp.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCppExport.h \
  C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Assertion.h \

@@ -11,7 +11,5 @@ using namespace SQLite;
 int main(){
     Database db("FieldManagement.db", OPEN_READWRITE|OPEN_CREATE);
     first_menu();
-
-cout << "enter" << endl;
-return 1;
+return 0;
 }
