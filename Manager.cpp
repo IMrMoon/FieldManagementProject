@@ -1,9 +1,10 @@
 //
 // Created by sgvch on 25/02/2024.
 //
-
+#include "Color.h"
 #include "Manager.h"
 #include "Validation.h"
+
 
 string manager_register() {
     string manager_id, manager_name, manager_email, manager_phone_number, manager_password, manager_city;
@@ -16,10 +17,15 @@ string manager_register() {
     do {
         cout << "Enter Manager ID (up to 9 digits): " << endl;
         cin >> manager_id;
+        system("CLS");
         if (!check_id(manager_id)) {
+            ChangeColor(0,4);
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
+            ChangeColor(0,15);
         } else if (!check_existing_id(manager_id)) {
+            ChangeColor(0,4);
             cout << "Invalid ID. This ID already exists, try again." << endl;
+            ChangeColor(0,15);
             id_exists = true;
         } else {
             id_exists = false;
@@ -33,10 +39,13 @@ string manager_register() {
         // Getting name
         cout << "Enter Manager Name with upper case in first name and last name: " << endl;
         getline(cin, manager_name);
+        system("CLS");
         if (!check_name(manager_name)) {
+            ChangeColor(0,4);
             cout
                     << "Invalid Name. Please enter a valid Name with upper case in first letter in first name and upper case in first letter in last name."
                     << endl;
+            ChangeColor(0,15);
         }
     } while (!check_name(manager_name));
 
@@ -44,10 +53,15 @@ string manager_register() {
         // Getting email
         cout << "Enter Manager Email in format: user@example.com: " << endl;
         getline(cin, manager_email);
+        system("CLS");
         if (!check_email(manager_email)) {
+            ChangeColor(0,4);
             cout << "Invalid Email. Please enter a valid Email in the format: user@example.com." << endl;
+            ChangeColor(0,15);
         } else if (!check_existing_email(manager_email)) {
+            ChangeColor(0,4);
             cout << "Invalid Email. This Email already exists, try again." << endl;
+            ChangeColor(0,15);
             email_exists = true;
         } else {
             email_exists = false;
@@ -58,10 +72,15 @@ string manager_register() {
         // Getting phone number
         cout << "Enter Manager Phone Number no more than 10 digits: " << endl;
         getline(cin, manager_phone_number);
+        system("CLS");
         if (!check_phone_number(manager_phone_number)) {
+            ChangeColor(0,4);
             cout << "Invalid Phone Number. Please enter a valid phone number no more than 10 digits." << endl;
+            ChangeColor(0,15);
         } else if (!check_existing_phone_number(manager_phone_number)) {
+            ChangeColor(0,4);
             cout << "Invalid Phone number. This Phone number already exists, try again." << endl;
+            ChangeColor(0,15);
             phone_number_exists = true;
         } else {
             phone_number_exists = false;
@@ -72,10 +91,15 @@ string manager_register() {
         // Getting city
         cout << "Enter Manager City: " << endl;
         getline(cin, manager_city);
+        system("CLS");
         if (!check_city(manager_city)) {
+            ChangeColor(0,4);
             cout << "Invalid City. Please enter a valid City with upper case in first name and last name of the city" << endl;
+            ChangeColor(0,15);
         } else if (check_existing_city(manager_city)) {
+            ChangeColor(0,4);
             cout << "Invalid City. This City already exists, try again." << endl;
+            ChangeColor(0,15);
             city_exist = true;
         } else {
             city_exist = false;
@@ -86,8 +110,11 @@ string manager_register() {
         // Getting password
         cout << "Enter Manager Password: " << endl;
         getline(std::cin, manager_password);
+        system("CLS");
         if (!check_password(manager_password)) {
+            ChangeColor(0,4);
             cout << "Invalid Password. Please enter a valid Password." << endl;
+            ChangeColor(0,15);
         }
     } while (!check_password(manager_password));
 
@@ -95,8 +122,11 @@ string manager_register() {
         // Getting gender
         cout << "Enter Manager Gender: M/F: " << endl;
         cin >> manager_gender;
+        system("CLS");
         if (!check_gender(manager_gender)) {
+            ChangeColor(0,4);
             cout << "Invalid Gender. Please enter a valid Gender M/F." << endl;
+            ChangeColor(0,15);
         }
     } while (!check_gender(manager_gender));
 
@@ -122,8 +152,9 @@ string manager_register() {
 
         // Execute the statement
         query.exec();
-
+        ChangeColor(0,2);
         cout << "Welcome, " << manager_name << "! You are now logged in as a Manager." << endl;
+        ChangeColor(0,15);
         // Close the database (optional if you're done with the database)
 
     } catch (std::exception &e) {
@@ -140,15 +171,17 @@ string manager_login() {
     do {
         cout << "Enter your ID (up to 9 digits): " << endl;
         cin >> manager_id;
+        system("CLS");
         if (!check_id(manager_id)) {
+            ChangeColor(0,4);
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
+            ChangeColor(0,15);
         }
         if (!check_existing_id(manager_id)) {
             try {
                 cout << "Enter your Password: " << endl;
                 cin >> manager_password;
-//                    std::cin.ignore(); // Clear the input buffer
-//                    std::getline(std::cin, manager_password); // Read password with getline
+                system("CLS");
                 // Open the database
                 Database db("FieldManagement.db", OPEN_READWRITE | OPEN_CREATE);
 
@@ -164,19 +197,27 @@ string manager_login() {
 
                     // Check if the entered password matches the stored password
                     if (manager_password == stored_password) {
+                        ChangeColor(0,2);
                         cout << "Welcome, " << name << "! You are now logged in as a Manager." << endl;
+                        ChangeColor(0,15);
                         id_exists = true; // Return the manager ID if login is successful
                     } else {
+                        ChangeColor(0,4);
                         cout << "Invalid Password. Please try again." << endl;
+                        ChangeColor(0,15);
                     }
                 } else {
+                    ChangeColor(0,4);
                     cout << "Manager ID not found. Please try again." << endl;
+                    ChangeColor(0,15);
                 }
             } catch (exception &e) {
                 cerr << "SQLite exception: " << e.what() << endl;
             }
         } else {
+            ChangeColor(0,4);
             cout << "Manager ID does not exist. Please try again." << endl;
+            ChangeColor(0,15);
         }
     } while (!check_id(manager_id) || !id_exists);
 
@@ -204,7 +245,9 @@ bool edit_manager_details(string manager_id){
                  << "\nPhone: " << selectQuery.getColumn(3).getText()
                  << "\nPassword: " << selectQuery.getColumn(5).getText() << endl;
         } else {
+            ChangeColor(0,4);
             cout << "Manager not found." << endl;
+            ChangeColor(0,15);
             return false;
         }
 
@@ -221,7 +264,9 @@ bool edit_manager_details(string manager_id){
         while (std::cin.fail() || choice < 1 || choice > 5) {
             std::cin.clear(); // Clear the error flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            ChangeColor(0,4);
             std::cout << "Invalid input. Please enter a valid choice (1-5): " <<  endl;
+            ChangeColor(0,15);
             std::cin >> choice;
         }
         cleanBuffer();
@@ -238,7 +283,9 @@ bool edit_manager_details(string manager_id){
                     updateQueryName.bind(1, new_value);
                     updateQueryName.bind(2, manager_id);
                     updateQueryName.exec();
+                    ChangeColor(0,2);
                     cout << "Name is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -252,7 +299,9 @@ bool edit_manager_details(string manager_id){
                     updateQueryEmail.bind(1, new_value);
                     updateQueryEmail.bind(2, manager_id);
                     updateQueryEmail.exec();
+                    ChangeColor(0,2);
                     cout << "Email is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -266,7 +315,9 @@ bool edit_manager_details(string manager_id){
                     updateQueryPhone.bind(1, new_value);
                     updateQueryPhone.bind(2, manager_id);
                     updateQueryPhone.exec();
+                    ChangeColor(0,2);
                     cout << "Phone number is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -280,23 +331,30 @@ bool edit_manager_details(string manager_id){
                     updateQueryPassword.bind(1, new_value);
                     updateQueryPassword.bind(2, manager_id);
                     updateQueryPassword.exec();
+                    ChangeColor(0,2);
                     cout << "Password is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
 
             case 5: {
+                ChangeColor(0,3);
                 cout << "Exiting without making changes." << endl;
+                ChangeColor(0,15);
                 return false;
             }
 
             default: {
+                ChangeColor(0,4);
                 cout << "Invalid choice. No changes made." << endl;
+                ChangeColor(0,15);
                 return false;
             }
         }
-
+        ChangeColor(0,2);
         cout << "Manager details updated successfully." << endl;
+        ChangeColor(0,15);
         return true;
     } catch (const std::exception &e) {
         cerr << "Error updating Manager details: " << e.what() << endl;
@@ -316,11 +374,14 @@ void mark_dates_as_unavailable(string manager_id) {
             cout << "Enter order Date, first enter day, then month, then year.\n"
                     "(format: DD/MM/YYYY): " << endl;
             getline(cin, order_date);
+            system("CLS");
 
             is_valid_date = check_date(order_date);
 
             if (!is_valid_date) {
+                ChangeColor(0,4);
                 cout << "Invalid day for the given month and year." << endl;
+                ChangeColor(0,15);
             }
             // Get the current date
             get_current_date(current_year, current_month, current_day);
@@ -340,7 +401,9 @@ void mark_dates_as_unavailable(string manager_id) {
         if (count_orders_query.executeStep()) {
             int orders_count = count_orders_query.getColumn(0).getInt();
             if (orders_count > 0) {
+                ChangeColor(0,4);
                 cout << "There are already orders for this date. Please choose another date." << endl;
+                ChangeColor(0,15);
                 return; // Exit the function
             }
         }
@@ -363,8 +426,9 @@ void mark_dates_as_unavailable(string manager_id) {
 
         // Execute the insert query
         insert_query.exec();
-
+        ChangeColor(0,2);
         cout << "Order created for Field ID: " << field_id << " on date: " << order_date << " by Manager ID: " << manager_id << endl;
+        ChangeColor(0,15);
     } catch (std::exception& e) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
@@ -392,13 +456,16 @@ void view_orders_by_date(string manager_id) {
         do {
             std::cout << "Enter the date (dd/mm/yyyy) to view orders: ";
             std::cin >> chosen_date;
+            system("CLS");
 
             if (check_date(chosen_date)) {
                 // Convert the input date format to match the database format (dd-mm-yyyy)
                 std::replace(chosen_date.begin(), chosen_date.end(), '/', '-');
                 valid_date = true;
             } else {
+                ChangeColor(0,4);
                 std::cout << "Invalid date format. Please enter date in dd/mm/yyyy format." << std::endl;
+                ChangeColor(0,15);
             }
         } while (!valid_date);
 
@@ -415,7 +482,9 @@ void view_orders_by_date(string manager_id) {
         orders_query.bind(1, chosen_date);
 
         // Execute the query and print the results
+        ChangeColor(0,3);
         std::cout << "Orders for Manager ID: " << manager_id << " on " << chosen_date << std::endl;
+        ChangeColor(0,15);
 
         bool has_orders = false; // Flag to track if any orders were found
         while (orders_query.executeStep()) {
@@ -429,10 +498,13 @@ void view_orders_by_date(string manager_id) {
         }
 
         if (!has_orders) {
+            ChangeColor(0,4);
             std::cout << "No orders found for Manager ID: " << manager_id << " on " << chosen_date << std::endl;
+            ChangeColor(0,15);
         }
-
+        ChangeColor(0,2);
         std::cout << "Done." << std::endl;
+        ChangeColor(0,15);
     } catch (std::exception& e) {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
@@ -450,7 +522,9 @@ void view_field_orders(string manager_id) {
 
         std::vector<std::string> field_ids; // Store field IDs as strings
         std::map<int, std::string> field_map; // Map to store FieldId and corresponding Field details
+        ChangeColor(0,3);
         std::cout << "Fields managed by Manager ID: " << manager_id << std::endl;
+        ChangeColor(0,15);
         int choice_counter = 1;
         while (fields_query.executeStep()) {
             std::string field_id = fields_query.getColumn(0).getText(); // Convert field ID to string
@@ -466,10 +540,13 @@ void view_field_orders(string manager_id) {
         do {
             std::cout << "Enter the choice of the Field you want to select: ";
             std::cin >> choice;
+            system("CLS");
             while (std::cin.fail() || choice < 1 || choice > field_ids.size()) {
                 std::cin.clear(); // Clear the error flag
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+                ChangeColor(0,4);
                 std::cout << "Invalid input. Please enter a valid choice (1-" << field_id_size << ")" << std::endl;
+                ChangeColor(0,15);
                 std::cin >> choice;
             }
             cleanBuffer();
@@ -477,7 +554,9 @@ void view_field_orders(string manager_id) {
             if (choice >= 1 && choice <= field_ids.size()) {
                 valid_choice = true;
             } else {
+                ChangeColor(0,4);
                 std::cout << "Invalid choice. Please choose from the list." << std::endl;
+                ChangeColor(0,15);
             }
         } while (!valid_choice);
 
@@ -489,7 +568,9 @@ void view_field_orders(string manager_id) {
         orders_query.bind(1, chosen_field_id); // Bind chosen field ID as string
 
         // Execute the query and print the results
+        ChangeColor(0,3);
         std::cout << "Orders for Field ID: " << chosen_field_id << std::endl;
+        ChangeColor(0,15);
         bool orders_found = false;
         while (orders_query.executeStep()) {
             orders_found = true;
@@ -501,10 +582,13 @@ void view_field_orders(string manager_id) {
         }
 
         if (!orders_found) {
+            ChangeColor(0,4);
             std::cout << "No orders found for the selected field." << std::endl;
+            ChangeColor(0,15);
         }
-
+        ChangeColor(0,2);
         std::cout << "Done." << std::endl;
+        ChangeColor(0,15);
     } catch (std::exception& e) {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
@@ -519,8 +603,9 @@ bool deleteField(string manager_id) {
         string manager_fields_query_str = "SELECT * FROM Fields WHERE ManagerId = ?";
         Statement manager_fields_query(db, manager_fields_query_str);
         manager_fields_query.bind(1, manager_id);
-
+        ChangeColor(0,3);
         cout << "Your fields:" << endl;
+        ChangeColor(0,15);
         while (manager_fields_query.executeStep()) {
             int field_id = manager_fields_query.getColumn(0);
             string field_name = manager_fields_query.getColumn(1);
@@ -530,13 +615,19 @@ bool deleteField(string manager_id) {
 
         // Ask the manager which field they want to delete
         string field_id_str;
+        ChangeColor(0,3);
         cout << "Please enter the Field ID you want to delete: " << endl;
+        ChangeColor(0,15);
+        ChangeColor(0,6);
         cout << "[If you want to return to main menu insert any char and press enter] " << endl;
+        ChangeColor(0,15);
         cin >> field_id_str;
 
         // Check if the field ID consists of digits only
         if (!isDigitsOnly(field_id_str)) {
+            ChangeColor(0,4);
             std::cout << "Invalid Field ID. Please enter digits only." << std::endl;
+            ChangeColor(0,15);
             return false;
         }
 
@@ -550,7 +641,9 @@ bool deleteField(string manager_id) {
         check_field_query.bind(2, field_id);
 
         if (!check_field_query.executeStep() || check_field_query.getColumn(0).getInt() == 0) {
+            ChangeColor(0,4);
             std::cout << "Invalid Field ID or not your field. Please try again." << std::endl;
+            ChangeColor(0,15);
             return false;
         }
 
@@ -561,7 +654,9 @@ bool deleteField(string manager_id) {
         if (check_orders_query.executeStep()) {
             int orders_count = check_orders_query.getColumn(0);
             if (orders_count > 0) {
+                ChangeColor(0,4);
                 std::cout << "Cannot delete field. There are existing orders for this field." << std::endl;
+                ChangeColor(0,15);
                 return false;
             }
         }
@@ -577,8 +672,9 @@ bool deleteField(string manager_id) {
 
         // Commit the transaction
         transaction.commit();
-
+        ChangeColor(0,2);
         cout << "Field with ID: " << field_id << " deleted successfully." << endl;
+        ChangeColor(0,15);
         return true;
     } catch (exception& e) {
         cerr << "SQLite exception: " << e.what() << endl;
@@ -602,10 +698,13 @@ bool addField(string manager_id)
              << "4. Exit\n"
              << "Enter your choice (1-4): " << endl;
         cin >> choice;
+        system("CLS");
         while (std::cin.fail() || choice < 1 || choice > 4) {
             std::cin.clear(); // Clear the error flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            ChangeColor(0,4);
             std::cout << "Invalid input. Please enter a valid choice (1-4): ";
+            ChangeColor(0,15);
             std::cin >> choice;
         }
         cleanBuffer();
@@ -613,7 +712,9 @@ bool addField(string manager_id)
         // Get new details from the user based on their choice
         switch (choice) {
             case 1:
+                ChangeColor(0,2);
                 fieldType = "Tennis";
+                ChangeColor(0,15);
                 field_id = getNextFieldIdFromDatabase(db);
                 city_name = getCityNameFromManagerTable(db, manager_id);
                 break;
@@ -623,7 +724,9 @@ bool addField(string manager_id)
                 city_name = getCityNameFromManagerTable(db, manager_id);
                 break;
             case 3:
+                ChangeColor(0,6);
                 fieldType = "Basketball";
+                ChangeColor(0,15);
                 field_id = getNextFieldIdFromDatabase(db);
                 city_name = getCityNameFromManagerTable(db, manager_id);
                 break;
@@ -631,7 +734,9 @@ bool addField(string manager_id)
                 cout << "Exiting without adding a new field." << endl;
                 return false;
             default:
+                ChangeColor(0,4);
                 cout << "Invalid choice. Not adding a new field." << endl;
+                ChangeColor(0,15);
                 return false;
         }
 
@@ -654,12 +759,16 @@ bool addField(string manager_id)
         insertFieldsQuery.exec();
 
         // If the execution is successful, return true
+        ChangeColor(0,2);
         std::cout << "New field added successfully." << endl;
+        ChangeColor(0,15);
         return true;
     } catch (exception& e) {
         // Handle exceptions more explicitly
+        ChangeColor(0,2);
         cerr << "Error in addField: " << e.what() << endl;
         cout << "Failed to add a new field." << endl;
+        ChangeColor(0,15);
         return false;
     }
 }
@@ -716,7 +825,9 @@ float view_rate(string manager_id) {
         }
 
         if (highest_rating) {
+            ChangeColor(0,2);
             std::cout << "Congratulations on your outstanding work! You have been selected as Manager of the Month!" << std::endl;
+            ChangeColor(0,15);
             return avg_rating;
         }
 

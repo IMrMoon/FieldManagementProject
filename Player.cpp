@@ -1,7 +1,7 @@
 //
 // Created by sgvch on 25/02/2024.
 //
-
+#include "Color.h"
 #include "Player.h"
 #include <limits>
 #include "Validation.h"
@@ -15,11 +15,16 @@ string player_register() {
         do {
             cout << "Enter Player ID (up to 9 digits): " << endl;
             cin >> player_id;
+            system("CLS");
             if (!check_id(player_id)) {
+                ChangeColor(0,4);
                 cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;
+                ChangeColor(0,15);
             }
             else if(!check_existing_id(player_id)){
+                ChangeColor(0,4);
                 cout << "Invalid ID. this ID already exist, try again." << std::endl;
+                ChangeColor(0,15);
                 id_exists = true;
             } else {
                 id_exists = false;
@@ -33,10 +38,13 @@ string player_register() {
             // Getting name
             std::cout << "Enter Player Name with upper case in first name and last name: " << endl;
             getline(cin, player_name);
+            system("CLS");
             if (!check_name(player_name)) {
+                ChangeColor(0,4);
                 cout
                         << "Invalid Name. Please enter a valid Name with upper "
                            "case in first letter in first name and upper case in first letter in last name."<< std::endl;
+                ChangeColor(0,15);
             }
         } while (!check_name(player_name));
 
@@ -44,11 +52,16 @@ string player_register() {
             // Getting email
             cout << "Enter player Email in format: user@example.com " << endl;
             getline(cin, player_email);
+            system("CLS");
             if (!check_email(player_email)) {
+                ChangeColor(0,4);
                 cout << "Invalid Email. Please enter a valid Email in the format: user@example.com." << std::endl;
+                ChangeColor(0,15);
             }
             else if(!check_existing_email(player_email)){
+                ChangeColor(0,4);
                 cout << "Invalid Email. this Email already exist, try again." << std::endl;
+                ChangeColor(0,15);
                 email_exists = true;
             } else {
                 email_exists = false;
@@ -61,11 +74,14 @@ string player_register() {
                     << "Enter player password at least one uppercase letter and "
                        "at least one lowercase letter and numbers and minimum size 7" << endl;
             getline(cin, player_password);
+            system("CLS");
             if (!check_password(player_password)) {
+                ChangeColor(0,4);
                 cout
                         << "Invalid Password. Please enter a valid Password at least one "
                            "uppercase letter and at least one lowercase letter and numbers and minimum size 7."
                         << std::endl;
+                ChangeColor(0,15);
             }
         } while (!check_password(player_password));
 
@@ -73,12 +89,17 @@ string player_register() {
             // Getting password
             cout << "Enter Player PhoneNumber no more than 10 digits: " << endl;
             getline(cin, player_phone_number);
+            system("CLS");
             if (!check_phone_number(player_phone_number)) {
+                ChangeColor(0,4);
                 cout << "Invalid Phone Number. Please enter a "
                         "valid phone number no more than 10 digits." << std::endl;
+                ChangeColor(0,15);
             }
             if(!check_existing_phone_number(player_phone_number)){
+                ChangeColor(0,4);
                 cout << "Invalid Phone number. this Phone number already exist, try again." << std::endl;
+                ChangeColor(0,15);
             }
         } while (!check_phone_number(player_phone_number));
 
@@ -86,9 +107,12 @@ string player_register() {
             // Getting password
             cout << "Enter Player Gender: M/F " << endl;
             cin >> player_gender;
+            system("CLS");
             //player_gender = toupper(player_gender); //////check
                 if (!check_gender(player_gender)) {
+                    ChangeColor(0,4);
                     cout << "Invalid Gender. Please enter a valid Gender (M/F)." << endl;
+                    ChangeColor(0,15);
                 }
             } while (!check_gender(player_gender));
 
@@ -113,7 +137,9 @@ string player_register() {
 
             // Execute the statement
             query.exec();
+            ChangeColor(0,2);
             cout << "Welcome, " << player_name << "! You are now logged in as a Manager." << endl;
+            ChangeColor(0,15);
             // Close the database (optional if you're done with the database)
 
 
@@ -130,13 +156,17 @@ string player_login(){
     do {
         cout << "Enter your ID (up to 9 digits): ";
         cin >> player_id;
+        system("CLS");
         if (!check_id(player_id)) {
+            ChangeColor(0,4);
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;
+            ChangeColor(0,15);
         }
         if (!check_existing_id(player_id)) {
             try {
                 cout << "Enter your Password: ";
                 cin >> player_password;
+                system("CLS");
                 // Open the database
                 SQLite::Database db("FieldManagement.db", OPEN_READWRITE | OPEN_CREATE);
 
@@ -153,30 +183,30 @@ string player_login(){
                     // Check if the entered password matches the stored password
                     if (player_password == stored_password) {
                         // Password is correct
-                        //set_text_color(GREEN);
+                        ChangeColor(0,2);
                         std::cout << "Login Successfully, " << name << " welcome to the field system!" << std::endl;
-                        //set_text_color(RESET);
+                        ChangeColor(0,15);
                         id_exists = true; // Set id_exists to true to exit the loop
                     } else {
                         // Password is incorrect
-                        //set_text_color(RED);
+                        ChangeColor(0,4);
                         std::cout << "Error: Incorrect password. Please try again." << std::endl;
-                        //set_text_color(RESET);
+                        ChangeColor(0,15);
                     }
                 } else {
                     // Player ID not found in the database
-                    //set_text_color(RED);
+                    ChangeColor(0,4);
                     std::cout << "Error: Player ID not found." << std::endl;
-                    //set_text_color(RESET);
+                    ChangeColor(0,15);
                 }
             } catch (std::exception& e) {
                 // Handle exceptions (e.g., print error message)
                 std::cerr << "SQLite exception: " << e.what() << std::endl;
             }
         } else {
-            //set_text_color(RED);
+            ChangeColor(0,4);
             std::cout << "Error: Player ID does not exist." << std::endl;
-            //set_text_color(RESET);
+            ChangeColor(0,15);
         }
     } while (!check_id(player_id) || !id_exists);
     return player_id;
@@ -215,14 +245,18 @@ bool schedule_game(string player_id) {
             is_valid_date = check_date(order_date);
 
             if (!is_valid_date) {
+                ChangeColor(0,4);
                 cout << "Invalid day for the given month and year." << endl;
+                ChangeColor(0,15);
             } else {
                 // Check if the entered date is before the current date
                 get_current_date(current_day, current_month, current_year);
                 Date input_date = parse_date(order_date); // Assuming parse_date function parses the date string
                 Date current_date(current_year, current_month, current_day);
                 if (input_date < current_date) {
+                    ChangeColor(0,4);
                     cout << "Invalid date. Please enter a date on or after today." << endl;
+                    ChangeColor(0,15);
                     is_valid_date = false; // Set to false to continue the loop
                 }
             }
@@ -243,22 +277,30 @@ bool schedule_game(string player_id) {
                 is_end_time_valid = check_time_format(end_time_str);
 
                 if (!is_start_time_valid || !is_end_time_valid) {
+                    ChangeColor(0,4);
                     cout << "Invalid time format. Please enter a valid time." << endl;
+                    ChangeColor(0,15);
                     cout << "\n" << endl;
                     continue; // Restart the loop to get valid input
                 }
                 if (start_time_str >= end_time_str) {
+                    ChangeColor(0,4);
                     cout << "Start time must be before end time. Please enter valid times." << endl;
+                    ChangeColor(0,15);
                     cout << endl;
                     continue; // Restart the loop to get valid input
                 }
                 // Check if the provided times overlap with existing orders
                 if (check_time_exist(start_time_str, end_time_str, order_date)) {
+                    ChangeColor(0,4);
                     cout << "Time overlap with existing orders. Please enter a different time." << endl;
+                    ChangeColor(0,15);
                     cout << "\n" << endl;
                 } else {
                     // Valid time input without overlap
+                    ChangeColor(0,2);
                     cout << "Valid time!" << endl;
+                    ChangeColor(0,15);
                     break; // Exit the loop as valid input is provided
                 }
             } while (true);
@@ -300,9 +342,9 @@ bool schedule_game(string player_id) {
             // Handle exceptions (e.g., print error message)
             std::cerr << "SQLite exception: " << e.what() << std::endl;
         }
-        //set_text_color(GREEN);
+        ChangeColor(0,2);
         cout << "Schedule successful" << endl;
-        //set_text_color(RESET);
+        ChangeColor(0,15);
         return true;
 
     }
@@ -355,8 +397,9 @@ bool field_rate(string playerId) {
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
         // Retrieve the list of fields
         SQLite::Statement getFieldQuery(db, "SELECT * FROM Fields");
-
+        ChangeColor(0,14);
         std::cout << "Available Fields:\n";
+        ChangeColor(0,15);
         // Iterate over the results and print each field
         while (getFieldQuery.executeStep()) {
             std::cout << getFieldQuery.getColumn(0).getString() << std::endl;
@@ -387,7 +430,9 @@ bool field_rate(string playerId) {
                 std::cin >> newRating;
 
                 if (!isValidRating(newRating)) {
+                    ChangeColor(0,4);
                     std::cerr << "Invalid rating. Please provide a rating between 1 and 5.\n";
+                    ChangeColor(0,15);
                     return false;
                 }
 
@@ -399,8 +444,9 @@ bool field_rate(string playerId) {
                 updateFieldRate.bind(1, combinedAverageRating);
                 updateFieldRate.bind(2, selectedFieldId);
                 updateFieldRate.exec();
-
+                ChangeColor(0,2);
                 std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+                ChangeColor(0,15);
                 return true;
             }
             else {
@@ -410,13 +456,16 @@ bool field_rate(string playerId) {
                 insertQuery.bind(2, selectedFieldId);
                 insertQuery.bind(3, combinedAverageRating);
                 insertQuery.exec();
-
+                ChangeColor(0,2);
                 std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+                ChangeColor(0,15);
                 return true;
             }
         } else {
             // Field ID does not exist in the Fields table
+            ChangeColor(0,4);
             std::cerr << "Invalid Field ID. Please select a valid Field ID.\n";
+            ChangeColor(0,15);
             return false;
         }
     } catch (const std::exception &e) {
@@ -473,7 +522,9 @@ bool edit_player_details(string player_id){
                  << "\nPhone: " << selectQuery.getColumn(3).getText()
                  << "\nPassword: " << selectQuery.getColumn(4).getText() << endl;
         } else {
+            ChangeColor(0,4);
             cout << "Player not found." << endl;
+            ChangeColor(0,15);
             return false;
         }
 
@@ -491,7 +542,9 @@ bool edit_player_details(string player_id){
             if (cin >> choice && choice >= 1 && choice <= 5) {
                 break; // Valid choice, exit the loop
             } else {
+                ChangeColor(0,4);
                 cout << "Invalid input. Please enter a valid choice (1-5)." << endl;
+                ChangeColor(0,15);
 
                 // Clear the error state and ignore the invalid input
                 cin.clear();
@@ -513,10 +566,14 @@ bool edit_player_details(string player_id){
                     updateQueryName.bind(2, player_id);
                     updateQueryName.exec();
                     update = true;
+                    ChangeColor(0,2);
                     cout << "Name is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 else{
+                    ChangeColor(0,4);
                     cout << "invalid input!, Name not updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -531,10 +588,14 @@ bool edit_player_details(string player_id){
                     updateQueryEmail.bind(2, player_id);
                     updateQueryEmail.exec();
                     update = true;
+                    ChangeColor(0,2);
                     cout << "Email is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 else{
+                    ChangeColor(0,4);
                     cout << "invalid input!, Email not updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -549,10 +610,14 @@ bool edit_player_details(string player_id){
                     updateQueryPhone.bind(2, player_id);
                     updateQueryPhone.exec();
                     update = true;
+                    ChangeColor(0,2);
                     cout << "Phone number is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 else{
+                    ChangeColor(0,4);
                     cout << "invalid input!, Phone number not updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -567,10 +632,14 @@ bool edit_player_details(string player_id){
                     updateQueryPassword.bind(2, player_id);
                     updateQueryPassword.exec();
                     update = true;
+                    ChangeColor(0,2);
                     cout << "Password is updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 else{
+                    ChangeColor(0,4);
                     cout << "invalid input!, Password not updated!" << endl;
+                    ChangeColor(0,15);
                 }
                 break;
             }
@@ -581,12 +650,16 @@ bool edit_player_details(string player_id){
             }
 
             default: {
+                ChangeColor(0,4);
                 cout << "Invalid choice. No changes made." << endl;
+                ChangeColor(0,15);
                 return false;
             }
         }
         if(update) {
+            ChangeColor(0,2);
             cout << "Player details updated successfully." << endl;
+            ChangeColor(0,15);
             return true;
         }
     } catch (const std::exception &e) {

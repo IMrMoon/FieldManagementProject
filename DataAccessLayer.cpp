@@ -1,6 +1,7 @@
 //
 // Created by sgvch on 25/02/2024.
 //
+#include "Color.h"
 #include "DataAccessLayer.h"
 #include "Date.h"
 
@@ -13,28 +14,32 @@ set<string> get_available_cities() {
 
     try {
         Statement query(db, "SELECT DISTINCT City FROM Fields");
-
+        ChangeColor(0,7);
         cout << "Available Cities:" << endl;
         while (query.executeStep()) {
             string fields_cities = query.getColumn(0).getText();
             cout << "- " << fields_cities << endl;
             cities.insert(fields_cities);
         }
+        ChangeColor(0,15);
 
         string chosen_city;
         do {
             cout << "Enter the game type you want to choose: ";
             cin >> chosen_city;
+            system("CLS");
 
             if (cities.find(chosen_city) == cities.end()) {
+                ChangeColor(0,4);
                 cout << "Invalid game type. Please choose from the available game types." << endl;
+                ChangeColor(0,15);
             }
         } while (cities.find(chosen_city) == cities.end());
 
         // Print fields details for the chosen game type
         Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE City = ?");
         fields_query.bind(1, chosen_city);
-
+        ChangeColor(0,7);
         cout << "Fields for game type " << chosen_city << ":" << endl;
         while (fields_query.executeStep()) {
             int field_id = fields_query.getColumn(0).getInt();
@@ -42,6 +47,7 @@ set<string> get_available_cities() {
             string field_type = fields_query.getColumn(2).getText();
             cout << "Field ID: " << field_id << ", City: " << city << ", Field Type: " << field_type << endl;
         }
+        ChangeColor(0,15);
 
     } catch (exception &e) {
         cerr << "SQLite exception: " << e.what() << endl;
@@ -57,28 +63,32 @@ set<string> get_available_game_types() {
 
     try {
         SQLite::Statement query(db, "SELECT DISTINCT Fieldtype FROM Fields");
-
+        ChangeColor(0,7);
         cout << "Available game types:" << endl;
         while (query.executeStep()) {
             string game_type = query.getColumn(0).getText();
             cout << "- " << game_type << endl;
             game_types.insert(game_type);
         }
+        ChangeColor(0,15);
 
         string chosen_game_type;
         do {
             cout << "Enter the game type you want to choose: ";
             cin >> chosen_game_type;
+            system("CLS");
 
             if (game_types.find(chosen_game_type) == game_types.end()) {
+                ChangeColor(0,4);
                 cout << "Invalid game type. Please choose from the available game types." << endl;
+                ChangeColor(0,15);
             }
         } while (game_types.find(chosen_game_type) == game_types.end());
 
         // Print fields details for the chosen game type
         SQLite::Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE Fieldtype = ?");
         fields_query.bind(1, chosen_game_type);
-
+        ChangeColor(0,7);
         cout << "Fields for game type " << chosen_game_type << ":" << endl;
         while (fields_query.executeStep()) {
             int field_id = fields_query.getColumn(0).getInt();
@@ -86,6 +96,7 @@ set<string> get_available_game_types() {
             string field_type = fields_query.getColumn(2).getText();
             cout << "Field ID: " << field_id << ", City: " << city << ", Field Type: " << field_type << endl;
         }
+        ChangeColor(0,15);
 
     } catch (exception &e) {
         cerr << "SQLite exception: " << e.what() << endl;
@@ -136,12 +147,13 @@ string getManagerIdByFieldId(const string& fieldId) {
 void print_available_cities(Database& db) {
     try {
         Statement query(db, "SELECT DISTINCT City FROM Fields");
-
+        ChangeColor(0,7);
         cout << "Available cities:" << endl;
         while (query.executeStep()) {
             string city = query.getColumn(0).getText();
             cout << "- " << city << endl;
         }
+        ChangeColor(0,15);
     } catch (exception& e) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
@@ -175,7 +187,7 @@ bool get_and_choose_player_orders(string player_id) { ///player cancel game
         query.bind(1, player_id);
 
         int count = 0;
-
+        ChangeColor(0,7);
         // Execute the query and fetch orders
         while (query.executeStep()) {
             ++count;
@@ -188,9 +200,11 @@ bool get_and_choose_player_orders(string player_id) { ///player cancel game
             cout << count << ". Order ID: " << order_id << ", Date: " << order_date
                  << ", Start Time: " << order_start_time << ", End Time: " << order_end_time << endl;
         }
-
+        ChangeColor(0,15);
         if (count == 0) {
+            ChangeColor(0,4);
             cout << "No orders found for player with ID: " << player_id << endl;
+            ChangeColor(0,15);
             return false; // Return empty string indicating no order chosen
         }
 
@@ -201,17 +215,22 @@ bool get_and_choose_player_orders(string player_id) { ///player cancel game
 
             // Check if input is a valid integer
             if (cin >> choice) {
+                system("CLS");
                 // Validate the choice
                 if (choice >= 1 && choice <= count) {
                     break; // Valid choice, exit the loop
                 } else {
+                    ChangeColor(0,4);
                     cout << "Invalid choice. Please choose a valid order." << endl;
+                    ChangeColor(0,15);
                 }
             } else {
                 // Clear the error state and ignore the invalid input
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                ChangeColor(0,4);
                 cout << "Invalid input. Please enter a valid integer." << endl;
+                ChangeColor(0,15);
             }
         }
 
@@ -226,8 +245,9 @@ bool get_and_choose_player_orders(string player_id) { ///player cancel game
         SQLite::Statement delete_query(db, "DELETE FROM Orders WHERE OrderId = ?");
         delete_query.bind(1, chosen_order_id);
         delete_query.exec();
-
+        ChangeColor(0,2);
         cout << "Order Number: [" << chosen_order_id << "] successfully deleted." << endl;
+        ChangeColor(0,15);
 
          // Return the chosen order ID
     } catch (const std::exception& e) {
@@ -246,14 +266,14 @@ string get_field_id(string manager_id) {
         string query_str = "SELECT FieldId FROM Fields WHERE ManagerId = ?";
         Statement query(db, query_str);
         query.bind(1, manager_id);
-
+        ChangeColor(0,7);
         // Display available fields and prompt the user to choose a field ID
         cout << "Available fields for manager: " << manager_id << ":" << endl;
         while (query.executeStep()) {
             string field_id = query.getColumn(0).getString();
             cout << "Field ID: " << field_id  <<  endl;
         }
-
+        ChangeColor(0,15);
         // Prompt the manager to choose a field ID
         string field_id;
         bool valid_choice = false;
@@ -261,6 +281,7 @@ string get_field_id(string manager_id) {
             cout << "Enter the Field ID you want to choose: ";
             cin >> field_id;
             clean_DAL_buffer();
+            system("CLS");
 
             // Validate the user input against available field IDs
             query.reset(); // Reset the query to execute it again
@@ -272,7 +293,9 @@ string get_field_id(string manager_id) {
                 }
             }
             if (!valid_choice) {
+                ChangeColor(0,4);
                 cout << "Invalid Field ID. Please choose from the available options." << endl;
+                ChangeColor(0,15);
             }
         } while (!valid_choice);
 

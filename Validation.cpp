@@ -1,9 +1,10 @@
 //
 // Created by sgvch on 26/02/2024.
 //
-
+#include "Color.h"
 #include "Validation.h"
 #include <sstream>
+
 
 ///validation check for register/login
 bool check_id(const string& id) {
@@ -291,13 +292,14 @@ string choose_field_id(const string& city, const string& game_type) {
         query.bind(2, game_type);
 
         // Display available fields and prompt the user to choose a field ID
+        ChangeColor(0,7);
         cout << "Available fields in " << city << " for " << game_type << ":" << endl;
         while (query.executeStep()) {
             string field_id = query.getColumn(0).getString();
             string game_type_string = query.getColumn(1).getString();
             cout << "Field ID: " << field_id << ", Game Type: " << game_type_string << endl;
         }
-
+        ChangeColor(0,15);
         // Prompt the user to choose a field ID
         string field_id;
         bool valid_choice = false;
@@ -316,7 +318,9 @@ string choose_field_id(const string& city, const string& game_type) {
                 }
             }
             if (!valid_choice) {
+                ChangeColor(0,4);
                 cout << "Invalid Field ID. Please choose from the available options." << endl;
+                ChangeColor(0,15);
             }
         } while (!valid_choice);
 
@@ -365,7 +369,9 @@ string choose_city_from_list(Database& db) {
                 if (count > 0) {
                     valid_choice = true;
                 } else {
+                    ChangeColor(0,4);
                     cout << "Invalid city. Please choose from the available options." << endl;
+                    ChangeColor(0,15);
                 }
             }
         } catch (exception& e) {
@@ -398,7 +404,9 @@ string choose_field_type_from_list(Database& db) {
                 if (count > 0) {
                     valid_choice = true;
                 } else {
+                    ChangeColor(0,4);
                     cout << "Invalid field type. Please choose from the available options." << endl;
+                    ChangeColor(0,15);
                 }
             }
         } catch (exception& e) {
@@ -413,7 +421,6 @@ string choose_field_type_from_list(Database& db) {
 void cleanBuffer() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
-
 
 int time_to_minutes(const string& time_str) {
     int hours = stoi(time_str.substr(0, 2));

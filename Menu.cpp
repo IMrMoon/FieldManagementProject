@@ -54,9 +54,9 @@ void first_menu(){ //menu for choose if he is a manager or player.
         ChangeColor(1, 0);
         std::cout << "Please enter your choice: " << std::endl;
         ChangeColor(7,0);
-
         cin >> option;
         cleanBuffer();
+        system("CLS");
         switch (option) {
             case (manager): {
                 manager_reg_or_login_menu();
@@ -87,21 +87,37 @@ void player_reg_or_login_menu(){
     string player_id;
     do {
         //set_text_color(CYAN);
-        cout << "+--------------------------------------+" << endl;
-        cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
-        cout << "| " << "Please choose Register/Login:    " << " |" << endl;
-        cout << "| " << "1) Register                                     " << " |" << endl;
-        cout << "| " << "2) Login                                      " << " |" << endl;
-        cout << "+--------------------------------------+" << endl;
-        //set_text_color(RESET);
+        ChangeColor(0, 15);
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|  Hello and welcome to the Field management system! |\n";
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|            Please choose Register/Login:           |\n";
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|     1.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Register              ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << "|     2.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                 Login                ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(1, 0);
+        cout << "Please enter your choice: " << endl;
+        ChangeColor(7, 0);
         cin >> option;
         cleanBuffer();
+        system("CLS");
         switch (option) {
             case (reg): {
                 player_id = player_register();
-                //set_text_color(GREEN);
+                ChangeColor(0,2);
                 cout << "Registered successfully" << endl;
-                //set_text_color(RESET);
+                ChangeColor(0,15);
                 player_menu(player_id);
                 break;
             }
@@ -111,9 +127,9 @@ void player_reg_or_login_menu(){
                 break;
             }
             default: {
-                //set_text_color(RED);
+                ChangeColor(0,4);
                 cout << "Illegal option, Please retry." << endl;
-                //set_text_color(RESET);
+                ChangeColor(0,15);
                 option = 0;
                 break;
             }
@@ -125,30 +141,49 @@ void manager_reg_or_login_menu(){
     int option = 0;
     string manager_id;
     do {
-        cout << "+--------------------------------------+" << endl;
-        cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
-        cout << "| " << "Please choose Register/Login:    " << " |" << endl;
-        cout << "| " << "1) Register                                     " << " |" << endl;
-        cout << "| " << "2) Login                                      " << " |" << endl;
-        cout << "+--------------------------------------+"  << endl;
+        ChangeColor(0, 3);
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|  Hello and welcome to the Field management system! |\n";
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|            Please choose Register/Login:           |\n" ;
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|     1.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Register              ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << "|     2.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                 Login                ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(1, 0);
+        cout << "Please enter your choice: " << endl;
+        ChangeColor(7, 0);
         cin >> option;
         cleanBuffer();
+        system("CLS");
         switch (option) {
             case (reg): {
                 manager_id = manager_register();
+                ChangeColor(0,2);
                 cout << "Registered successfully" << endl;
+                ChangeColor(7, 0);
                 manager_menu(manager_id);
                 break;
             }
             case (login): {
-                manager_id = manager_login(); //add forget pass option
+                manager_id = manager_login();
                 manager_menu(manager_id);
                 break;
             }
             default: {
-                //set_text_color(RED);
+                ChangeColor(0,4);
                 cout << "Illegal option, Please retry." << endl;
-                //set_text_color(RESET);
+                ChangeColor(0,15);
                 option = 0;
                 break;
             }
@@ -159,23 +194,65 @@ void manager_reg_or_login_menu(){
 void player_menu(string player_id){
     int option = 0;
     do {
-        //set_text_color(CYAN);
-        cout << "+--------------------------------------+" << endl;
-        cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
-        cout << "| " << "Please choose option:    " << " |" << endl;
-        cout << "| " << "1) Schedule game                                     " << " |" << endl;
-        cout << "| " << "2) Cancel Game                                      " << " |" << endl;
-        cout << "| " << "3) Search Field by type                                      " << " |" << endl;
-        cout << "| " << "4) Search Field by city                                      " << " |" << endl;
-        cout << "| " << "5) Edit details                                      " << " |" << endl;
-        cout << "| " << "6) View future games                                      " << " |" << endl;
-        cout << "| " << "7) View games history                                      " << " |" << endl;
-        cout << "| " << "8) Rate a field                                     " << " |" << endl;
-        cout << "| " << "9) Quit                                    " << " |" << endl;
-        cout << "+--------------------------------------+" << endl;
-        //set_text_color(RESET);
+        ChangeColor(0, 3);
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|  Hello and welcome to the Field management system! |\n";
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|               Please choose option:                |\n" ;
+        std::cout << " ---------------------------------------------------- \n";
+        std::cout << "|     1.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Schedule game         ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     2.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Cancel Game           ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     3.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Search Field by type  ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     5.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Search Field by city  ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     5.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Edit details          ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     6.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                View future games     ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     7.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                View games history    ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     8.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Rate a field          ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+        std::cout << "|     9.  --------------------------------------     |\n";
+        std::cout << "|        |";
+        std::cout << "                Quit                  ";
+        std::cout << "|    |\n";
+        std::cout << "|         --------------------------------------     |\n";
+
+        std::cout << " ---------------------------------------------------- \n";
+        ChangeColor(1, 0);
+        cout << "Please enter your choice: " << endl;
+        ChangeColor(7, 0);
         cin >> option;
         cleanBuffer();
+        system("CLS");
         switch (option) {
             case (schedule_game_player): {
                 schedule_game(player_id); ///in player
@@ -213,12 +290,17 @@ void player_menu(string player_id){
                 break;
             }
             case (quit1): {
+                ChangeColor(0,4);
                 cout << "Disconnecting.....!" << endl;
+                ChangeColor(0,15);
+                system("CLS");
                 first_menu();
                 break;
             }
             default: {
+                ChangeColor(0,4);
                 cout << "Illegal option, Please retry." << endl;
+                ChangeColor(0,15);
                 option = 0;
                 break;
             }
@@ -242,6 +324,7 @@ void manager_menu(string manager_id){
         cout << "+--------------------------------------+" << endl;
         cin >> option;
         cleanBuffer();
+        system("CLS");
         switch (option) {
             case (add_field): {
                 addField(manager_id);
@@ -273,17 +356,23 @@ void manager_menu(string manager_id){
             }
             case (view_rate_manager): {
                 float manager_rate = view_rate(manager_id);
+                ChangeColor(0,3);
                 cout << "Your rate is: " << manager_rate << endl;
-
+                ChangeColor(0,15);
                 break;
             }
             case (quit2): {
+                ChangeColor(0,4);
                 cout << "Disconnecting.....!" << endl;
+                ChangeColor(0,15);
+                system("CLS");
                 first_menu();
                 break;
             }
             default: {
+                ChangeColor(0,4);
                 cout << "Illegal option, Please retry." << endl;
+                ChangeColor(0,15);
                 option = 0;
                 break;
             }
