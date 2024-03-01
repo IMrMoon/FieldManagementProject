@@ -136,6 +136,7 @@ void manager_reg_or_login_menu(){
         switch (option) {
             case (reg): {
                 manager_id = manager_register();
+                cout << "Registered successfully" << endl;
                 manager_menu(manager_id);
                 break;
             }
@@ -230,7 +231,6 @@ void manager_menu(string manager_id){
     do {
         cout << "+--------------------------------------+" << endl;
         cout << "| " << "Hello and welcome to the Field management system!" << " |" << endl;
-        cout << "| " << "Please choose Register/Login:    " << " |" << endl;
         cout << "| " << "1) Add Field                                     " << " |" << endl;
         cout << "| " << "2) Delete Field                                      " << " |" << endl;
         cout << "| " << "3) Edit details                                      " << " |" << endl;

@@ -123,6 +123,7 @@ string manager_register() {
         // Execute the statement
         query.exec();
 
+        cout << "Welcome, " << manager_name << "! You are now logged in as a Manager." << endl;
         // Close the database (optional if you're done with the database)
 
     } catch (std::exception &e) {

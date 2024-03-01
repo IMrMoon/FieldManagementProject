@@ -123,7 +123,7 @@ string player_register() {
 
             // Execute the statement
             query.exec();
-
+            cout << "Welcome, " << player_name << "! You are now logged in as a Manager." << endl;
             // Close the database (optional if you're done with the database)
 
 
