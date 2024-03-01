@@ -370,7 +370,6 @@ void mark_dates_as_unavailable(string manager_id) {
     }
 }
 
-
 void view_orders_by_date(string manager_id) {
     try {
         // Open the SQLite database

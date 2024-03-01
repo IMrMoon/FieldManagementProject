@@ -23,6 +23,7 @@ using namespace SQLite;
     void view_previous_games(string playerId);
     bool isValidRating(double rating);
     void parseDateString(const std::string& dateString, int& day, int& month, int& year);
+    Date parse_date(const std::string& date_str);
 
 
 

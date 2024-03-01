@@ -335,7 +335,7 @@ std::string date_to_sqlite_string(const Date& date) {
 }
 
 // Function to get the current date
-void get_current_date(int& year, int& month, int& day) {
+void get_current_date(int& day, int& month, int& year) {
     time_t t = std::time(nullptr); // Get the current time
     tm* now = std::localtime(&t);  // Convert it to local time
 

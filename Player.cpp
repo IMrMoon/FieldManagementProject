@@ -1,20 +1,10 @@
 //
 // Created by sgvch on 25/02/2024.
 //
-#define RESET 7
-#define CYAN 9
-#define RED 4
-#define GREEN 2
+
 #include "Player.h"
 #include <limits>
 #include "Validation.h"
-
-
-//void set_text_color(int color) {
-//    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-//    SetConsoleTextAttribute(hConsole, color);
-//}
-
 
 string player_register() {
         string player_id, player_name, player_email, player_phone_number, player_password;
@@ -226,12 +216,17 @@ bool schedule_game(string player_id) {
 
             if (!is_valid_date) {
                 cout << "Invalid day for the given month and year." << endl;
-            }
-                // Get the current date
-                get_current_date(current_year, current_month, current_day);
-
+            } else {
                 // Check if the entered date is before the current date
-            } while (!check_date(order_date));
+                get_current_date(current_day, current_month, current_year);
+                Date input_date = parse_date(order_date); // Assuming parse_date function parses the date string
+                Date current_date(current_year, current_month, current_day);
+                if (input_date < current_date) {
+                    cout << "Invalid date. Please enter a date on or after today." << endl;
+                    is_valid_date = false; // Set to false to continue the loop
+                }
+            }
+        } while (!is_valid_date);
 
             do {
                 cout << "Enter order *start* time enter hours and then minutes\n"
@@ -459,6 +454,7 @@ void parseDateString(const string& dateString, int& day, int& month, int& year) 
 
 bool edit_player_details(string player_id){
     try {
+        bool update = false;
         int choice;
 
         // Open a database file
@@ -482,15 +478,26 @@ bool edit_player_details(string player_id){
         }
 
         // Ask the user which details they want to change
-        cout << "Select the detail to change:\n"
-             << "1. Name\n"
-             << "2. Email\n"
-             << "3. Phone number\n"
-             << "4. Password\n"
-             << "5. Exit\n"
-             << "Enter your choice (1-5): ";
+        while (true) {
+            cout << "Select the detail to change:\n"
+                 << "1. Name\n"
+                 << "2. Email\n"
+                 << "3. Phone number\n"
+                 << "4. Password\n"
+                 << "5. Exit\n"
+                 << "Enter your choice (1-5): ";
 
-        cin >> choice;
+            // Check if input is a valid integer between 1 and 5
+            if (cin >> choice && choice >= 1 && choice <= 5) {
+                break; // Valid choice, exit the loop
+            } else {
+                cout << "Invalid input. Please enter a valid choice (1-5)." << endl;
+
+                // Clear the error state and ignore the invalid input
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        }
         cleanBuffer();
 
         // Get new details from the user based on their choice
@@ -505,7 +512,11 @@ bool edit_player_details(string player_id){
                     updateQueryName.bind(1, new_value);
                     updateQueryName.bind(2, player_id);
                     updateQueryName.exec();
+                    update = true;
                     cout << "Name is updated!" << endl;
+                }
+                else{
+                    cout << "invalid input!, Name not updated!" << endl;
                 }
                 break;
             }
@@ -519,7 +530,11 @@ bool edit_player_details(string player_id){
                     updateQueryEmail.bind(1, new_value);
                     updateQueryEmail.bind(2, player_id);
                     updateQueryEmail.exec();
+                    update = true;
                     cout << "Email is updated!" << endl;
+                }
+                else{
+                    cout << "invalid input!, Email not updated!" << endl;
                 }
                 break;
             }
@@ -533,7 +548,11 @@ bool edit_player_details(string player_id){
                     updateQueryPhone.bind(1, new_value);
                     updateQueryPhone.bind(2, player_id);
                     updateQueryPhone.exec();
+                    update = true;
                     cout << "Phone number is updated!" << endl;
+                }
+                else{
+                    cout << "invalid input!, Phone number not updated!" << endl;
                 }
                 break;
             }
@@ -547,7 +566,11 @@ bool edit_player_details(string player_id){
                     updateQueryPassword.bind(1, new_value);
                     updateQueryPassword.bind(2, player_id);
                     updateQueryPassword.exec();
+                    update = true;
                     cout << "Password is updated!" << endl;
+                }
+                else{
+                    cout << "invalid input!, Password not updated!" << endl;
                 }
                 break;
             }
@@ -562,13 +585,23 @@ bool edit_player_details(string player_id){
                 return false;
             }
         }
-
-        cout << "Player details updated successfully." << endl;
-        return true;
+        if(update) {
+            cout << "Player details updated successfully." << endl;
+            return true;
+        }
     } catch (const std::exception &e) {
         cerr << "Error updating Player details: " << e.what() << endl;
         return false;
         }
+    return false;
+}
+
+Date parse_date(const std::string& date_str) {
+    std::istringstream iss(date_str);
+    char delimiter;
+    int day, month, year;
+    iss >> day >> delimiter >> month >> delimiter >> year;
+    return Date(day, month, year);
 }
 
 

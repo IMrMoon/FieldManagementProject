@@ -161,7 +161,7 @@ void print_available_field_types(Database& db) {
     }
 }
 
-bool get_and_choose_player_orders(string player_id) {
+bool get_and_choose_player_orders(string player_id) { ///player cancel game
     string order_id;
     string order_date;
     string order_start_time;
@@ -196,13 +196,23 @@ bool get_and_choose_player_orders(string player_id) {
 
         // Ask the player to choose an order
         int choice;
-        cout << "Choose an order by entering the corresponding number: ";
-        cin >> choice;
+        while (true) {
+            cout << "Choose an order by entering the corresponding number: ";
 
-        // Validate the choice
-        if (choice < 1 || choice > count) {
-            cout << "Invalid choice. Please choose a valid order." << endl;
-            return false; // Return empty string indicating no order chosen
+            // Check if input is a valid integer
+            if (cin >> choice) {
+                // Validate the choice
+                if (choice >= 1 && choice <= count) {
+                    break; // Valid choice, exit the loop
+                } else {
+                    cout << "Invalid choice. Please choose a valid order." << endl;
+                }
+            } else {
+                // Clear the error state and ignore the invalid input
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Invalid input. Please enter a valid integer." << endl;
+            }
         }
 
         // Fetch the chosen order ID
@@ -217,7 +227,7 @@ bool get_and_choose_player_orders(string player_id) {
         delete_query.bind(1, chosen_order_id);
         delete_query.exec();
 
-        cout << "Order with ID " << chosen_order_id << " successfully deleted." << endl;
+        cout << "Order Number: [" << chosen_order_id << "] successfully deleted." << endl;
 
          // Return the chosen order ID
     } catch (const std::exception& e) {
