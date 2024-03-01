@@ -219,38 +219,49 @@ bool check_time_format(const string& time_str) {
 
 bool check_time_exist(const string& start_time_str, const string& finish_time_str, const string& date_str) {
     try {
-        // Open the database
+        int day, month, year;
+        parseDateString(date_str, day, month, year);
+        Date new_date(day, month, year);
+        string order_date_str = date_to_sqlite_string(new_date);
+        // Convert start and finish time strings to total minutes since midnight
+        int start_minutes = time_to_minutes(start_time_str);
+        int finish_minutes = time_to_minutes(finish_time_str);
+
+        // Define a set to store the time intervals
+        set<pair<int, int>> intervals;
+
+        // Open the SQLite database
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
 
-        // Convert time strings to hours and minutes
-        int start_hours = strtol(start_time_str.substr(0, 2).c_str(), nullptr, 10);
-        int start_minutes = strtol(start_time_str.substr(3, 2).c_str(), nullptr, 10);
-        int finish_hours = strtol(finish_time_str.substr(0, 2).c_str(), nullptr, 10);
-        int finish_minutes = strtol(finish_time_str.substr(3, 2).c_str(), nullptr, 10);
+        // Prepare SQL query to retrieve existing orders for the specified date
+        SQLite::Statement query(db, "SELECT OrderStartTime, OrderFinishTime FROM Orders WHERE Orderdate = ?");
+        query.bind(1, order_date_str); // Bind the date string directly to the query
 
-        // Prepare SQL query to check if there's an order overlapping with the proposed time on the given date
-        SQLite::Statement query(db, "SELECT COUNT(*) FROM Orders WHERE (((CAST(strftime('%H', OrderStartTime) AS INTEGER) < ? AND CAST(strftime('%M', OrderFinishTime) AS INTEGER) > ?) OR (CAST(strftime('%H', OrderStartTime) AS INTEGER) = ? AND CAST(strftime('%M', OrderStartTime) AS INTEGER) <= ?)) AND ((CAST(strftime('%H', OrderFinishTime) AS INTEGER) > ? AND CAST(strftime('%M', OrderStartTime) AS INTEGER) < ?) OR (CAST(strftime('%H', OrderFinishTime) AS INTEGER) = ? AND CAST(strftime('%M', OrderFinishTime) AS INTEGER) >= ?))) AND Orderdate = ?");
-        query.bind(1, start_hours);
-        query.bind(2, start_minutes);
-        query.bind(3, start_hours);
-        query.bind(4, start_minutes);
-        query.bind(5, finish_hours);
-        query.bind(6, finish_minutes);
-        query.bind(7, finish_hours);
-        query.bind(8, finish_minutes);
-        query.bind(9, date_str);
-
-        // Execute the query
+        // Execute the query and populate the set with time intervals
         if (query.executeStep()) {
-            int count = query.getColumn(0).getInt();
-            return count > 0; // If count > 0, a conflicting order exists
+            // Process the result set
+            do {
+                string order_start_time = query.getColumn(0).getText();
+                string order_finish_time = query.getColumn(1).getText();
+                intervals.insert({time_to_minutes(order_start_time), time_to_minutes(order_finish_time)});
+            } while (query.executeStep());
+        }
+
+        // Check for overlap with the provided time interval
+        pair<int, int> provided_interval = {start_minutes, finish_minutes};
+        if (!intervals.empty()) {
+            for (const auto &interval: intervals) {
+                if (check_overlap(provided_interval, interval)) {
+                    // Overlap detected
+                    return true;
+                }
+            }
         }
     } catch (exception& e) {
         cerr << "SQLite exception: " << e.what() << endl;
     }
     return false; // Return false by default (no conflicts or error occurred)
 }
-
 
 string choose_field_id(const string& city, const string& game_type) {
     try {
@@ -301,11 +312,12 @@ string choose_field_id(const string& city, const string& game_type) {
     }
 }
 // Function to convert Date struct to SQLite compatible date string
-string date_to_sqlite_string(const Date& date) {
-    return to_string(date.getYear()) + "-" +
+std::string date_to_sqlite_string(const Date& date) {
+    return (date.getDay() < 10 ? "0" : "") + std::to_string(date.getDay()) + "-" +
            (date.getMonth() < 10 ? "0" : "") + std::to_string(date.getMonth()) + "-" +
-           (date.getDay() < 10 ? "0" : "") + std::to_string(date.getDay());
+           std::to_string(date.getYear());
 }
+
 // Function to get the current date
 void get_current_date(int& year, int& month, int& day) {
     time_t t = std::time(nullptr); // Get the current time
@@ -386,18 +398,14 @@ void cleanBuffer() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
 
-// Function to format time to string with seconds set to "00"
-string formatTime(int hours, int minutes) {
-    ostringstream oss;
-    oss << setfill('0') << setw(2) << hours << ":" << setw(2) << minutes << ":00";
-    return oss.str();
+
+int time_to_minutes(const string& time_str) {
+    int hours = stoi(time_str.substr(0, 2));
+    int minutes = stoi(time_str.substr(3, 2));
+    return hours * 60 + minutes;
 }
 
-// Function to convert time string "hh:mm" to minutes since midnight
-int time_to_minutes(const string& time_str) {
-    stringstream ss(time_str);
-    int hours, minutes;
-    char delimiter;
-    ss >> hours >> delimiter >> minutes;
-    return hours * 60 + minutes;
+// Function to check if two time intervals overlap
+bool check_overlap(const pair<int, int>& interval1, const pair<int, int>& interval2) {
+    return (interval1.first < interval2.second) && (interval2.first < interval1.second);
 }

@@ -116,7 +116,7 @@ string manager_register() {
         query.bind(2, manager_name);
         query.bind(3, manager_email);
         query.bind(4, integer_phoneNum);
-        query.bind(5, integer_phoneNum);
+        query.bind(5, manager_city);
         query.bind(6, manager_password);
         query.bind(7, manager_gender);
 
@@ -369,6 +369,8 @@ void view_orders_by_date(string manager_id) {
             std::cin >> chosen_date;
 
             if (check_date(chosen_date)) {
+                // Convert the input date format to match the database format (dd-mm-yyyy)
+                std::replace(chosen_date.begin(), chosen_date.end(), '/', '-');
                 valid_date = true;
             } else {
                 std::cout << "Invalid date format. Please enter date in dd/mm/yyyy format." << std::endl;
@@ -414,15 +416,15 @@ void view_field_orders(string manager_id) {
         SQLite::Statement fields_query(db, fields_query_str);
         fields_query.bind(1, manager_id);
 
-        std::vector<int> field_ids;
+        std::vector<std::string> field_ids; // Store field IDs as strings
         std::map<int, std::string> field_map; // Map to store FieldId and corresponding Field details
         std::cout << "Fields managed by Manager ID: " << manager_id << std::endl;
         int choice_counter = 1;
         while (fields_query.executeStep()) {
-            int field_id = fields_query.getColumn(0);
+            std::string field_id = fields_query.getColumn(0).getText(); // Convert field ID to string
             std::cout << choice_counter << ". Field ID: " << field_id << std::endl;
             field_ids.push_back(field_id);
-            field_map[choice_counter++] = "Field ID: " + std::to_string(field_id);
+            field_map[choice_counter++] = "Field ID: " + field_id;
         }
 
         // Ask the manager to choose a field from the list
@@ -439,12 +441,12 @@ void view_field_orders(string manager_id) {
             }
         } while (!valid_choice);
 
-        int chosen_field_id = field_ids[choice - 1];
+        std::string chosen_field_id = field_ids[choice - 1]; // Retrieve chosen field ID as string
 
         // Prepare the SQL query to get orders for the chosen field ID
         std::string orders_query_str = "SELECT * FROM Orders WHERE FieldId = ?";
         SQLite::Statement orders_query(db, orders_query_str);
-        orders_query.bind(1, chosen_field_id);
+        orders_query.bind(1, chosen_field_id); // Bind chosen field ID as string
 
         // Execute the query and print the results
         std::cout << "Orders for Field ID: " << chosen_field_id << std::endl;

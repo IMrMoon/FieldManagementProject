@@ -8,6 +8,7 @@
 #include <regex> // For regular expressions
 #include "Date.h"
 #include "DataAccessLayer.h"
+#include <ctime>
 using namespace std;
 using namespace SQLite;
 #ifndef FIELDMANAGEMENTPROJECT_VALIDATION_H
@@ -30,13 +31,14 @@ bool check_time_format(const string& time_str);
 bool check_existing_city(string manager_city);
 bool check_time_exist(const string& start_time_str, const string& finish_time_str, const string& date_str);
 void get_current_date(int& year, int& month, int& day);
-bool order_existing_validation();
 string choose_field_id(const string& city, const string& game_type);
 string date_to_sqlite_string(const Date& date);
 string choose_city_from_list(Database& db);
 string choose_field_type_from_list(Database& db);
 void cleanBuffer();
 int time_to_minutes(const string& time_str);
+bool check_overlap(const pair<int, int>& interval1, const pair<int, int>& interval2);
+
 
 
 #endif //FIELDMANAGEMENTPROJECT_VALIDATION_H

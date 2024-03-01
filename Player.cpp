@@ -193,7 +193,7 @@ string player_login(){
 }
 
 bool schedule_game(string player_id) {
-    bool is_start_time_valid = false, is_end_time_valid = false, is_time_exist = false;
+    bool is_start_time_valid = false, is_end_time_valid = false, is_time_possible = false;
     bool is_valid_date = false;
     string order_id, chosen_field_id, manager_id, start_time_str, end_time_str, order_date;
     string order_start_time, order_end_time;
@@ -244,23 +244,29 @@ bool schedule_game(string player_id) {
                 cin >> end_time_str;
                 // Check if the provided times are valid
 
-                if (check_time_format(start_time_str)) {
-                    is_start_time_valid = true;
-                } else {
-                    std::cout << "Invalid start time. Please enter a valid start time." << std::endl;
-                }
+                is_start_time_valid = check_time_format(start_time_str);
+                is_end_time_valid = check_time_format(end_time_str);
 
-                if (check_time_format(end_time_str)) {
-                    is_end_time_valid = true;
-                } else {
-                    std::cout << "Invalid end time. Please enter a valid end time." << std::endl;
+                if (!is_start_time_valid || !is_end_time_valid) {
+                    cout << "Invalid time format. Please enter a valid time." << endl;
+                    cout << "\n" << endl;
+                    continue; // Restart the loop to get valid input
                 }
+                if (start_time_str >= end_time_str) {
+                    cout << "Start time must be before end time. Please enter valid times." << endl;
+                    cout << endl;
+                    continue; // Restart the loop to get valid input
+                }
+                // Check if the provided times overlap with existing orders
                 if (check_time_exist(start_time_str, end_time_str, order_date)) {
-                    is_time_exist = true;
-                    cout << "Invalid time, already exist. Please enter a valid time." << endl;
+                    cout << "Time overlap with existing orders. Please enter a different time." << endl;
+                    cout << "\n" << endl;
+                } else {
+                    // Valid time input without overlap
+                    cout << "Valid time!" << endl;
+                    break; // Exit the loop as valid input is provided
                 }
-
-            } while (!is_start_time_valid && !is_end_time_valid && is_time_exist);
+            } while (true);
 
             // Format the start time to string
         } catch (exception & e)
