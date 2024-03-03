@@ -76,7 +76,6 @@ set<string> get_available_game_types() {
         do {
             cout << "Enter the game type you want to choose: ";
             cin >> chosen_game_type;
-            system("CLS");
 
             if (game_types.find(chosen_game_type) == game_types.end()) {
                 ChangeColor(0,4);
@@ -215,7 +214,6 @@ bool get_and_choose_player_orders(string player_id) { ///player cancel game
 
             // Check if input is a valid integer
             if (cin >> choice) {
-                system("CLS");
                 // Validate the choice
                 if (choice >= 1 && choice <= count) {
                     break; // Valid choice, exit the loop
@@ -233,6 +231,7 @@ bool get_and_choose_player_orders(string player_id) { ///player cancel game
                 ChangeColor(0,15);
             }
         }
+        system("CLS");
 
         // Fetch the chosen order ID
         query.reset(); // Reset the query to the beginning

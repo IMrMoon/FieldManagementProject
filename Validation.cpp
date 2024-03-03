@@ -170,6 +170,7 @@ bool check_existing_phone_number(const string& phone_number){
 
 ///validation checks for order new game
 bool check_date(const string& date_str) {
+    int curr_day, curr_month, curr_year;
     // Check if the date string contains '/'
     if (date_str.find('/') == string::npos) {
         return false; // '/' not found, invalid format
@@ -198,6 +199,14 @@ bool check_date(const string& date_str) {
     }
     if (day > max_days) {
         return false; // Invalid day for the given month and year
+    }
+    // Check if the date is before the current date
+    get_current_date(curr_year, curr_month, curr_day);
+    if (year < curr_year ||
+        (year == curr_year && month < curr_month) ||
+        (year == curr_year && month == curr_month && day < curr_day)) {
+        cout << "Invalid date. Please enter a date on or after today." << endl;
+        return false; // Date is before the current date
     }
 
     return true; // Date format and values are valid
@@ -282,6 +291,9 @@ bool check_time_exist(const string& start_time_str, const string& finish_time_st
 
 string choose_field_id(const string& city, const string& game_type) {
     try {
+        bool valid_choice = false;
+        string chosen_field_id;
+        do {
         // Open your SQLite database
         Database db("FieldManagement.db", OPEN_READONLY);
 
@@ -301,18 +313,19 @@ string choose_field_id(const string& city, const string& game_type) {
         }
         ChangeColor(0,15);
         // Prompt the user to choose a field ID
-        string field_id;
-        bool valid_choice = false;
-        do {
+
+
+
             cout << "Enter the Field ID you want to choose: ";
-            cin >> field_id;
+            cin >> chosen_field_id;
             cleanBuffer();
+            system("CLS");
 
             // Validate the user input against available field IDs
             query.reset(); // Reset the query to execute it again
             while (query.executeStep()) {
                 string id = query.getColumn(0).getString();
-                if (field_id == id) {
+                if (chosen_field_id == id) {
                     valid_choice = true;
                     break;
                 }
@@ -324,7 +337,7 @@ string choose_field_id(const string& city, const string& game_type) {
             }
         } while (!valid_choice);
 
-        return field_id;
+        return chosen_field_id;
     } catch (exception& e) {
         cerr << "SQLite exception: " << e.what() << endl;
         // Return an empty string or handle the error as needed
@@ -359,7 +372,7 @@ string choose_city_from_list(Database& db) {
         cout << "Enter the city you want to choose: ";
         cin >> chosen_city;
         cleanBuffer();
-
+        system("CLS");
 
         // Check if the chosen city exists in the Fields table
         try {
@@ -395,6 +408,7 @@ string choose_field_type_from_list(Database& db) {
         cout << "Enter the field type you want to choose: ";
         cin >> chosen_field_type;
         cleanBuffer();
+        system("CLS");
 
         // Check if the chosen field type exists in the Fields table
         try {

@@ -237,27 +237,30 @@ bool schedule_game(string player_id) {
 
         order_id = getNextOrderIdFromDatabase(db);
 
-        do{
+        do {
             cout << "Enter order Date, first enter day, then month, then year.\n"
-                     "(format: DD/MM/YYYY): " << endl;
+                    "(format: DD/MM/YYYY): " << endl;
             getline(cin, order_date);
+            system("CLS");
 
             is_valid_date = check_date(order_date);
 
             if (!is_valid_date) {
-                ChangeColor(0,4);
+                ChangeColor(0, 4);
                 cout << "Invalid day for the given month and year." << endl;
-                ChangeColor(0,15);
+                ChangeColor(0, 15);
             } else {
-                // Check if the entered date is before the current date
                 get_current_date(current_day, current_month, current_year);
                 Date input_date = parse_date(order_date); // Assuming parse_date function parses the date string
-                Date current_date(current_year, current_month, current_day);
+                Date current_date(current_day, current_month, current_year);
+
                 if (input_date < current_date) {
                     ChangeColor(0,4);
                     cout << "Invalid date. Please enter a date on or after today." << endl;
                     ChangeColor(0,15);
                     is_valid_date = false; // Set to false to continue the loop
+                } else {
+                    is_valid_date = true; // Set to true if date is valid and not before the current date
                 }
             }
         } while (!is_valid_date);
@@ -349,8 +352,9 @@ bool schedule_game(string player_id) {
 
     }
 
-void view_previous_games(string playerId)
+bool view_previous_games(string playerId)
 {
+    int orderCount = 0;
     string orderId, orderDate, fieldId;
     try
     {
@@ -372,12 +376,22 @@ void view_previous_games(string playerId)
 
             // Print the retrieved data
             std::cout << "Order ID: " << orderId << ", Field ID: " << fieldId << ", Date: " << orderDate << "\n";
+            orderCount++; // Increment order count
+        }
+
+        // Check if the player has no orders
+        if (orderCount == 0) {
+            ChangeColor(0,4);
+            std::cout << "You don't have any orders.\n";
+            ChangeColor(0,15);
+            return false;
         }
     }
     catch (std::exception& e)
     {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
+    return true;
 }
 
 bool isValidRating(double rating)
@@ -387,12 +401,15 @@ bool isValidRating(double rating)
 
 bool field_rate(string playerId) {
     // Call view_previous_games to display orders before rating
-    view_previous_games(playerId);
+
+    if(!view_previous_games(playerId))
+    {
+        return false;
+    }
     string selectedFieldId;
     double newRating;
     double combinedAverageRating;
 
-    // Check if the selected field ID is valid (exists in Field table)
     try {
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
         // Retrieve the list of fields
@@ -402,7 +419,7 @@ bool field_rate(string playerId) {
         ChangeColor(0,15);
         // Iterate over the results and print each field
         while (getFieldQuery.executeStep()) {
-            std::cout << getFieldQuery.getColumn(0).getString() << std::endl;
+            std::cout << "FieldId: " << getFieldQuery.getColumn(0).getString() << "FieldType: " << getFieldQuery.getColumn(1).getString() << "City: " <<getFieldQuery.getColumn(2).getString() << std::endl;
         }
         // Take input for the selected field and rating
         std::cout << "Enter the Field ID you want to rate: " << endl;

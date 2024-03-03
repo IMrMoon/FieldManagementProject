@@ -384,7 +384,7 @@ void mark_dates_as_unavailable(string manager_id) {
                 ChangeColor(0,15);
             }
             // Get the current date
-            get_current_date(current_year, current_month, current_day);
+            get_current_date(current_day, current_month, current_year);
 
             // Check if the entered date is before the current date
         } while (!check_date(order_date));
@@ -456,11 +456,9 @@ void view_orders_by_date(string manager_id) {
         do {
             std::cout << "Enter the date (dd/mm/yyyy) to view orders: ";
             std::cin >> chosen_date;
-            system("CLS");
 
             if (check_date(chosen_date)) {
                 // Convert the input date format to match the database format (dd-mm-yyyy)
-                std::replace(chosen_date.begin(), chosen_date.end(), '/', '-');
                 valid_date = true;
             } else {
                 ChangeColor(0,4);
@@ -540,7 +538,6 @@ void view_field_orders(string manager_id) {
         do {
             std::cout << "Enter the choice of the Field you want to select: ";
             std::cin >> choice;
-            system("CLS");
             while (std::cin.fail() || choice < 1 || choice > field_ids.size()) {
                 std::cin.clear(); // Clear the error flag
                 std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
@@ -698,7 +695,6 @@ bool addField(string manager_id)
              << "4. Exit\n"
              << "Enter your choice (1-4): " << endl;
         cin >> choice;
-        system("CLS");
         while (std::cin.fail() || choice < 1 || choice > 4) {
             std::cin.clear(); // Clear the error flag
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
@@ -708,6 +704,7 @@ bool addField(string manager_id)
             std::cin >> choice;
         }
         cleanBuffer();
+        system("CLS");
 
         // Get new details from the user based on their choice
         switch (choice) {
