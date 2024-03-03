@@ -9,51 +9,46 @@
 set<string> get_available_cities() {
     set<string> cities;
 
-    Database db("FieldManagement.db", OPEN_READONLY); // Open your SQLite database
-    // Function to get available game types from the database
-
     try {
+        Database db("FieldManagement.db", OPEN_READONLY); // Open your SQLite database
+
+        // Retrieve available cities from the database
         Statement query(db, "SELECT DISTINCT City FROM Fields");
-        ChangeColor(0,7);
         cout << "Available Cities:" << endl;
         while (query.executeStep()) {
-            string fields_cities = query.getColumn(0).getText();
-            cout << "- " << fields_cities << endl;
-            cities.insert(fields_cities);
+            string fields_city = query.getColumn(0).getText();
+            cout << "- " << fields_city << endl;
+            cities.insert(fields_city);
         }
-        ChangeColor(0,15);
 
+        // Prompt the user to choose a city
         string chosen_city;
         do {
-            cout << "Enter the game type you want to choose: ";
+            cout << "Enter the city you want to choose: ";
             cin >> chosen_city;
-            system("CLS");
 
             if (cities.find(chosen_city) == cities.end()) {
-                ChangeColor(0,4);
-                cout << "Invalid game type. Please choose from the available game types." << endl;
-                ChangeColor(0,15);
+                cout << "Invalid city. Please choose from the available cities." << endl;
             }
         } while (cities.find(chosen_city) == cities.end());
 
-        // Print fields details for the chosen game type
-        Statement fields_query(db, "SELECT FieldId, City, Fieldtype FROM Fields WHERE City = ?");
+        // Print fields details for the chosen city
+        Statement fields_query(db, "SELECT FieldId, City, FieldType FROM Fields WHERE City = ?");
         fields_query.bind(1, chosen_city);
-        ChangeColor(0,7);
-        cout << "Fields for game type " << chosen_city << ":" << endl;
+        cout << "Fields for city " << chosen_city << ":" << endl;
         while (fields_query.executeStep()) {
             int field_id = fields_query.getColumn(0).getInt();
             string city = fields_query.getColumn(1).getText();
             string field_type = fields_query.getColumn(2).getText();
             cout << "Field ID: " << field_id << ", City: " << city << ", Field Type: " << field_type << endl;
         }
-        ChangeColor(0,15);
-
     } catch (exception &e) {
-        cerr << "SQLite exception: " << e.what() << endl;
+        cerr << "Error: " << e.what() << endl;
     }
+
     return cities;
 }
+
 // Function to retrieve a set of unique game types from the fields table
 set<string> get_available_game_types() {
 
@@ -62,6 +57,9 @@ set<string> get_available_game_types() {
     set<string> game_types;
 
     try {
+        string chosen_game_type;
+        do {
+
         SQLite::Statement query(db, "SELECT DISTINCT Fieldtype FROM Fields");
         ChangeColor(0,7);
         cout << "Available game types:" << endl;
@@ -72,8 +70,6 @@ set<string> get_available_game_types() {
         }
         ChangeColor(0,15);
 
-        string chosen_game_type;
-        do {
             cout << "Enter the game type you want to choose: ";
             cin >> chosen_game_type;
 

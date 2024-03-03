@@ -213,144 +213,87 @@ string player_login(){
 }
 
 bool schedule_game(string player_id) {
-    bool is_start_time_valid = false, is_end_time_valid = false, is_time_possible = false;
     bool is_valid_date = false;
-    string order_id, chosen_field_id, manager_id, start_time_str, end_time_str, order_date;
-    string order_start_time, order_end_time;
+    string chosen_field_id, manager_id, order_date, start_time_str, end_time_str;
     int day, month, year;
-    int current_year, current_month, current_day;
+
     try {
-        Database db("FieldManagement.db", OPEN_READONLY); // Open your SQLite database
-        // choose from available cities
+        // Open the database
+        SQLite::Database db("FieldManagement.db", OPEN_READWRITE | OPEN_CREATE);
 
+        // Choose from available cities and field types
         string chosen_city = choose_city_from_list(db);
-
-        // choose from available field types
         string chosen_game_type = choose_field_type_from_list(db);
 
         cout << "Chosen city: " << chosen_city << endl;
         cout << "Chosen game type: " << chosen_game_type << endl;
 
+        // Choose a field ID based on city and game type
         chosen_field_id = choose_field_id(chosen_city, chosen_game_type);
 
+        // Get manager ID for the chosen field
         manager_id = getManagerIdByFieldId(chosen_field_id);
 
-        order_id = getNextOrderIdFromDatabase(db);
+        // Get the next order ID from the database
+        string order_id = getNextOrderIdFromDatabase(db);
 
+        // Input order date and validate
         do {
-            cout << "Enter order Date, first enter day, then month, then year.\n"
-                    "(format: DD/MM/YYYY): " << endl;
+            cout << "Enter order Date (format: YYYY-MM-DD): " << endl;
             getline(cin, order_date);
             system("CLS");
-
             is_valid_date = check_date(order_date);
-
             if (!is_valid_date) {
-                ChangeColor(0, 4);
-                cout << "Invalid day for the given month and year." << endl;
-                ChangeColor(0, 15);
-            } else {
-                get_current_date(current_day, current_month, current_year);
-                Date input_date = parse_date(order_date); // Assuming parse_date function parses the date string
-                Date current_date(current_day, current_month, current_year);
-
-                if (input_date < current_date) {
-                    ChangeColor(0,4);
-                    cout << "Invalid date. Please enter a date on or after today." << endl;
-                    ChangeColor(0,15);
-                    is_valid_date = false; // Set to false to continue the loop
-                } else {
-                    is_valid_date = true; // Set to true if date is valid and not before the current date
-                }
+                ChangeColor(0,4);
+                cout << "Invalid date format. Please enter a valid date." << endl;
+                ChangeColor(0,15);
             }
         } while (!is_valid_date);
 
-            do {
-                cout << "Enter order *start* time enter hours and then minutes\n"
-                             "(format: HH:MM, hours between 8 am \n"
-                             "to 8 pm, minutes as 0, 15, 30, or 45): " << endl;
-                cin >> start_time_str;
-                cout << "Enter order *end* time enter hours and then minutes\n"
-                             "(format: HH:MM, hours between 8 am \n"
-                             "to 8 pm, minutes as 0, 15, 30, or 45): " << std::endl;
-                cin >> end_time_str;
-                // Check if the provided times are valid
+        // Input start and end times and validate
+        do {
+            cout << "Enter order start time (format: HH:MM): ";
+            cin >> start_time_str;
+            cout << "Enter order end time (format: HH:MM): ";
+            cin >> end_time_str;
+            is_valid_date = check_time_format(start_time_str) && check_time_format(end_time_str);
+            if (!is_valid_date) {
+                ChangeColor(0,4);
+                cout << "Invalid time format. Please enter a valid time." << endl;
+                ChangeColor(0,15);
+            }
+        } while (!is_valid_date);
 
-                is_start_time_valid = check_time_format(start_time_str);
-                is_end_time_valid = check_time_format(end_time_str);
+        // Prepare a statement to insert a new order into the Orders table
+        SQLite::Statement query(db, "INSERT INTO Orders (OrderId, Orderdate, OrderStartTime, OrderFinishTime, ManagerId, PlayerId, FieldId) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
-                if (!is_start_time_valid || !is_end_time_valid) {
-                    ChangeColor(0,4);
-                    cout << "Invalid time format. Please enter a valid time." << endl;
-                    ChangeColor(0,15);
-                    cout << "\n" << endl;
-                    continue; // Restart the loop to get valid input
-                }
-                if (start_time_str >= end_time_str) {
-                    ChangeColor(0,4);
-                    cout << "Start time must be before end time. Please enter valid times." << endl;
-                    ChangeColor(0,15);
-                    cout << endl;
-                    continue; // Restart the loop to get valid input
-                }
-                // Check if the provided times overlap with existing orders
-                if (check_time_exist(start_time_str, end_time_str, order_date)) {
-                    ChangeColor(0,4);
-                    cout << "Time overlap with existing orders. Please enter a different time." << endl;
-                    ChangeColor(0,15);
-                    cout << "\n" << endl;
-                } else {
-                    // Valid time input without overlap
-                    ChangeColor(0,2);
-                    cout << "Valid time!" << endl;
-                    ChangeColor(0,15);
-                    break; // Exit the loop as valid input is provided
-                }
-            } while (true);
+        // Parse order date
+//        parseDateString(order_date, day, month, year);
+//        Date order_new_date(day, month, year);
+//        string order_date_str = date_to_sqlite_string(order_new_date);
 
-            // Format the start time to string
-        } catch (exception & e)
-        {
-            cerr << "SQLite exception: " << e.what() << endl;
-        }
-        // Prepare a statement to insert a new order into the orders table
-        try {
-            // Open the database
-            Database db("FieldManagement.db", OPEN_READWRITE | OPEN_CREATE);
+        // Bind parameters to the statement
+        query.bind(1, stoi(order_id));
+        query.bind(2, order_date);
+        query.bind(3, start_time_str);
+        query.bind(4, end_time_str);
+        query.bind(5, stoi(manager_id));
+        query.bind(6, stoi(player_id));
+        query.bind(7, stoi(chosen_field_id));
 
-            // Prepare a statement to insert a new order into the Orders table
-            Statement query(db,
-                            "INSERT INTO Orders (OrderId, Orderdate, OrderStartTime, OrderFinishTime, ManagerId, PlayerId, FieldId) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            parseDateString(order_date, day, month, year);
-            Date order_new_date(day, month, year);
-            string order_date_str = date_to_sqlite_string(order_new_date);
-            int integer_id = stoi(order_id);
-            int integer_field_id = stoi(chosen_field_id);
-            int integer_player_id = stoi(player_id);
-            int integer_manager_id = stoi(manager_id);
-            // Bind parameters to the statement
-            query.bind(1, integer_id);
-            query.bind(2, order_date_str);
-            query.bind(3, start_time_str);
-            query.bind(4, end_time_str);
-            query.bind(5, integer_manager_id);
-            query.bind(6, integer_player_id);
-            query.bind(7, integer_field_id);
+        // Execute the statement
+        query.exec();
 
-            // Execute the statement
-            query.exec();
-
-            // Close the database (optional if you're done with the database)
-        } catch (std::exception &e) {
-            // Handle exceptions (e.g., print error message)
-            std::cerr << "SQLite exception: " << e.what() << std::endl;
-        }
         ChangeColor(0,2);
         cout << "Schedule successful" << endl;
         ChangeColor(0,15);
-        return true;
 
+        return true;
+    } catch (const std::exception &e) {
+        cerr << "SQLite exception: " << e.what() << endl;
+        return false; // Return false indicating failure
     }
+}
 
 bool view_previous_games(string playerId)
 {
@@ -419,7 +362,7 @@ bool field_rate(string playerId) {
         ChangeColor(0,15);
         // Iterate over the results and print each field
         while (getFieldQuery.executeStep()) {
-            std::cout << "FieldId: " << getFieldQuery.getColumn(0).getString() << "FieldType: " << getFieldQuery.getColumn(1).getString() << "City: " <<getFieldQuery.getColumn(2).getString() << std::endl;
+            std::cout << "FieldId: " << getFieldQuery.getColumn(0).getString() << " FieldType: " << getFieldQuery.getColumn(1).getString() << " City: " <<getFieldQuery.getColumn(2).getString() << std::endl;
         }
         // Take input for the selected field and rating
         std::cout << "Enter the Field ID you want to rate: " << endl;
@@ -492,30 +435,51 @@ bool field_rate(string playerId) {
 }
 
 void view_upcoming_orders(string playerId) {
+    int orderCount = 0;
+    string orderId, orderDate, fieldId;
     try {
+
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
 
-        // Assuming your orders table has columns 'PlayerId', 'Orderdate', 'FieldId', and 'OrderID' as strings
+        // Print debugging information
+        std::cout << "Executing query for player ID: " << playerId << std::endl;
+
+        // Prepare the SQL query to select upcoming orders for the specified player
         SQLite::Statement query(db, "SELECT * FROM Orders WHERE PlayerId = ? AND date(Orderdate) > date('now')");
 
-        query.bind(1, playerId);
-        cout << "Your future orders: " << endl;
-        // Execute the query and print the results
-        while (query.executeStep()) {
 
-            std::cout << "Order ID: " << query.getColumn("OrderId").getText()
-                      << ", Field ID: " << query.getColumn("FieldId").getText()
-                      << ", Order Date: " << query.getColumn("Orderdate").getText() << std::endl;
+        query.bind(1, playerId);
+
+        cout << "Your future orders: " << endl;
+
+        // Iterate over each upcoming order
+        bool hasOrders = false; // Flag to track if there are any upcoming orders
+        while (query.executeStep()) {
+            hasOrders = true; // Set flag to true indicating at least one order is found
+
+            orderId = query.getColumn(0).getString();
+            orderDate = query.getColumn(1).getString();
+            fieldId = query.getColumn(2).getString();
+
+            std::cout << "Order ID: " << orderId
+                      << ", Field ID: " << fieldId
+                      << ", Order Date: " << orderDate << std::endl;
+        }
+
+        // Check if there are no upcoming orders
+        if (!hasOrders) {
+            cout << "You don't have any upcoming orders." << endl;
         }
     } catch (const std::exception &e) {
+        // Print error message if an exception occurs
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
 }
 
-void parseDateString(const string& dateString, int& day, int& month, int& year) {
+void parseDateString(const string& dateString, int& year, int& month, int& day) {
     std::istringstream iss(dateString);
     char delimiter;
-    iss >> day >> delimiter >> month >> delimiter >> year;
+    iss >> year >> delimiter >> month >> delimiter >> day;
 }
 
 bool edit_player_details(string player_id){
@@ -690,7 +654,7 @@ Date parse_date(const std::string& date_str) {
     std::istringstream iss(date_str);
     char delimiter;
     int day, month, year;
-    iss >> day >> delimiter >> month >> delimiter >> year;
+    iss >> year >> delimiter >> month >> delimiter >> day;
     return Date(day, month, year);
 }
 

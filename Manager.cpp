@@ -70,7 +70,7 @@ string manager_register() {
 
     do {
         // Getting phone number
-        cout << "Enter Manager Phone Number no more than 10 digits: " << endl;
+        cout << "Enter Manager Phone Number exactly 10 digits and start with 05: " << endl;
         getline(cin, manager_phone_number);
         system("CLS");
         if (!check_phone_number(manager_phone_number)) {
@@ -89,7 +89,7 @@ string manager_register() {
 
     do {
         // Getting city
-        cout << "Enter Manager City: " << endl;
+        cout << "Enter Manager City with upper case both words: " << endl;
         getline(cin, manager_city);
         system("CLS");
         if (!check_city(manager_city)) {
@@ -169,18 +169,20 @@ string manager_login() {
     string manager_id, manager_password, name;
     bool id_exists = false;
     do {
-        cout << "Enter your ID (up to 9 digits): " << endl;
+        cout << "Enter your ID (up to 9 digits): ";
         cin >> manager_id;
+        cleanBuffer();
         system("CLS");
         if (!check_id(manager_id)) {
             ChangeColor(0,4);
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
             ChangeColor(0,15);
         }
-        if (!check_existing_id(manager_id)) {
+        else if (!check_existing_id(manager_id)) {
             try {
-                cout << "Enter your Password: " << endl;
+                cout << "Enter your Password with At least one uppercase letter and one lowercase letter and a minimum length of 7: ";
                 cin >> manager_password;
+                cleanBuffer(); // Clear input buffer
                 system("CLS");
                 // Open the database
                 Database db("FieldManagement.db", OPEN_READWRITE | OPEN_CREATE);
@@ -223,6 +225,7 @@ string manager_login() {
 
     return manager_id; // Return empty string if login is unsuccessful
 }
+
 
 bool edit_manager_details(string manager_id){
     try {
@@ -371,8 +374,8 @@ void mark_dates_as_unavailable(string manager_id) {
     string field_id = get_field_id(manager_id);
     try {
         do {
-            cout << "Enter order Date, first enter day, then month, then year.\n"
-                    "(format: DD/MM/YYYY): " << endl;
+            cout << "Enter order Date, first enter year, then month, then day.\n"
+                    "(format: YYYY-MM-DD): " << endl;
             getline(cin, order_date);
             system("CLS");
 
@@ -454,7 +457,7 @@ void view_orders_by_date(string manager_id) {
         std::string chosen_date;
         bool valid_date = false;
         do {
-            std::cout << "Enter the date (dd/mm/yyyy) to view orders: ";
+            std::cout << "Enter the date (YYYY-MM-DD) to view orders: ";
             std::cin >> chosen_date;
 
             if (check_date(chosen_date)) {
@@ -462,7 +465,7 @@ void view_orders_by_date(string manager_id) {
                 valid_date = true;
             } else {
                 ChangeColor(0,4);
-                std::cout << "Invalid date format. Please enter date in dd/mm/yyyy format." << std::endl;
+                std::cout << "Invalid date format. Please enter date in YYYY-MM-DD format." << std::endl;
                 ChangeColor(0,15);
             }
         } while (!valid_date);
@@ -536,7 +539,7 @@ void view_field_orders(string manager_id) {
         bool valid_choice = false;
         int field_id_size = field_ids.size();
         do {
-            std::cout << "Enter the choice of the Field you want to select: ";
+            std::cout << "Enter number between 1-"<< field_ids.size() << " of the Field you want to view orders: ";
             std::cin >> choice;
             while (std::cin.fail() || choice < 1 || choice > field_ids.size()) {
                 std::cin.clear(); // Clear the error flag

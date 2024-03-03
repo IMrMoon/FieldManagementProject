@@ -171,23 +171,22 @@ bool check_existing_phone_number(const string& phone_number){
 ///validation checks for order new game
 bool check_date(const string& date_str) {
     int curr_day, curr_month, curr_year;
-    // Check if the date string contains '/'
-    if (date_str.find('/') == string::npos) {
-        return false; // '/' not found, invalid format
+    // Check if the date string contains '-'
+    if (date_str.find('-') == string::npos) {
+        return false; // '-' not found, invalid format
     }
 
-    // Assuming the date string is in the format "DD/MM/YYYY"
+    // Assuming the date string is in the format "YYYY-MM-DD"
     istringstream iss(date_str);
-    int day, month, year;
-    char slash1, slash2;
-    // Try to extract day, month, and year
-    // Try to extract day, month, and year
-    if (!(iss >> day >> slash1 >> month >> slash2 >> year)) {
-        return false; // Failed to extract day, month, and year
+    int year, month, day;
+    char dash1, dash2;
+    // Try to extract year, month, and day
+    if (!(iss >> year >> dash1 >> month >> dash2 >> day)) {
+        return false; // Failed to extract year, month, and day
     }
 
     // Check if the extraction succeeded and if the format is correct
-    if (slash1 != '/' || slash2 != '/' || day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) {
+    if (dash1 != '-' || dash2 != '-' || day < 1 || day > 31 || month < 1 || month > 12 || year < 1000 || year > 9999) {
         return false; // Invalid format
     }
 
@@ -211,6 +210,7 @@ bool check_date(const string& date_str) {
 
     return true; // Date format and values are valid
 }
+
 
 bool check_time_format(const string& time_str) {
     // Check if the time string has the correct format "hh:mm"
@@ -314,8 +314,6 @@ string choose_field_id(const string& city, const string& game_type) {
         ChangeColor(0,15);
         // Prompt the user to choose a field ID
 
-
-
             cout << "Enter the Field ID you want to choose: ";
             cin >> chosen_field_id;
             cleanBuffer();
@@ -346,9 +344,9 @@ string choose_field_id(const string& city, const string& game_type) {
 }
 // Function to convert Date struct to SQLite compatible date string
 std::string date_to_sqlite_string(const Date& date) {
-    return (date.getDay() < 10 ? "0" : "") + std::to_string(date.getDay()) + "-" +
+    return std::to_string(date.getYear()) + "-" +
            (date.getMonth() < 10 ? "0" : "") + std::to_string(date.getMonth()) + "-" +
-           std::to_string(date.getYear());
+           (date.getDay() < 10 ? "0" : "") + std::to_string(date.getDay());
 }
 
 // Function to get the current date
@@ -370,8 +368,7 @@ string choose_city_from_list(Database& db) {
     do {
         print_available_cities(db);
         cout << "Enter the city you want to choose: ";
-        cin >> chosen_city;
-        cleanBuffer();
+        getline(cin, chosen_city); // Read the entire line of input
         system("CLS");
 
         // Check if the chosen city exists in the Fields table
@@ -396,6 +393,7 @@ string choose_city_from_list(Database& db) {
 
     return chosen_city;
 }
+
 
 // Function to ask the player to choose a field type and validate the input
 string choose_field_type_from_list(Database& db) {
