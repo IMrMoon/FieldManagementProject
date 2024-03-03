@@ -201,7 +201,7 @@ string player_login(){
         }
         if (!check_existing_id(player_id)) {
             try {
-                cout << "Enter your Password: ";
+                cout << "Enter your Password with At least one uppercase letter and one lowercase letter and a minimum length of 7: ";
                 cin >> player_password;
                 system("CLS");
                 // Open the database
