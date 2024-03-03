@@ -226,7 +226,6 @@ string manager_login() {
     return manager_id; // Return empty string if login is unsuccessful
 }
 
-
 bool edit_manager_details(string manager_id){
     try {
         int choice;
@@ -278,68 +277,103 @@ bool edit_manager_details(string manager_id){
         string new_value;
         switch (choice) {
             case 1: {
-                cout << "Enter new name: ";
-                getline(cin,new_value);
-                // Add validation
-                if (check_name(new_value)) {
-                    SQLite::Statement updateQueryName(db, "UPDATE Manager SET Name=? WHERE Id=?");
-                    updateQueryName.bind(1, new_value);
-                    updateQueryName.bind(2, manager_id);
-                    updateQueryName.exec();
-                    ChangeColor(0,2);
-                    cout << "Name is updated!" << endl;
-                    ChangeColor(0,15);
-                }
+                do {
+                    cout << "Enter new name with upper case in first name and last name: ";
+                    // Use cin.ignore() to clear the input buffer before getline
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    getline(cin, new_value);
+                    // Add validation
+                    if (check_name(new_value)) {
+                        SQLite::Statement updateQueryName(db, "UPDATE Manager SET Name=? WHERE Id=?");
+                        updateQueryName.bind(1, new_value);
+                        updateQueryName.bind(2, manager_id);
+                        updateQueryName.exec();
+                        ChangeColor(0, 2);
+                        cout << "Name is updated!" << endl;
+                        ChangeColor(0, 15);
+                        break;
+                    } else {
+                        ChangeColor(0, 4);
+                        cout << "Invalid Name. Please enter a valid Name with upper case in first letter in first name and upper case in first letter in last name." << endl;
+                        ChangeColor(0, 15);
+                    }
+                } while (true);
                 break;
             }
 
             case 2: {
-                cout << "Enter new email: ";
-                getline(cin,new_value);
-                // Add validation
-                if (check_email(new_value)) {
-                    SQLite::Statement updateQueryEmail(db, "UPDATE Manager SET Email=? WHERE Id=?");
-                    updateQueryEmail.bind(1, new_value);
-                    updateQueryEmail.bind(2, manager_id);
-                    updateQueryEmail.exec();
-                    ChangeColor(0,2);
-                    cout << "Email is updated!" << endl;
-                    ChangeColor(0,15);
-                }
+                do {
+                    cout << "Enter new email in format: user@example.com : ";
+                    cin.ignore(); // Clear the input buffer before getline
+                    getline(cin, new_value);
+                    // Add validation
+                    if (check_email(new_value)) {
+                        SQLite::Statement updateQueryEmail(db, "UPDATE Manager SET Email=? WHERE Id=?");
+                        updateQueryEmail.bind(1, new_value);
+                        updateQueryEmail.bind(2, manager_id);
+                        updateQueryEmail.exec();
+                        ChangeColor(0,2);
+                        cout << "Email is updated!" << endl;
+                        ChangeColor(0,15);
+                        break; // Exit the loop if a valid input is provided
+                    } else {
+                        ChangeColor(0,4);
+                        cout << "Invalid email format. Please enter a valid email address." << endl;
+                        ChangeColor(0,15);
+                    }
+                } while (true); // Keep looping until a valid input is provided
                 break;
             }
 
             case 3: {
-                cout << "Enter new phone number: ";
-                getline(cin,new_value);
-                // Add validation
-                if (check_phone_number(new_value)) {
-                    SQLite::Statement updateQueryPhone(db, "UPDATE Manager SET \"Phone number\"=? WHERE Id=?");
-                    updateQueryPhone.bind(1, new_value);
-                    updateQueryPhone.bind(2, manager_id);
-                    updateQueryPhone.exec();
-                    ChangeColor(0,2);
-                    cout << "Phone number is updated!" << endl;
-                    ChangeColor(0,15);
-                }
+                do {
+                    cout << "Enter new phone number exactly 10 digits and start with 05: ";
+                    cin.ignore(); // Clear the input buffer before getline
+                    getline(cin, new_value);
+                    // Add validation
+                    if (check_phone_number(new_value)) {
+                        SQLite::Statement updateQueryPhone(db, "UPDATE Manager SET \"Phone number\"=? WHERE Id=?");
+                        updateQueryPhone.bind(1, new_value);
+                        updateQueryPhone.bind(2, manager_id);
+                        updateQueryPhone.exec();
+                        ChangeColor(0,2);
+                        cout << "Phone number is updated!" << endl;
+                        ChangeColor(0,15);
+                        break; // Exit the loop if a valid input is provided
+                    } else {
+                        ChangeColor(0,4);
+                        cout << "Invalid phone number format. Please enter a valid phone number." << endl;
+                        ChangeColor(0,15);
+                    }
+                } while (true); // Keep looping until a valid input is provided
                 break;
             }
 
             case 4: {
-                cout << "Enter new password: ";
-                getline(cin,new_value);
-                // Add validation
-                if (check_password(new_value)) {
-                    SQLite::Statement updateQueryPassword(db, "UPDATE Manager SET Password=? WHERE Id=?");
-                    updateQueryPassword.bind(1, new_value);
-                    updateQueryPassword.bind(2, manager_id);
-                    updateQueryPassword.exec();
-                    ChangeColor(0,2);
-                    cout << "Password is updated!" << endl;
-                    ChangeColor(0,15);
-                }
+                do {
+                    cout << "Enter new password at least one uppercase letter and \n"
+                            "at least one lowercase letter and numbers and minimum size 7: ";
+                    cin.ignore(); // Clear the input buffer before getline
+                    getline(cin, new_value);
+                    // Add validation
+                    if (check_password(new_value)) {
+                        SQLite::Statement updateQueryPassword(db, "UPDATE Manager SET Password=? WHERE Id=?");
+                        updateQueryPassword.bind(1, new_value);
+                        updateQueryPassword.bind(2, manager_id);
+                        updateQueryPassword.exec();
+                        ChangeColor(0,2);
+                        cout << "Password is updated!" << endl;
+                        ChangeColor(0,15);
+                        break; // Exit the loop if a valid input is provided
+                    } else {
+                        ChangeColor(0,4);
+                        cout << "Invalid password format. Please enter a valid password." << endl;
+                        ChangeColor(0,15);
+                    }
+                } while (true); // Keep looping until a valid input is provided
                 break;
             }
+
 
             case 5: {
                 ChangeColor(0,3);

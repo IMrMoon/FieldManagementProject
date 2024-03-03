@@ -33,12 +33,25 @@ string player_register() {
 
         // Clearing input buffer
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+    bool has_space = false;
         do {
             // Getting name
             std::cout << "Enter Player Name with upper case in first name and last name: " << endl;
             getline(cin, player_name);
             system("CLS");
+
+            for (char c : player_name) {
+                if (c == ' ') {
+                    has_space = true;
+                    break;
+                }
+            }
+
+            if (!has_space) {
+                ChangeColor(0, 4);
+                cout << "Invalid Name. Please enter both the first name and last name separated by a space." << endl;
+                ChangeColor(0, 15);
+            }
             if (!check_name(player_name)) {
                 ChangeColor(0,4);
                 cout
@@ -46,7 +59,7 @@ string player_register() {
                            "case in first letter in first name and upper case in first letter in last name."<< std::endl;
                 ChangeColor(0,15);
             }
-        } while (!check_name(player_name));
+        } while (!has_space || !check_name(player_name));
 
         do {
             // Getting email
@@ -87,13 +100,13 @@ string player_register() {
 
         do {
             // Getting password
-            cout << "Enter Player PhoneNumber no more than 10 digits: " << endl;
+            cout << "Enter Player PhoneNumber exactly 10 digits and start with 05: " << endl;
             getline(cin, player_phone_number);
             system("CLS");
             if (!check_phone_number(player_phone_number)) {
                 ChangeColor(0,4);
                 cout << "Invalid Phone Number. Please enter a "
-                        "valid phone number no more than 10 digits." << std::endl;
+                        "valid phone number exactly 10 digits and start with 05." << std::endl;
                 ChangeColor(0,15);
             }
             if(!check_existing_phone_number(player_phone_number)){
@@ -101,7 +114,7 @@ string player_register() {
                 cout << "Invalid Phone number. this Phone number already exist, try again." << std::endl;
                 ChangeColor(0,15);
             }
-        } while (!check_phone_number(player_phone_number));
+        } while (!check_phone_number(player_phone_number) && check_existing_phone_number(player_phone_number));
 
         do {
             // Getting password
@@ -154,9 +167,17 @@ string player_login(){
     string player_id, player_password, name;
     bool id_exists = false;
     do {
+
         cout << "Enter your ID (up to 9 digits): ";
         cin >> player_id;
         system("CLS");
+        bool is_valid = true;
+        for (char c : player_id) {
+            if (!isdigit(c)) {
+                is_valid = false;
+                break;
+            }
+        }
         if (!check_id(player_id)) {
             ChangeColor(0,4);
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;
@@ -345,91 +366,80 @@ bool isValidRating(double rating)
 bool field_rate(string playerId) {
     // Call view_previous_games to display orders before rating
 
-    if(!view_previous_games(playerId))
-    {
+    if (!view_previous_games(playerId)) {
         return false;
     }
+
     string selectedFieldId;
     double newRating;
     double combinedAverageRating;
 
     try {
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
+
         // Retrieve the list of fields
         SQLite::Statement getFieldQuery(db, "SELECT * FROM Fields");
-        ChangeColor(0,14);
-        std::cout << "Available Fields:\n";
-        ChangeColor(0,15);
-        // Iterate over the results and print each field
+        cout << "Available Fields:\n";
         while (getFieldQuery.executeStep()) {
-            std::cout << "FieldId: " << getFieldQuery.getColumn(0).getString() << " FieldType: " << getFieldQuery.getColumn(1).getString() << " City: " <<getFieldQuery.getColumn(2).getString() << std::endl;
+            cout << "FieldId: " << getFieldQuery.getColumn(0).getString() << " FieldType: " << getFieldQuery.getColumn(1).getString() << " City: " << getFieldQuery.getColumn(2).getString() << endl;
         }
-        // Take input for the selected field and rating
-        std::cout << "Enter the Field ID you want to rate: " << endl;
-        getline(cin, selectedFieldId);
+
+        // Take input for the selected field
+        cout << "Enter the Field ID you want to rate: " << endl;
+        cin >> selectedFieldId;
 
         // Check if the selectedFieldId exists in the Fields table
         SQLite::Statement checkFieldQuery(db, "SELECT COUNT(*) FROM Fields WHERE FieldId = ?");
         checkFieldQuery.bind(1, selectedFieldId);
 
-        if(checkFieldQuery.executeStep() && checkFieldQuery.getColumn(0).getInt() > 0) {
+        if (checkFieldQuery.executeStep() && checkFieldQuery.getColumn(0).getInt() > 0) {
             // Field ID exists in the Fields table
 
-            // Check if the field has existing ratings in FieldRate table
+            // Take input for the new rating
+            do {
+                cout << "Enter the new rating for the field (1 to 5): " << endl;
+                cin >> newRating;
+
+                // Check if the input is a valid digit
+                if (cin.fail() || newRating < 1 || newRating > 5) {
+                    cin.clear(); // Clear error flag
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard invalid input
+                    cout << "Invalid input. Please enter a rating between 1 and 5." << endl;
+                } else {
+                    break;
+                }
+            } while (true);
+
+            // Calculate the new combined average rating
             SQLite::Statement checkQuery(db, "SELECT SUM(FieldRate), COUNT(*) FROM Fields WHERE FieldId = ?");
             checkQuery.bind(1, selectedFieldId);
 
-            // Directly use currentRatingCount in the calculation
             if (checkQuery.executeStep() && checkQuery.getColumn(0).getInt() > 0) {
-                // Field has existing ratings, directly use current count in the calculation
                 double currentRatingSum = static_cast<double>(checkQuery.getColumn(0).getInt());
+                int currentRatingCount = checkQuery.getColumn(1).getInt();
 
-                // Take input for the new rating
-
-                std::cout << "Enter the new rating for the field (1 to 5): " << endl;
-                std::cin >> newRating;
-
-                if (!isValidRating(newRating)) {
-                    ChangeColor(0,4);
-                    std::cerr << "Invalid rating. Please provide a rating between 1 and 5.\n";
-                    ChangeColor(0,15);
-                    return false;
-                }
-
-                // Calculate the new average rating (add new rating and divide by 2 times the existing count)
-                combinedAverageRating = (currentRatingSum + newRating) / 2;
-
-                // Update the Fields table with the new combined average rating
-                SQLite::Statement updateFieldRate(db, "UPDATE Fields SET FieldRate = ? WHERE FieldId = ?");
-                updateFieldRate.bind(1, combinedAverageRating);
-                updateFieldRate.bind(2, selectedFieldId);
-                updateFieldRate.exec();
-                ChangeColor(0,2);
-                std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
-                ChangeColor(0,15);
-                return true;
-            }
-            else {
+                // Calculate the new combined average rating
+                combinedAverageRating = (currentRatingSum + newRating) / (currentRatingCount + 1);
+            } else {
                 // No existing ratings, set the average to the new rating
-                SQLite::Statement insertQuery(db, "INSERT INTO Fields (PlayerId, FieldId, FieldRate) VALUES (?, ?, ?)");
-                insertQuery.bind(1, playerId);
-                insertQuery.bind(2, selectedFieldId);
-                insertQuery.bind(3, combinedAverageRating);
-                insertQuery.exec();
-                ChangeColor(0,2);
-                std::cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
-                ChangeColor(0,15);
-                return true;
+                combinedAverageRating = newRating;
             }
+
+            // Update the FieldRate table with the new combined average rating
+            SQLite::Statement updateQuery(db, "UPDATE Fields SET FieldRate = ? WHERE FieldId = ?");
+            updateQuery.bind(1, combinedAverageRating);
+            updateQuery.bind(2, selectedFieldId);
+            updateQuery.exec();
+
+            cout << "Rating successfully recorded for player " << playerId << " and field " << selectedFieldId << ".\n";
+            return true;
         } else {
             // Field ID does not exist in the Fields table
-            ChangeColor(0,4);
-            std::cerr << "Invalid Field ID. Please select a valid Field ID.\n";
-            ChangeColor(0,15);
+            cerr << "Invalid Field ID. Please select a valid Field ID.\n";
             return false;
         }
     } catch (const std::exception &e) {
-        std::cerr << "SQLite exception: " << e.what() << std::endl;
+        cerr << "SQLite exception: " << e.what() << endl;
         return false;
     }
 }
@@ -538,8 +548,9 @@ bool edit_player_details(string player_id){
         string new_value;
         switch (choice) {
             case 1: {
-                cout << "Enter new name: " << endl;
-                getline(cin,new_value);
+                do{
+                cout << "Enter new name with upper case in first name and last name: " << endl;
+                getline(cin, new_value);
                 // Add validation
                 if (check_name(new_value)) {
                     SQLite::Statement updateQueryName(db, "UPDATE Player SET Name=? WHERE Id=?");
@@ -547,21 +558,23 @@ bool edit_player_details(string player_id){
                     updateQueryName.bind(2, player_id);
                     updateQueryName.exec();
                     update = true;
-                    ChangeColor(0,2);
+                    ChangeColor(0, 2);
                     cout << "Name is updated!" << endl;
-                    ChangeColor(0,15);
+                    ChangeColor(0, 15);
+                    break;
+                } else {
+                    ChangeColor(0, 4);
+                    cout << "Invalid Name. Please enter a valid Name with upper case in first letter in first name and upper case in first letter in last name." << endl;
+                    ChangeColor(0, 15);
                 }
-                else{
-                    ChangeColor(0,4);
-                    cout << "invalid input!, Name not updated!" << endl;
-                    ChangeColor(0,15);
-                }
+                } while (true);
                 break;
             }
 
             case 2: {
-                cout << "Enter new email: " << endl;
-                getline(cin,new_value);
+                do{
+                cout << "Enter new email in format: user@example.com : " << endl;
+                getline(cin, new_value);
                 // Add validation
                 if (check_email(new_value)) {
                     SQLite::Statement updateQueryEmail(db, "UPDATE Player SET Email=? WHERE Id=?");
@@ -569,21 +582,24 @@ bool edit_player_details(string player_id){
                     updateQueryEmail.bind(2, player_id);
                     updateQueryEmail.exec();
                     update = true;
-                    ChangeColor(0,2);
+                    ChangeColor(0, 2);
                     cout << "Email is updated!" << endl;
-                    ChangeColor(0,15);
-                }
-                else{
+                    ChangeColor(0, 15);
+                    break;
+                } else {
                     ChangeColor(0,4);
-                    cout << "invalid input!, Email not updated!" << endl;
+                    cout << "Invalid email format. Please enter a valid email address." << endl;
                     ChangeColor(0,15);
                 }
+                } while (true); // Keep looping until a valid input is provided
                 break;
             }
 
             case 3: {
-                cout << "Enter new phone number: " << endl;
-                getline(cin,new_value);
+                do{
+                cout << "Enter new phone number exactly 10 digits and start with 05: " << endl;
+                cin.ignore(); // Clear the input buffer before getline
+                getline(cin, new_value);
                 // Add validation
                 if (check_phone_number(new_value)) {
                     SQLite::Statement updateQueryPhone(db, "UPDATE Player SET \"Phone number\"=? WHERE Id=?");
@@ -591,21 +607,27 @@ bool edit_player_details(string player_id){
                     updateQueryPhone.bind(2, player_id);
                     updateQueryPhone.exec();
                     update = true;
-                    ChangeColor(0,2);
+                    ChangeColor(0, 2);
                     cout << "Phone number is updated!" << endl;
-                    ChangeColor(0,15);
+                    ChangeColor(0, 15);
+                    break;
+                } else {
+                    ChangeColor(0, 4);
+                    cout << "Invalid phone number format. Please enter a valid phone number." << endl;
+                    ChangeColor(0, 15);
                 }
-                else{
-                    ChangeColor(0,4);
-                    cout << "invalid input!, Phone number not updated!" << endl;
-                    ChangeColor(0,15);
-                }
-                break;
             }
+                while (true); // Keep looping until a valid input is provided
+                break;
+        }
+
 
             case 4: {
-                cout << "Enter new password: " << endl;
-                getline(cin,new_value);
+                do {
+                cout << "Enter new password at least one uppercase letter and \n"
+                        "at least one lowercase letter and numbers and minimum size 7: " << endl;
+                    cin.ignore(); // Clear the input buffer before getline
+                    getline(cin, new_value);
                 // Add validation
                 if (check_password(new_value)) {
                     SQLite::Statement updateQueryPassword(db, "UPDATE Player SET Password=? WHERE Id=?");
@@ -616,12 +638,13 @@ bool edit_player_details(string player_id){
                     ChangeColor(0,2);
                     cout << "Password is updated!" << endl;
                     ChangeColor(0,15);
-                }
-                else{
+                    break; // Exit the loop if a valid input is provided
+                } else {
                     ChangeColor(0,4);
-                    cout << "invalid input!, Password not updated!" << endl;
+                    cout << "Invalid password format. Please enter a valid password." << endl;
                     ChangeColor(0,15);
                 }
+            } while (true); // Keep looping until a valid input is provided
                 break;
             }
 

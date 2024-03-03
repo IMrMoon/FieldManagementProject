@@ -57,6 +57,12 @@ void first_menu(){ //menu for choose if he is a manager or player.
         cin >> option;
         cleanBuffer();
         system("CLS");
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cleanBuffer();
+            continue;
+        }
         switch (option) {
             case (manager): {
                 manager_reg_or_login_menu();
@@ -112,6 +118,12 @@ void player_reg_or_login_menu(){
         cin >> option;
         cleanBuffer();
         system("CLS");
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cleanBuffer();
+            continue;
+        }
         switch (option) {
             case (reg): {
                 player_id = player_register();
@@ -166,6 +178,12 @@ void manager_reg_or_login_menu(){
         cin >> option;
         cleanBuffer();
         system("CLS");
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cleanBuffer();
+            continue;
+        }
         switch (option) {
             case (reg): {
                 manager_id = manager_register();
@@ -253,6 +271,12 @@ void player_menu(string player_id){
         cin >> option;
         cleanBuffer();
         system("CLS");
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cleanBuffer();
+            continue;
+        }
         switch (option) {
             case (schedule_game_player): {
                 schedule_game(player_id); ///in player
@@ -364,6 +388,12 @@ void manager_menu(string manager_id){
         cin >> option;
         cleanBuffer();
         system("CLS");
+        if (cin.fail()) {
+            cout << "Invalid input. Please enter a number." << endl;
+            cin.clear();
+            cleanBuffer();
+            continue;
+        }
         switch (option) {
             case (add_field): {
                 addField(manager_id);

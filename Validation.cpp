@@ -211,7 +211,6 @@ bool check_date(const string& date_str) {
     return true; // Date format and values are valid
 }
 
-
 bool check_time_format(const string& time_str) {
     // Check if the time string has the correct format "hh:mm"
     istringstream iss(time_str);
@@ -394,41 +393,66 @@ string choose_city_from_list(Database& db) {
     return chosen_city;
 }
 
-
-// Function to ask the player to choose a field type and validate the input
 string choose_field_type_from_list(Database& db) {
     // Print available field types
+    set<string> fieldTypes;
+    try {
+        Statement query(db, "SELECT DISTINCT Fieldtype FROM Fields");
+        while (query.executeStep()) {
+            fieldTypes.insert(query.getColumn(0).getText());
+        }
+        if (fieldTypes.empty()) {
+            cout << "No field types available." << endl;
+            return ""; // Return empty string as there are no field types available
+        }
 
-    string chosen_field_type;
-    bool valid_choice = false;
-    do {
-        print_available_field_types(db);
-        cout << "Enter the field type you want to choose: ";
-        cin >> chosen_field_type;
-        cleanBuffer();
-        system("CLS");
+        cout << "Available Field Types:" << endl;
+        int index = 1;
+        for (const string& fieldType : fieldTypes) {
+            cout << index << ". " << fieldType << endl;
+            ++index;
+        }
 
-        // Check if the chosen field type exists in the Fields table
-        try {
-            Statement query(db, "SELECT COUNT(*) FROM Fields WHERE Fieldtype = ?");
-            query.bind(1, chosen_field_type);
-            if (query.executeStep()) {
-                int count = query.getColumn(0).getInt();
-                if (count > 0) {
-                    valid_choice = true;
-                } else {
-                    ChangeColor(0,4);
-                    cout << "Invalid field type. Please choose from the available options." << endl;
-                    ChangeColor(0,15);
+        int choice;
+        string input;
+        bool validChoice = false;
+        do {
+            cout << "Enter the number of the field type you want to choose between 1-3: ";
+            cin >> input;
+            cleanBuffer(); // Clear any remaining input characters in the buffer
+
+            // Validate input: Check if every character is a digit
+            validChoice = true;
+            for (char c : input) {
+                if (!isdigit(c)) {
+                    validChoice = false;
+                    break;
                 }
             }
-        } catch (exception& e) {
-            cerr << "SQLite exception: " << e.what() << endl;
-            return ""; // Return empty string on error
-        }
-    } while (!valid_choice);
 
-    return chosen_field_type;
+            if (validChoice) {
+                choice = stoi(input); // Convert input to integer
+                if (choice < 1 || choice > fieldTypes.size()) {
+                    validChoice = false;
+                    ChangeColor(0, 4);
+                    cout << "Invalid choice. Please enter a number within the given range." << endl;
+                    ChangeColor(0, 15);
+                }
+            } else {
+                ChangeColor(0, 4);
+                cout << "Invalid input. Please enter a number." << endl;
+                ChangeColor(0, 15);
+            }
+        } while (!validChoice);
+
+        // Find the field type corresponding to the chosen number
+        auto it = fieldTypes.begin();
+        advance(it, choice - 1); // Move the iterator to the chosen field type
+        return *it;
+    } catch (exception& e) {
+        cerr << "SQLite exception: " << e.what() << endl;
+        return ""; // Return empty string on error
+    }
 }
 
 void cleanBuffer() {
@@ -445,7 +469,6 @@ int time_to_minutes(const string& time_str) {
 bool check_overlap(const pair<int, int>& interval1, const pair<int, int>& interval2) {
     return (interval1.first < interval2.second) && (interval2.first < interval1.second);
 }
-
 
 bool isDigitsOnly(const std::string& str) {
     for (char c : str) {

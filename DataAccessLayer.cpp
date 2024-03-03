@@ -48,7 +48,6 @@ set<string> get_available_cities() {
 
     return cities;
 }
-
 // Function to retrieve a set of unique game types from the fields table
 set<string> get_available_game_types() {
 
