@@ -99,7 +99,7 @@ bool check_gender(char gender){
 
 bool check_phone_number(const string& phoneNumber){
     // Regular expression for phone number validation
-    const regex phoneNumberPattern(R"(\d{1,10}$)");
+    const regex phoneNumberPattern("^05\\d{8}$");
     return regex_match(phoneNumber, phoneNumberPattern);
 }
 
@@ -360,6 +360,7 @@ string choose_city_from_list(Database& db) {
         cin >> chosen_city;
         cleanBuffer();
 
+
         // Check if the chosen city exists in the Fields table
         try {
             Statement query(db, "SELECT COUNT(*) FROM Fields WHERE City = ?");
@@ -442,3 +443,4 @@ bool isDigitsOnly(const std::string& str) {
     }
     return true;
 }
+
