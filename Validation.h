@@ -17,7 +17,7 @@ using namespace SQLite;
 
 ///validation check for register/login
 bool check_id(const string& id);
-bool check_existing_id(const string& id);
+bool check_existing_id_Player(const string& id);
 bool check_name(const string& name);
 bool check_city(const string& city);
 bool check_email(const string& email);
@@ -26,6 +26,7 @@ bool check_password(const string& password);
 bool check_phone_number(const string& password);
 bool check_existing_phone_number(const string& phone_number);
 bool check_gender(char gender);
+bool check_existing_id_Manager(const string& id);
 
 ///validation checks for order new game
 bool check_date(const string& date_str);

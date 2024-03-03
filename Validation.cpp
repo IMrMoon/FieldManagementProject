@@ -103,13 +103,34 @@ bool check_phone_number(const string& phoneNumber){
     return regex_match(phoneNumber, phoneNumberPattern);
 }
 
-bool check_existing_id(const string& id) {
+bool check_existing_id_Player(const string& id) {
     try {
         // Open the database
         Database db("FieldManagement.db", OPEN_READONLY);
 
         // Prepare a statement to select a player with the given ID
         Statement query(db, "SELECT Id FROM Player WHERE Id = ?");
+        int id_num = stoi(id);
+        query.bind(1, id_num);
+
+        // Execute the query
+        if (query.executeStep()) {
+            // If the query returns a result, the ID already exists
+            return false;
+        }
+    } catch (exception& e) {
+        // Handle exceptions (e.g., print error message)
+        cerr << "SQLite exception: " << e.what() << endl;
+    }
+    return true;
+}
+bool check_existing_id_Manager(const string& id) {
+    try {
+        // Open the database
+        Database db("FieldManagement.db", OPEN_READONLY);
+
+        // Prepare a statement to select a player with the given ID
+        Statement query(db, "SELECT Id FROM Manager WHERE Id = ?");
         int id_num = stoi(id);
         query.bind(1, id_num);
 

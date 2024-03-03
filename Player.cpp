@@ -21,7 +21,7 @@ string player_register() {
                 cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;
                 ChangeColor(0,15);
             }
-            else if(!check_existing_id(player_id)){
+            else if(!check_existing_id_Player(player_id)){
                 ChangeColor(0,4);
                 cout << "Invalid ID. this ID already exist, try again." << std::endl;
                 ChangeColor(0,15);
@@ -199,7 +199,7 @@ string player_login(){
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << std::endl;
             ChangeColor(0,15);
         }
-        if (!check_existing_id(player_id)) {
+        if (!check_existing_id_Player(player_id)) {
             try {
                 cout << "Enter your Password with At least one uppercase letter and one lowercase letter and a minimum length of 7: ";
                 cin >> player_password;

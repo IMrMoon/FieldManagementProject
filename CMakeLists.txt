@@ -27,6 +27,7 @@ add_executable(FieldManagementProject
         Color.h
 )
 
+
 target_link_libraries(FieldManagementProject SQLiteCpp)
 
 target_link_directories(FieldManagementProject PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/SQLiteCpp/include)

@@ -21,7 +21,7 @@ string manager_register() {
             ChangeColor(0,4);
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
             ChangeColor(0,15);
-        } else if (!check_existing_id(manager_id)) {
+        } else if (!check_existing_id_Manager(manager_id)) {
             ChangeColor(0,4);
             cout << "Invalid ID. This ID already exists, try again." << endl;
             ChangeColor(0,15);
@@ -196,7 +196,7 @@ string manager_login() {
             cout << "Invalid ID. Please enter a valid ID consisting of up to 9 digits." << endl;
             ChangeColor(0,15);
         }
-        else if (!check_existing_id(manager_id)) {
+        else if (!check_existing_id_Manager(manager_id)) {
             try {
                 cout << "Enter your Password with At least one uppercase letter and one lowercase letter and a minimum length of 7: ";
                 cin >> manager_password;
