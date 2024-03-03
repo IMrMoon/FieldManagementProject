@@ -371,7 +371,6 @@ bool edit_manager_details(string manager_id){
                 do {
                     cout << "Enter new password at least one uppercase letter and \n"
                             "at least one lowercase letter and numbers and minimum size 7: ";
-                    cin.ignore(); // Clear the input buffer before getline
                     getline(cin, new_value);
                     // Add validation
                     if (check_password(new_value)) {
