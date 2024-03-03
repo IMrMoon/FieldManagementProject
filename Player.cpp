@@ -116,18 +116,34 @@ string player_register() {
             }
         } while (!check_phone_number(player_phone_number) && check_existing_phone_number(player_phone_number));
 
-        do {
-            // Getting password
-            cout << "Enter Player Gender: M/F " << endl;
-            cin >> player_gender;
-            system("CLS");
-            //player_gender = toupper(player_gender); //////check
-                if (!check_gender(player_gender)) {
-                    ChangeColor(0,4);
-                    cout << "Invalid Gender. Please enter a valid Gender (M/F)." << endl;
-                    ChangeColor(0,15);
-                }
-            } while (!check_gender(player_gender));
+    string manager_gender;
+    char gender;
+
+    do {
+        // Getting gender
+        cout << "Enter Manager Gender: M/F: " << endl;
+        cin >> manager_gender;
+
+        // Check if the input is only one character
+        if (manager_gender.length() != 1) {
+            ChangeColor(0,4);
+            cout << "Invalid input. Please enter only one character." << endl;
+            ChangeColor(0,15);
+            cin.clear(); // Clear the input buffer
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore the remaining characters in the buffer
+            continue; // Restart the loop to prompt the user again
+        }
+
+        // Convert the input to uppercase for case-insensitive comparison
+        gender = toupper(manager_gender[0]);
+
+        // Check if the input is 'M' or 'F'
+        if (gender != 'M' && gender != 'F') {
+            ChangeColor(0,4);
+            cout << "Invalid Gender. Please enter either 'M' or 'F'." << endl;
+            ChangeColor(0,15);
+        }
+    } while (gender != 'M' && gender != 'F');
 
 
     // Prepare a statement to insert a new player into the Players table

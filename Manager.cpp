@@ -8,7 +8,6 @@
 
 string manager_register() {
     string manager_id, manager_name, manager_email, manager_phone_number, manager_password, manager_city;
-    char manager_gender;
     bool id_exists = false;
     bool email_exists = false;
     bool phone_number_exists = false;
@@ -119,17 +118,35 @@ string manager_register() {
         }
     } while (!check_password(manager_password));
 
+    string manager_gender;
+    char gender;
+
     do {
         // Getting gender
         cout << "Enter Manager Gender: M/F: " << endl;
         cin >> manager_gender;
-        system("CLS");
-        if (!check_gender(manager_gender)) {
+
+        // Check if the input is only one character
+        if (manager_gender.length() != 1) {
             ChangeColor(0,4);
-            cout << "Invalid Gender. Please enter a valid Gender M/F." << endl;
+            cout << "Invalid input. Please enter only one character." << endl;
+            ChangeColor(0,15);
+            cin.clear(); // Clear the input buffer
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Ignore the remaining characters in the buffer
+            continue; // Restart the loop to prompt the user again
+        }
+
+        // Convert the input to uppercase for case-insensitive comparison
+        gender = toupper(manager_gender[0]);
+
+        // Check if the input is 'M' or 'F'
+        if (gender != 'M' && gender != 'F') {
+            ChangeColor(0,4);
+            cout << "Invalid Gender. Please enter either 'M' or 'F'." << endl;
             ChangeColor(0,15);
         }
-    } while (!check_gender(manager_gender));
+    } while (gender != 'M' && gender != 'F');
+
 
     // Prepare a statement to insert a new manager into the Managers table
     try {
