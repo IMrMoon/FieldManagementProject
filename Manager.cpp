@@ -108,7 +108,8 @@ string manager_register() {
 
     do {
         // Getting password
-        cout << "Enter Manager Password: " << endl;
+        cout << "Enter Manager Password at least one uppercase letter and \n"
+                "at least one lowercase letter and numbers and minimum size 7: " << endl;
         getline(std::cin, manager_password);
         system("CLS");
         if (!check_password(manager_password)) {
