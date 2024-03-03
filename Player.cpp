@@ -260,7 +260,7 @@ bool schedule_game(string player_id) {
 
         // Input order date and validate
         do {
-            cout << "Enter order Date (format: YYYY-MM-DD): " << endl;
+            cout << "Enter order Date first year, month, then day (format: YYYY-MM-DD): " << endl;
             getline(cin, order_date);
             system("CLS");
             is_valid_date = check_date(order_date);
