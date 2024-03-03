@@ -19,32 +19,38 @@ bool check_id(const string& id) {
     return true;
 }
 
-bool check_name(const string& name){
-    bool newWord = true; // Flag to track if the next character should be uppercase
+#include <string>
+#include <cctype>
 
-    if (name.empty() || !isupper(name[0])) {
-        return false;
+bool check_name(const std::string& name) {
+    if (name.empty()) {
+        return false; // Empty name is invalid
     }
 
+    bool new_word = true; // Flag to track if the next character should be uppercase
+
     for (char c : name) {
-        if (isspace(c)) {
-            newWord = true;
-        } else {
-            if (newWord) {
-                if (!isupper(c)) {
+        if (std::isalpha(c)) {
+            if (new_word) {
+                if (!std::isupper(c)) {
                     return false; // First letter of each word should be uppercase
                 }
-                newWord = false;
+                new_word = false;
             } else {
-                if (!islower(c)) {
+                if (!std::islower(c)) {
                     return false; // All other letters should be lowercase
                 }
             }
+        } else if (std::isspace(c)) {
+            new_word = true; // Reset the flag for the next word
+        } else {
+            return false; // Invalid character (assuming only alphabetic characters and spaces are allowed)
         }
     }
 
-    return true;
+    return true; // Name follows the expected pattern
 }
+
 
 bool check_city(const string& city){
     bool newWord = true; // Flag to track if the next character should be uppercase

@@ -564,26 +564,26 @@ bool edit_player_details(string player_id){
         string new_value;
         switch (choice) {
             case 1: {
-                do{
-                cout << "Enter new name with upper case in first name and last name: " << endl;
-                getline(cin, new_value);
-                // Add validation
-                if (check_name(new_value)) {
-                    SQLite::Statement updateQueryName(db, "UPDATE Player SET Name=? WHERE Id=?");
-                    updateQueryName.bind(1, new_value);
-                    updateQueryName.bind(2, player_id);
-                    updateQueryName.exec();
-                    update = true;
-                    ChangeColor(0, 2);
-                    cout << "Name is updated!" << endl;
-                    ChangeColor(0, 15);
-                    break;
-                } else {
-                    ChangeColor(0, 4);
-                    cout << "Invalid Name. Please enter a valid Name with upper case in first letter in first name and upper case in first letter in last name." << endl;
-                    ChangeColor(0, 15);
-                }
+                do {
+                    cout << "Enter new name with upper case in first name and last name: ";
+                    getline(cin, new_value);
+
+                    if (check_name(new_value)) {
+                        SQLite::Statement updateQueryName(db, "UPDATE Player SET Name=? WHERE Id=?");
+                        updateQueryName.bind(1, new_value);
+                        updateQueryName.bind(2, player_id);
+                        updateQueryName.exec();
+                        ChangeColor(0, 2);
+                        cout << "Name is updated!" << endl;
+                        ChangeColor(0, 15);
+                        break;
+                    } else {
+                        ChangeColor(0, 4);
+                        cout << "Invalid Name. Please enter a valid Name with upper case in first letter in first name and upper case in first letter in last name." << endl;
+                        ChangeColor(0, 15);
+                    }
                 } while (true);
+
                 break;
             }
 

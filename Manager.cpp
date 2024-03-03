@@ -297,10 +297,8 @@ bool edit_manager_details(string manager_id){
             case 1: {
                 do {
                     cout << "Enter new name with upper case in first name and last name: ";
-                    // Use cin.ignore() to clear the input buffer before getline
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     getline(cin, new_value);
-                    // Add validation
+
                     if (check_name(new_value)) {
                         SQLite::Statement updateQueryName(db, "UPDATE Manager SET Name=? WHERE Id=?");
                         updateQueryName.bind(1, new_value);
@@ -316,6 +314,7 @@ bool edit_manager_details(string manager_id){
                         ChangeColor(0, 15);
                     }
                 } while (true);
+
                 break;
             }
 
