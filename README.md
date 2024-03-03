@@ -5,3 +5,4 @@ press twice on the DataBase FieldManagement.db
 then erase another db and accept the db with the same name, after this press refresh on the database.
 make sure the Run configuration is on FieldManagementProject.
 then u can use the system freely.
+#before run the program, press run and then modify run configuration, and press RUN IN EXTERNAL CONSOLE.
