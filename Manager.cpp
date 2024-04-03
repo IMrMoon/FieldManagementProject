@@ -293,6 +293,7 @@ bool edit_manager_details(string manager_id){
 
         // Get new details from the user based on their choice
         string new_value;
+        string new_phone_num;
         switch (choice) {
             case 1: {
                 do {
@@ -345,12 +346,11 @@ bool edit_manager_details(string manager_id){
             case 3: {
                 do {
                     cout << "Enter new phone number exactly 10 digits and start with 05: ";
-                    cin.ignore(); // Clear the input buffer before getline
-                    getline(cin, new_value);
+                    getline(cin, new_phone_num);
                     // Add validation
-                    if (check_phone_number(new_value)) {
+                    if (check_phone_number(new_phone_num)) {
                         SQLite::Statement updateQueryPhone(db, "UPDATE Manager SET \"Phone number\"=? WHERE Id=?");
-                        updateQueryPhone.bind(1, new_value);
+                        updateQueryPhone.bind(1, stoi(new_phone_num)); ///check
                         updateQueryPhone.bind(2, manager_id);
                         updateQueryPhone.exec();
                         ChangeColor(0,2);

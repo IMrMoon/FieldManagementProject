@@ -330,7 +330,7 @@ bool schedule_game(string player_id) {
         cerr << "SQLite exception: " << e.what() << endl;
         return false; // Return false indicating failure
     }
-}
+} ///fix time schedule
 
 bool view_previous_games(string playerId)
 {
@@ -485,7 +485,7 @@ void view_upcoming_orders(string playerId) {
 
             orderId = query.getColumn(0).getString();
             orderDate = query.getColumn(1).getString();
-            fieldId = query.getColumn(2).getString();
+            fieldId = query.getColumn(6).getString();
 
             std::cout << "Order ID: " << orderId
                       << ", Field ID: " << fieldId
