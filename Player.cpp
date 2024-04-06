@@ -393,13 +393,6 @@ bool field_rate(string playerId) {
     try {
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READWRITE | SQLite::OPEN_CREATE);
 
-        // Retrieve the list of fields
-        SQLite::Statement getFieldQuery(db, "SELECT * FROM Fields");
-        cout << "Available Fields:\n";
-        while (getFieldQuery.executeStep()) {
-            cout << "FieldId: " << getFieldQuery.getColumn(0).getString() << " FieldType: " << getFieldQuery.getColumn(1).getString() << " City: " << getFieldQuery.getColumn(2).getString() << endl;
-        }
-
         // Take input for the selected field
         cout << "Enter the Field ID you want to rate: " << endl;
         cin >> selectedFieldId;
