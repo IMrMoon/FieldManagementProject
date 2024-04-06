@@ -67,7 +67,7 @@ bool check_city(const string& city){
     return true;
 }
 
-bool check_existing_city(string manager_city){
+bool check_existing_city(string manager_city) {
     try {
         // Open the SQLite database
         SQLite::Database db("FieldManagement.db", SQLite::OPEN_READONLY);
@@ -79,13 +79,14 @@ bool check_existing_city(string manager_city){
         // Execute the query
         if (query.executeStep()) {
             int count = query.getColumn(0).getInt();
-            return false; // If count is 0, the city does not exist, so return true; otherwise, return false.
+            return count > 0; // If count is greater than 0, the city exists, so return true; otherwise, return false.
         }
     } catch (std::exception& e) {
         std::cerr << "SQLite exception: " << e.what() << std::endl;
     }
-    return true; // Return true by default (error occurred or city doesn't exist)
+    return false; // Return false if an exception occurs or query fails
 }
+
 
 bool check_email(const string& email){
     // Regular expression for basic email validation

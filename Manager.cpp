@@ -11,7 +11,7 @@ string manager_register() {
     bool id_exists = false;
     bool email_exists = false;
     bool phone_number_exists = false;
-    bool city_exist = false;
+    bool city_not_exist = true;
 
     do {
         cout << "Enter Manager ID (up to 9 digits): " << endl;
@@ -86,6 +86,7 @@ string manager_register() {
         }
     } while (!check_phone_number(manager_phone_number) || phone_number_exists);
 
+    bool city_is_valid = true;
     do {
         // Getting city
         cout << "Enter Manager City with upper case both words: " << endl;
@@ -95,15 +96,18 @@ string manager_register() {
             ChangeColor(0,4);
             cout << "Invalid City. Please enter a valid City with upper case in first name and last name of the city" << endl;
             ChangeColor(0,15);
+            city_is_valid = false;
         } else if (check_existing_city(manager_city)) {
             ChangeColor(0,4);
             cout << "Invalid City. This City already exists, try again." << endl;
             ChangeColor(0,15);
-            city_exist = true;
+            city_not_exist = false;
         } else {
-            city_exist = false;
+            city_is_valid = true;
+            city_not_exist = true;
         }
-    } while (!check_city(manager_city) || city_exist);
+    } while (!city_not_exist || !city_is_valid);
+
 
     do {
         // Getting password
