@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject
+CMAKE_SOURCE_DIR = C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
 
 # Utility rule file for SQLiteCpp_cpplint.
 
@@ -66,7 +66,7 @@ include SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/compiler_depend.make
 include SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/progress.make
 
 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp && "C:\Program Files\Python38\python.exe" C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/cpplint.py --output=eclipse --verbose=3 --linelength=120 C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Backup.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Column.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Database.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Exception.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Savepoint.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Statement.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Transaction.cpp C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCpp.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Assertion.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Backup.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Column.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Database.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Exception.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Savepoint.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Statement.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Transaction.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/VariadicBind.h C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/ExecuteMany.h
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp && C:\Users\smada\AppData\Local\Programs\Python\Python312\python.exe C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/cpplint.py --output=eclipse --verbose=3 --linelength=120 C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Backup.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Column.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Database.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Exception.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Savepoint.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Statement.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/src/Transaction.cpp C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/SQLiteCpp.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Assertion.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Backup.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Column.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Database.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Exception.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Savepoint.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Statement.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/Transaction.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/VariadicBind.h C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/include/SQLiteCpp/ExecuteMany.h
 
 SQLiteCpp_cpplint: SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint
 SQLiteCpp_cpplint: SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/build.make
@@ -77,10 +77,10 @@ SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/build: SQLiteCpp_cpplint
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/build
 
 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/clean:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp && $(CMAKE_COMMAND) -P CMakeFiles\SQLiteCpp_cpplint.dir\cmake_clean.cmake
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp && $(CMAKE_COMMAND) -P CMakeFiles\SQLiteCpp_cpplint.dir\cmake_clean.cmake
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/clean
 
 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\CMakeFiles\SQLiteCpp_cpplint.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\CMakeFiles\SQLiteCpp_cpplint.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/depend
 

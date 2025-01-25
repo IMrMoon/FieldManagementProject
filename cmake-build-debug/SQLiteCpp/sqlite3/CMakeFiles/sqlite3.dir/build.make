@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject
+CMAKE_SOURCE_DIR = C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/depend.make
@@ -70,18 +70,18 @@ include SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/flags.make
 
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/flags.make
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/includes_C.rsp
-SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj: C:/Users/sgvch/OneDrive/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.c
+SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj: C:/Users/smada/Desktop/FieldManagementProject/FieldManagementProject/SQLiteCpp/sqlite3/sqlite3.c
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj"
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj -MF CMakeFiles\sqlite3.dir\sqlite3.c.obj.d -o CMakeFiles\sqlite3.dir\sqlite3.c.obj -c C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3\sqlite3.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj"
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj -MF CMakeFiles\sqlite3.dir\sqlite3.c.obj.d -o CMakeFiles\sqlite3.dir\sqlite3.c.obj -c C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3\sqlite3.c
 
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/sqlite3.dir/sqlite3.c.i"
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3\sqlite3.c > CMakeFiles\sqlite3.dir\sqlite3.c.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3\sqlite3.c > CMakeFiles\sqlite3.dir\sqlite3.c.i
 
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/sqlite3.dir/sqlite3.c.s"
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && C:\PROGRA~1\JETBRA~1\CLION2~1.3\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3\sqlite3.c -o CMakeFiles\sqlite3.dir\sqlite3.c.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && C:\Users\smada\AppData\Local\Programs\CLion\bin\mingw\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3\sqlite3.c -o CMakeFiles\sqlite3.dir\sqlite3.c.s
 
 # Object files for target sqlite3
 sqlite3_OBJECTS = \
@@ -93,19 +93,19 @@ sqlite3_EXTERNAL_OBJECTS =
 SQLiteCpp/sqlite3/libsqlite3.a: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/sqlite3.c.obj
 SQLiteCpp/sqlite3/libsqlite3.a: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/build.make
 SQLiteCpp/sqlite3/libsqlite3.a: SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libsqlite3.a"
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && $(CMAKE_COMMAND) -P CMakeFiles\sqlite3.dir\cmake_clean_target.cmake
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\sqlite3.dir\link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libsqlite3.a"
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && $(CMAKE_COMMAND) -P CMakeFiles\sqlite3.dir\cmake_clean_target.cmake
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\sqlite3.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/build: SQLiteCpp/sqlite3/libsqlite3.a
 .PHONY : SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/build
 
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/clean:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && $(CMAKE_COMMAND) -P CMakeFiles\sqlite3.dir\cmake_clean.cmake
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 && $(CMAKE_COMMAND) -P CMakeFiles\sqlite3.dir\cmake_clean.cmake
 .PHONY : SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/clean
 
 SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3 C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3\CMakeFiles\sqlite3.dir\DependInfo.cmake "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\SQLiteCpp\sqlite3 C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3 C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\sqlite3\CMakeFiles\sqlite3.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : SQLiteCpp/sqlite3/CMakeFiles/sqlite3.dir/depend
 

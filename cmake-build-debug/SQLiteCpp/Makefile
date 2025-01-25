@@ -47,19 +47,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject
+CMAKE_SOURCE_DIR = C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldM
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -77,7 +77,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -96,49 +96,49 @@ list_install_components/fast: list_install_components
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install
 
 # Special rule for the target install
 install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -P cmake_install.cmake
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -P cmake_install.cmake
 .PHONY : install/fast
 
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local
 
 # Special rule for the target install/local
 install/local/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
 # Special rule for the target install/strip
 install/strip: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip
 
 # Special rule for the target install/strip
 install/strip/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	"C:\Program Files\JetBrains\CLion 2023.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+	C:\Users\smada\AppData\Local\Programs\CLion\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
 .PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\\CMakeFiles\progress.marks
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\SQLiteCpp\\CMakeFiles\progress.marks
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/clean
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/clean
 .PHONY : clean
 
 # The main clean target
@@ -147,22 +147,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/preinstall
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/preinstall
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule
 
 # Convenience name for target.
@@ -171,12 +171,12 @@ SQLiteCpp: SQLiteCpp/CMakeFiles/SQLiteCpp.dir/rule
 
 # fast build rule for target.
 SQLiteCpp/fast:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/build
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/build
 .PHONY : SQLiteCpp/fast
 
 # Convenience name for target.
 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule
 .PHONY : SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule
 
 # Convenience name for target.
@@ -185,7 +185,7 @@ SQLiteCpp_cpplint: SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/rule
 
 # fast build rule for target.
 SQLiteCpp_cpplint/fast:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp_cpplint.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/build
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp_cpplint.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp_cpplint.dir/build
 .PHONY : SQLiteCpp_cpplint/fast
 
 src/Backup.obj: src/Backup.cpp.obj
@@ -193,7 +193,7 @@ src/Backup.obj: src/Backup.cpp.obj
 
 # target to build an object file
 src/Backup.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.obj
 .PHONY : src/Backup.cpp.obj
 
 src/Backup.i: src/Backup.cpp.i
@@ -201,7 +201,7 @@ src/Backup.i: src/Backup.cpp.i
 
 # target to preprocess a source file
 src/Backup.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.i
 .PHONY : src/Backup.cpp.i
 
 src/Backup.s: src/Backup.cpp.s
@@ -209,7 +209,7 @@ src/Backup.s: src/Backup.cpp.s
 
 # target to generate assembly for a file
 src/Backup.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Backup.cpp.s
 .PHONY : src/Backup.cpp.s
 
 src/Column.obj: src/Column.cpp.obj
@@ -217,7 +217,7 @@ src/Column.obj: src/Column.cpp.obj
 
 # target to build an object file
 src/Column.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Column.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Column.cpp.obj
 .PHONY : src/Column.cpp.obj
 
 src/Column.i: src/Column.cpp.i
@@ -225,7 +225,7 @@ src/Column.i: src/Column.cpp.i
 
 # target to preprocess a source file
 src/Column.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Column.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Column.cpp.i
 .PHONY : src/Column.cpp.i
 
 src/Column.s: src/Column.cpp.s
@@ -233,7 +233,7 @@ src/Column.s: src/Column.cpp.s
 
 # target to generate assembly for a file
 src/Column.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Column.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Column.cpp.s
 .PHONY : src/Column.cpp.s
 
 src/Database.obj: src/Database.cpp.obj
@@ -241,7 +241,7 @@ src/Database.obj: src/Database.cpp.obj
 
 # target to build an object file
 src/Database.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Database.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Database.cpp.obj
 .PHONY : src/Database.cpp.obj
 
 src/Database.i: src/Database.cpp.i
@@ -249,7 +249,7 @@ src/Database.i: src/Database.cpp.i
 
 # target to preprocess a source file
 src/Database.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Database.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Database.cpp.i
 .PHONY : src/Database.cpp.i
 
 src/Database.s: src/Database.cpp.s
@@ -257,7 +257,7 @@ src/Database.s: src/Database.cpp.s
 
 # target to generate assembly for a file
 src/Database.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Database.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Database.cpp.s
 .PHONY : src/Database.cpp.s
 
 src/Exception.obj: src/Exception.cpp.obj
@@ -265,7 +265,7 @@ src/Exception.obj: src/Exception.cpp.obj
 
 # target to build an object file
 src/Exception.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.obj
 .PHONY : src/Exception.cpp.obj
 
 src/Exception.i: src/Exception.cpp.i
@@ -273,7 +273,7 @@ src/Exception.i: src/Exception.cpp.i
 
 # target to preprocess a source file
 src/Exception.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.i
 .PHONY : src/Exception.cpp.i
 
 src/Exception.s: src/Exception.cpp.s
@@ -281,7 +281,7 @@ src/Exception.s: src/Exception.cpp.s
 
 # target to generate assembly for a file
 src/Exception.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Exception.cpp.s
 .PHONY : src/Exception.cpp.s
 
 src/Savepoint.obj: src/Savepoint.cpp.obj
@@ -289,7 +289,7 @@ src/Savepoint.obj: src/Savepoint.cpp.obj
 
 # target to build an object file
 src/Savepoint.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.obj
 .PHONY : src/Savepoint.cpp.obj
 
 src/Savepoint.i: src/Savepoint.cpp.i
@@ -297,7 +297,7 @@ src/Savepoint.i: src/Savepoint.cpp.i
 
 # target to preprocess a source file
 src/Savepoint.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.i
 .PHONY : src/Savepoint.cpp.i
 
 src/Savepoint.s: src/Savepoint.cpp.s
@@ -305,7 +305,7 @@ src/Savepoint.s: src/Savepoint.cpp.s
 
 # target to generate assembly for a file
 src/Savepoint.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Savepoint.cpp.s
 .PHONY : src/Savepoint.cpp.s
 
 src/Statement.obj: src/Statement.cpp.obj
@@ -313,7 +313,7 @@ src/Statement.obj: src/Statement.cpp.obj
 
 # target to build an object file
 src/Statement.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.obj
 .PHONY : src/Statement.cpp.obj
 
 src/Statement.i: src/Statement.cpp.i
@@ -321,7 +321,7 @@ src/Statement.i: src/Statement.cpp.i
 
 # target to preprocess a source file
 src/Statement.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.i
 .PHONY : src/Statement.cpp.i
 
 src/Statement.s: src/Statement.cpp.s
@@ -329,7 +329,7 @@ src/Statement.s: src/Statement.cpp.s
 
 # target to generate assembly for a file
 src/Statement.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Statement.cpp.s
 .PHONY : src/Statement.cpp.s
 
 src/Transaction.obj: src/Transaction.cpp.obj
@@ -337,7 +337,7 @@ src/Transaction.obj: src/Transaction.cpp.obj
 
 # target to build an object file
 src/Transaction.cpp.obj:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.obj
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.obj
 .PHONY : src/Transaction.cpp.obj
 
 src/Transaction.i: src/Transaction.cpp.i
@@ -345,7 +345,7 @@ src/Transaction.i: src/Transaction.cpp.i
 
 # target to preprocess a source file
 src/Transaction.cpp.i:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.i
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.i
 .PHONY : src/Transaction.cpp.i
 
 src/Transaction.s: src/Transaction.cpp.s
@@ -353,7 +353,7 @@ src/Transaction.s: src/Transaction.cpp.s
 
 # target to generate assembly for a file
 src/Transaction.cpp.s:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.s
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(MAKE) $(MAKESILENT) -f SQLiteCpp\CMakeFiles\SQLiteCpp.dir\build.make SQLiteCpp/CMakeFiles/SQLiteCpp.dir/src/Transaction.cpp.s
 .PHONY : src/Transaction.cpp.s
 
 # Help Target
@@ -402,6 +402,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\Users\sgvch\OneDrive\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\smada\Desktop\FieldManagementProject\FieldManagementProject\cmake-build-debug && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
